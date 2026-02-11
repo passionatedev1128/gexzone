@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclo de Mercado de Volatilidad - GEX ZONE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1d29 0%, #2d3748 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(26, 29, 41, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(79, 172, 254, 0.3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo-text {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 8px;
+        }
+        
+        .logo-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .bar {
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #4facfe 0%, #8e44ad 100%);
+        }
+        
+        .bar:nth-child(1) { width: 60px; }
+        .bar:nth-child(2) { width: 80px; }
+        .bar:nth-child(3) { width: 45px; }
+        .bar:nth-child(4) { width: 70px; }
+        
+        .tagline {
+            font-size: 14px;
+            color: #8e44ad;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cycle-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .phase-card {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+            border: 2px solid;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(79, 172, 254, 0.2);
+        }
+        
+        .bear-market {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(238, 82, 83, 0.1) 100%);
+        }
+        
+        .early-recovery {
+            border-color: #4ecdc4;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(85, 239, 196, 0.1) 100%);
+        }
+        
+        .late-cycle {
+            border-color: #ffa726;
+            background: linear-gradient(135deg, rgba(255, 167, 38, 0.1) 0%, rgba(255, 183, 77, 0.1) 100%);
+        }
+        
+        .mid-cycle {
+            border-color: #a29bfe;
+            background: linear-gradient(135deg, rgba(162, 155, 254, 0.1) 0%, rgba(116, 185, 255, 0.1) 100%);
+        }
+        
+        .phase-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .bear-market .phase-title { color: #ff6b6b; }
+        .early-recovery .phase-title { color: #4ecdc4; }
+        .late-cycle .phase-title { color: #ffa726; }
+        .mid-cycle .phase-title { color: #a29bfe; }
+        
+        .phase-content {
+            list-style: none;
+        }
+        
+        .phase-content li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .phase-content li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #4facfe;
+            font-size: 12px;
+        }
+        
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            z-index: 10;
+        }
+        
+        .arrows {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            z-index: 5;
+        }
+        
+        .arrow {
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            background: #4facfe;
+            border-radius: 2px;
+        }
+        
+        .arrow::after {
+            content: "";
+            position: absolute;
+            right: -8px;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #4facfe;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        
+        .arrow-right {
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        
+        .arrow-down {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(90deg);
+        }
+        
+        .arrow-left {
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .arrow-up {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(270deg);
+        }
+        
+        .source {
+            text-align: center;
+            font-size: 12px;
+            color: #8e8e93;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .highlight-note {
+            background: linear-gradient(135deg, rgba(255, 167, 38, 0.2) 0%, rgba(255, 183, 77, 0.2) 100%);
+            border-left: 4px solid #ffa726;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .logo-text {
+                font-size: 36px;
+                letter-spacing: 4px;
+            }
+            
+            .cycle-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .center-circle {
+                position: static;
+                transform: none;
+                margin: 20px auto;
+            }
+            
+            .arrows {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div>
+                    <div class="logo-text">GEX</div>
+                    <div class="tagline">ZONE</div>
+                </div>
+                <div class="logo-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div>
+                <div class="tagline">UNRAVELING THE</div>
+                <div class="tagline">MATRIX</div>
+            </div>
+        </div>
+        
+        <h1 class="title">Fig. 4: El mercado de volatilidad ahora se asemeja cada vez más a un régimen de ciclo tardío</h1>
+        
+        <div class="cycle-container">
+            <div class="phase-card bear-market">
+                <div class="phase-title">Mercado Bajista</div>
+                <ul class="phase-content">
+                    <li><strong>Aumento explosivo en volatilidad,</strong> los mercados exhiben colas gordas</li>
+                    <li><strong>Prima de volatilidad grande,</strong> posiciones de volatilidad corta se deshacen y la liquidez es pobre</li>
+                </ul>
+            </div>
+            
+            <div class="phase-card early-recovery">
+                <div class="phase-title">Recuperación Temprana</div>
+                <ul class="phase-content">
+                    <li><strong>Las tendencias de RV bajan</strong> pero permanecen muy por encima de los niveles promedio</li>
+                    <li><strong>La liquidez mejora</strong> pero VRP se mantiene alto ya que las caídas realizadas son más rápidas que las implícitas</li>
+                </ul>
+            </div>
+            
+            <div class="phase-card late-cycle">
+                <div class="phase-title">Ciclo Tardío / Exuberancia</div>
+                <ul class="phase-content">
+                    <li><strong>Las operaciones de vol corta</strong> se vuelven abarrotadas, los niveles de RV se vuelven muy bajos</li>
+                    <li><strong>El exceso de toma de riesgos</strong> y el apalancamiento hacen al mercado vulnerable a movimientos desproporcionados</li>
+                </ul>
+            </div>
+            
+            <div class="phase-card mid-cycle">
+                <div class="phase-title">Ciclo Medio</div>
+                <ul class="phase-content">
+                    <li><strong>Los niveles de Vol convergen</strong> con las medianas de largo plazo, VRP se comprime</li>
+                    <li><strong>Los inversionistas venden vol,</strong> suministrando a los distribuidores con gamma. Esto tiene un efecto autorreforzante de deprimir más la RV.</li>
+                </ul>
+            </div>
+            
+            <div class="center-circle">
+                CICLO DE<br>VOLATILIDAD
+            </div>
+            
+            <div class="arrows">
+                <div class="arrow arrow-right"></div>
+                <div class="arrow arrow-down"></div>
+                <div class="arrow arrow-left"></div>
+                <div class="arrow arrow-up"></div>
+            </div>
+        </div>
+        
+        <div class="highlight-note">
+            <strong>Nota clave:</strong> El mercado actual muestra características similares a la fase de "Ciclo Tardío/Exuberancia", donde las operaciones de volatilidad corta se vuelven abarrotadas y el exceso de apalancamiento aumenta la vulnerabilidad del mercado.
+        </div>
+        
+        <div class="source">
+            Fuente: BNP Paribas | Análisis: GEX ZONE
+        </div>
+    </div>
+</body>
+</html>

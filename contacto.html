@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — GEXZONE</title>
+  <meta name="description" content="Evalúa tu perfil con un experto institucional o envíanos un mensaje." />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">GEXZONE</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <ul class="nav-main" id="nav-main">
+        <li><a href="formacion.html" data-i18n="nav.formacion">Formación</a></li>
+        <li><a href="trading-room.html" data-i18n="nav.tradingRoom">Trading Room</a></li>
+        <li><a href="recursos.html" data-i18n="nav.recursos">Recursos</a></li>
+        <li><a href="volatilidad.html" data-i18n="nav.volatilidad">Volatilidad</a></li>
+        <li><a href="software-bots.html" data-i18n="nav.software">Software / Bots</a></li>
+        <li><a href="contacto.html" data-i18n="nav.contacto">Contacto</a></li>
+      </ul>
+      <div class="header-actions">
+        <button type="button" class="btn-icon" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
+        <button type="button" class="btn-icon" id="theme-toggle" aria-label="Modo noche">☀/🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section contact-section">
+      <div class="container">
+        <h2 class="font-serif" data-i18n="contact.title">Contacto</h2>
+        <p class="intro" data-i18n="contact.intro">¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.</p>
+
+        <div class="contact-options">
+          <div class="contact-option contact-option-call">
+            <div class="contact-option-icon" aria-hidden="true">📅</div>
+            <h3 class="contact-option-title" data-i18n="contact.bookCallTitle">Agendar una llamada</h3>
+            <p class="contact-option-desc" data-i18n="contact.bookCallDesc">Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.</p>
+            <a href="#" class="btn btn-primary contact-option-btn" id="calendly-link" data-i18n="contact.bookCallBtn" target="_blank" rel="noopener">Elegir fecha y hora</a>
+            <p class="contact-option-hint u-hidden-if-linked" data-i18n="contact.bookCallHint">Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.</p>
+          </div>
+          <div class="contact-option contact-option-profile">
+            <div class="contact-option-icon" aria-hidden="true">👤</div>
+            <h3 class="contact-option-title" data-i18n="contact.cta">Evalúa tu perfil con un experto institucional</h3>
+            <p class="contact-option-desc" data-i18n="contact.ctaDesc">Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.</p>
+            <a href="#" class="btn btn-primary contact-option-btn" id="profile-call-link" data-i18n="contact.ctaBtn">Evalúa mi perfil</a>
+          </div>
+        </div>
+
+        <div class="contact-divider">
+          <span data-i18n="contact.orMessage">O envíanos un mensaje</span>
+        </div>
+
+        <form class="contact-form" action="#" method="post" id="contact-form">
+          <div>
+            <label for="contact-name" data-i18n="contact.name">Nombre</label>
+            <input type="text" id="contact-name" name="name" required />
+          </div>
+          <div>
+            <label for="contact-email" data-i18n="contact.email">Correo electrónico</label>
+            <input type="email" id="contact-email" name="email" required />
+          </div>
+          <div>
+            <label for="contact-message" data-i18n="contact.message">Mensaje</label>
+            <textarea id="contact-message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="contact.send">Enviar</button>
+        </form>
+
+        <p class="contact-footer-hint" data-i18n="contact.chatHint">Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div><a href="formacion.html">Formación</a><a href="trading-room.html">Trading Room</a><a href="recursos.html">Recursos</a></div>
+      <div><a href="volatilidad.html">Volatilidad</a><a href="software-bots.html">Software / Bots</a><a href="contacto.html">Contacto</a></div>
+      <div><a href="legal/terminos.html">Términos y condiciones</a><a href="legal/cookies.html">Política de cookies</a><a href="legal/aviso.html">Aviso legal / Financial advisor</a></div>
+    </div>
+    <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
+  </footer>
+
+  <button type="button" class="chatbot-toggle" id="chatbot-toggle" aria-label="Abrir chat">💬</button>
+  <div class="chatbot-panel" id="chatbot-panel" role="dialog" aria-label="Chat">
+    <div class="chatbot-header" data-i18n="chatbot.title">Chat GEXZONE</div>
+    <div class="chatbot-messages" id="chatbot-messages"></div>
+    <div class="chatbot-input-wrap">
+      <input type="text" id="chatbot-input" data-i18n-placeholder="chatbot.placeholder" placeholder="Escribe tu mensaje..." />
+      <button type="button" class="btn btn-primary" id="chatbot-send" data-i18n="chatbot.send">Enviar</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Sustituye por tu URL de Calendly, Cal.com, etc. Ambas opciones (Agendar llamada + Evalúa perfil) usarán este enlace.
+    window.GEXZONE_BOOKING_URL = 'https://calendly.com'; // ej: https://calendly.com/tu-usuario/gexzone-llamada
+
+    (function () {
+      var url = window.GEXZONE_BOOKING_URL || '#';
+      var link1 = document.getElementById('calendly-link');
+      var link2 = document.getElementById('profile-call-link');
+      if (link1) { link1.href = url; if (url !== '#') link1.closest('.contact-option')?.querySelector('.u-hidden-if-linked')?.classList.add('is-hidden'); }
+      if (link2) link2.href = url;
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('En producción este formulario se conectaría con Odoo/CRM. Por ahora es solo presentación.');
+    });
+  </script>
+</body>
+</html>

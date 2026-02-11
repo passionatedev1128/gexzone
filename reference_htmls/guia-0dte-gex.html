@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Esencial de Opciones 0DTE - GEX ZONE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a3e;
+            color: #e0e0e0;
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(74, 158, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(74, 158, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .header {
+            background: #1a1a3e;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .logo-left {
+            margin-right: 80px;
+            z-index: 2;
+        }
+        
+        .gex-text {
+            font-size: 5rem;
+            font-weight: 200;
+            letter-spacing: 25px;
+            color: #4a9eff;
+            margin: 0;
+            text-shadow: 
+                0 0 30px rgba(74, 158, 255, 0.6),
+                0 0 60px rgba(74, 158, 255, 0.3);
+            line-height: 1;
+            position: relative;
+        }
+        
+        .gex-text::after {
+            content: 'GEX';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: transparent;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .zone-text {
+            font-size: 1.2rem;
+            letter-spacing: 35px;
+            color: #4a9eff;
+            margin-top: -5px;
+            margin-left: 5px;
+            opacity: 0.9;
+        }
+        
+        .logo-right {
+            position: relative;
+        }
+        
+        .decorative-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .line {
+            height: 4px;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        .line:nth-child(1)::after {
+            animation-delay: 0s;
+        }
+        
+        .line:nth-child(2)::after {
+            animation-delay: 0.5s;
+        }
+        
+        .line:nth-child(3)::after {
+            animation-delay: 1s;
+        }
+        
+        .line:nth-child(4)::after {
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .line:nth-child(1) {
+            width: 180px;
+            background: linear-gradient(90deg, #4a9eff 0%, #5aa5ff 100%);
+        }
+        
+        .line:nth-child(2) {
+            width: 240px;
+            background: linear-gradient(90deg, #5aa5ff 0%, #6b8cff 100%);
+        }
+        
+        .line:nth-child(3) {
+            width: 200px;
+            background: linear-gradient(90deg, #6b8cff 0%, #7c7df9 100%);
+        }
+        
+        .line:nth-child(4) {
+            width: 220px;
+            background: linear-gradient(90deg, #7c7df9 0%, #8b5cf6 100%);
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            color: #8b5cf6;
+            letter-spacing: 8px;
+            margin-top: 15px;
+            text-align: right;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .intro-section h2 {
+            color: #4a9eff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #4a9eff;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(74, 158, 255, 0.2);
+        }
+        
+        h3 {
+            color: #4a9eff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3::before {
+            content: "▸";
+            margin-right: 10px;
+            color: #8b5cf6;
+        }
+        
+        .highlight-box {
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .warning-box::before {
+            content: "⚠️ ";
+            font-size: 1.2rem;
+        }
+        
+        .success-box {
+            background: rgba(72, 187, 120, 0.1);
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .success-box::before {
+            content: "✓ ";
+            font-size: 1.2rem;
+            color: #48bb78;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+        
+        .key-point {
+            font-weight: bold;
+            color: #4a9eff;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .grid-item {
+            background: rgba(74, 158, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.3);
+        }
+        
+        .grid-item h4 {
+            color: #8b5cf6;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(74, 158, 255, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-left {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .gex-text {
+                font-size: 3.5rem;
+                letter-spacing: 15px;
+            }
+            
+            .zone-text {
+                letter-spacing: 20px;
+            }
+            
+            .decorative-lines {
+                margin: 0 auto;
+            }
+            
+            .tagline {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 0.8rem;
+                letter-spacing: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="intro-section">
+            <h2>Guía Definitiva para Dominar las Opciones 0DTE</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-top: 20px;">
+                Descubre cómo convertir el aparente caos del trading intradía en oportunidades sistemáticas y rentables
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>¿Trading o Casino? La Verdad sobre las Opciones 0DTE</h3>
+            <p>
+                Si alguna vez te has preguntado si operar con opciones que expiran el mismo día es equivalente a apostar en un casino, no eres el único. La naturaleza vertiginosa de estos instrumentos ha generado tanto entusiasmo como escepticismo en la comunidad inversora.
+            </p>
+            <div class="highlight-box">
+                <p><span class="key-point">Realidad fundamental:</span> Las opciones 0DTE no son intrínsecamente más arriesgadas que otros instrumentos financieros. La diferencia radica en que magnifican exponencialmente los resultados de operar sin una metodología estructurada.</p>
+            </div>
+            <p>
+                Piénsalo de esta manera: un coche deportivo no es peligroso por sí mismo, pero requiere un conductor experimentado y conocimiento de sus características únicas. Lo mismo ocurre con las opciones 0DTE.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Entendiendo las Opciones 0DTE: Más Allá de lo Básico</h3>
+            <p>
+                Las opciones con vencimiento el mismo día (0 Days To Expiration) son contratos que nacen y mueren en una sola sesión bursátil. Pero esta definición simple esconde una complejidad fascinante.
+            </p>
+            
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h4>⏱️ Horizonte Temporal Definido</h4>
+                    <p>El desenlace se conoce al cierre del mercado, eliminando la incertidumbre overnight y permitiendo una gestión del capital más precisa.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>💰 Capital Eficiente</h4>
+                    <p>Las primas reducidas permiten controlar posiciones significativas con menor desembolso inicial, optimizando el uso del capital.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>🎯 Precisión Táctica</h4>
+                    <p>Ideales para capitalizar eventos específicos, noticias económicas o rupturas técnicas que ocurren durante la sesión.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>El SPX: El Rey Indiscutible del Trading 0DTE</h3>
+            <p>
+                Aunque múltiples activos ofrecen opciones 0DTE, el índice S&P 500 (SPX) se ha consolidado como el vehículo preferido por traders profesionales. Las razones son contundentes:
+            </p>
+            
+            <ul>
+                <li><span class="key-point">Liquidez excepcional:</span> Spreads ajustados incluso en strikes alejados del precio actual, permitiendo entradas y salidas eficientes.</li>
+                <li><span class="key-point">Liquidación en efectivo:</span> Sin preocupaciones por asignaciones o entregas de acciones - tu beneficio se acredita directamente.</li>
+                <li><span class="key-point">Ventajas fiscales:</span> En EE.UU., pueden calificar para el tratamiento 60/40, reduciendo la carga impositiva.</li>
+                <li><span class="key-point">Disponibilidad diaria:</span> Con vencimientos todos los días hábiles, ofrece oportunidades constantes.</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Importante:</strong> Las opciones sobre ETFs como SPY, QQQ e IWM son de estilo americano y pueden ejercerse anticipadamente, añadiendo complejidad adicional.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Los Retos Únicos del Trading 0DTE</h3>
+            <p>
+                Operar con éxito en 0DTE requiere comprender y dominar desafíos específicos que no encontrarás en otros tipos de trading:
+            </p>
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h4>🚀 Gamma Explosiva</h4>
+                    <p>La sensibilidad del precio a movimientos del subyacente alcanza niveles extremos, creando oscilaciones dramáticas en minutos.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>⏳ Theta Acelerada</h4>
+                    <p>El valor temporal no decae linealmente - entender su comportamiento irregular es crucial para el timing de las operaciones.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>🔄 Cambios de Régimen</h4>
+                    <p>Distinguir entre días de rango y días tendenciales es fundamental - una lectura errónea puede ser devastadora.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>💭 Sentimiento Volátil</h4>
+                    <p>El posicionamiento del mercado crea bucles de retroalimentación que amplifican movimientos en ambas direcciones.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Claves para el Éxito en Trading 0DTE</h3>
+            <p>
+                Basándonos en la experiencia de traders exitosos y las herramientas especializadas como GammaEdge, estos son los pilares fundamentales:
+            </p>
+
+            <div class="success-box">
+                <strong>1. Comprensión del Flujo de Opciones</strong>
+                <p>El posicionamiento de los participantes del mercado crea niveles de soporte y resistencia dinámicos que el análisis técnico tradicional no puede detectar.</p>
+            </div>
+
+            <div class="success-box">
+                <strong>2. Gestión de Riesgo Implacable</strong>
+                <p>Con movimientos tan rápidos, los stops mentales no funcionan. Define tu riesgo antes de entrar y utiliza órdenes automáticas.</p>
+            </div>
+
+            <div class="success-box">
+                <strong>3. Reconocimiento del Carácter del Mercado</strong>
+                <p>Desarrolla la habilidad de identificar temprano si el día será de consolidación o tendencial - esto determina tu estrategia completa.</p>
+            </div>
+
+            <div class="success-box">
+                <strong>4. Disciplina en el Tamaño de Posición</strong>
+                <p>La naturaleza de todo-o-nada de las 0DTE requiere un dimensionamiento conservador. Nunca arriesgues más del 1-2% de tu capital por operación.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Estrategias Probadas para 0DTE</h3>
+            
+            <div class="highlight-box pulse">
+                <p><strong>Estrategia #1: Venta de Premium en Rangos</strong><br>
+                En días de baja volatilidad, vender spreads verticales fuera de los rangos esperados puede generar ingresos consistentes.</p>
+            </div>
+
+            <div class="highlight-box pulse">
+                <p><strong>Estrategia #2: Momentum con Protección</strong><br>
+                Comprar opciones direccionales tras rupturas claras, siempre con spreads para limitar el costo y el riesgo máximo.</p>
+            </div>
+
+            <div class="highlight-box pulse">
+                <p><strong>Estrategia #3: Reversión a la Media</strong><br>
+                Identificar extensiones extremas desde niveles clave y operar el retorno utilizando estructuras de riesgo definido.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Herramientas Esenciales para el Trader 0DTE</h3>
+            <p>
+                El éxito consistente requiere más que intuición. Los traders profesionales utilizan herramientas especializadas para:
+            </p>
+            <ul>
+                <li>Monitorear el flujo de opciones en tiempo real</li>
+                <li>Identificar niveles clave basados en posicionamiento gamma</li>
+                <li>Detectar cambios en el sentimiento antes que aparezcan en el precio</li>
+                <li>Calcular probabilidades ajustadas por el sesgo del mercado</li>
+                <li>Automatizar la gestión de riesgo con alertas personalizadas</li>
+            </ul>
+        </div>
+
+        <div class="warning-box" style="margin-top: 40px;">
+            <h3 style="color: #ff6b6b;">Advertencias Críticas para Nuevos Traders</h3>
+            <ul style="margin-top: 15px;">
+                <li>Nunca operes con dinero que no puedas permitirte perder completamente</li>
+                <li>Practica en simulador durante al menos 3 meses antes de usar capital real</li>
+                <li>No intentes recuperar pérdidas aumentando el tamaño - es el camino más rápido a la ruina</li>
+                <li>Mantén un diario detallado de cada operación para identificar patrones en tus errores</li>
+                <li>Si pierdes 3 operaciones consecutivas, detente y revisa tu enfoque</li>
+            </ul>
+        </div>
+
+        <div class="section" style="background: rgba(139, 92, 246, 0.1); border-left-color: #8b5cf6;">
+            <h3>Tu Camino Hacia el Dominio de las 0DTE</h3>
+            <p>
+                El trading de opciones 0DTE no es para todos, pero para aquellos dispuestos a invertir tiempo en educación y práctica disciplinada, puede ofrecer oportunidades únicas en el mercado actual.
+            </p>
+            <p style="margin-top: 20px;">
+                <strong>Recuerda:</strong> La diferencia entre el juego y el trading profesional no está en el instrumento, sino en el enfoque. Con las herramientas adecuadas, educación continua y disciplina férrea, las opciones 0DTE pueden ser parte de una estrategia de trading sofisticada y rentable.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

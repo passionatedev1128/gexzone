@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEX Zone - Trading de Spreads VIX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a2341 0%, #2a3b5c 100%);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%237b68ee;stop-opacity:0.8" /></linearGradient></defs><rect width="400" height="200" fill="url(%23grad1)"/></svg>') center/cover;
+            opacity: 0.1;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            background: linear-gradient(45deg, #4a90e2, #7b68ee, #e6f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
+            font-family: 'Segoe UI', 'Arial Black', sans-serif;
+        }
+
+        .logo-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .line {
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #4a90e2, #7b68ee);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .line:nth-child(1) {
+            width: 100px;
+            animation-delay: 0s;
+        }
+
+        .line:nth-child(2) {
+            width: 140px;
+            animation-delay: 0.2s;
+        }
+
+        .line:nth-child(3) {
+            width: 110px;
+            animation-delay: 0.4s;
+        }
+
+        .line:nth-child(4) {
+            width: 85px;
+            animation-delay: 0.6s;
+            background: linear-gradient(90deg, #7b68ee, #b19cd9);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; transform: scaleX(0.8); }
+            100% { opacity: 1; transform: scaleX(1); }
+        }
+
+        .zone-text {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: #7b68ee;
+            margin-top: 5px;
+            text-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            opacity: 0.85;
+            text-transform: uppercase;
+            color: #b19cd9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #3b1f8a;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .strategy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .strategy-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid #4a90e2;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .strategy-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, #4a90e2, #7b68ee);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .strategy-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .strategy-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #4a90e2;
+            line-height: 1.4;
+        }
+
+        .strategy-type {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #2c3e50;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .strategy-description {
+            margin-left: 50px;
+            line-height: 1.6;
+            color: #e0e6ed;
+            font-size: 1.05rem;
+        }
+
+        .strategy-bullet {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .bullet-point {
+            color: #4a90e2;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+
+        .highlight-short {
+            background: linear-gradient(135deg, #ff6b6b, #dc143c);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .highlight-long {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .highlight-ratio {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .icon {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .strategy-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .strategy-number {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+
+            .strategy-description {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-text">
+                    <div class="logo">GEX</div>
+                    <div class="zone-text">ZONE</div>
+                </div>
+                <div class="logo-lines">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="tagline">Unraveling the Matrix</div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-title">
+                <span class="icon">📊</span>
+                Trading de Spreads VIX Basado en Estructura Temporal
+            </div>
+            
+            <div class="strategy-list">
+                <div class="strategy-item">
+                    <div class="strategy-header">
+                        <span class="strategy-number">1</span>
+                        <div>
+                            <div class="strategy-title">
+                                Contango (normal): <span class="highlight-short">Short</span> a corto plazo, <span class="highlight-long">long</span> a largo plazo futuros VIX
+                                <span class="strategy-type">Normal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="strategy-description">
+                        <div class="strategy-bullet">
+                            <span class="bullet-point">•</span>
+                            <span>Beneficiarse del roll yield mientras los futuros convergen al VIX spot</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-item">
+                    <div class="strategy-header">
+                        <span class="strategy-number">2</span>
+                        <div>
+                            <div class="strategy-title">
+                                Backwardation (raro): <span class="highlight-long">Long</span> a corto plazo, <span class="highlight-short">short</span> a largo plazo futuros VIX
+                                <span class="strategy-type">Raro</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="strategy-description">
+                        <div class="strategy-bullet">
+                            <span class="bullet-point">•</span>
+                            <span>Capitalizar las expectativas elevadas de volatilidad a corto plazo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-item">
+                    <div class="strategy-header">
+                        <span class="strategy-number">3</span>
+                        <div>
+                            <div class="strategy-title">
+                                Contango pronunciado: Ampliar spread entre posiciones <span class="highlight-short">short</span> y <span class="highlight-long">long</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="strategy-description">
+                        <div class="strategy-bullet">
+                            <span class="bullet-point">•</span>
+                            <span>Amplificar ganancias del mayor roll yield</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-item">
+                    <div class="strategy-header">
+                        <span class="strategy-number">4</span>
+                        <div>
+                            <div class="strategy-title">
+                                Estructura temporal plana: Reducir tamaños de posición o mantenerse fuera
+                            </div>
+                        </div>
+                    </div>
+                    <div class="strategy-description">
+                        <div class="strategy-bullet">
+                            <span class="bullet-point">•</span>
+                            <span>Potencial de beneficio limitado de los spread trades</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-item">
+                    <div class="strategy-header">
+                        <span class="strategy-number">5</span>
+                        <div>
+                            <div class="strategy-title">
+                                Monitorear ratio <span class="highlight-ratio">VIX/VIX3M</span> para señales de entrada/salida
+                            </div>
+                        </div>
+                    </div>
+                    <div class="strategy-description">
+                        <div class="strategy-bullet">
+                            <span class="bullet-point">•</span>
+                            <span>Ratio <1 sugiere contango, >1 indica backwardation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

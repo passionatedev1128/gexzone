@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEX Zone - Análisis Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a2341 0%, #2a3b5c 100%);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%237b68ee;stop-opacity:0.8" /></linearGradient></defs><rect width="400" height="200" fill="url(%23grad1)"/></svg>') center/cover;
+            opacity: 0.1;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            background: linear-gradient(45deg, #4a90e2, #7b68ee, #e6f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
+            font-family: 'Segoe UI', 'Arial Black', sans-serif;
+        }
+
+        .logo-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .line {
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #4a90e2, #7b68ee);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .line:nth-child(1) {
+            width: 100px;
+            animation-delay: 0s;
+        }
+
+        .line:nth-child(2) {
+            width: 140px;
+            animation-delay: 0.2s;
+        }
+
+        .line:nth-child(3) {
+            width: 110px;
+            animation-delay: 0.4s;
+        }
+
+        .line:nth-child(4) {
+            width: 85px;
+            animation-delay: 0.6s;
+            background: linear-gradient(90deg, #7b68ee, #b19cd9);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; transform: scaleX(0.8); }
+            100% { opacity: 1; transform: scaleX(1); }
+        }
+
+        .zone-text {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: #7b68ee;
+            margin-top: 5px;
+            text-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            opacity: 0.85;
+            text-transform: uppercase;
+            color: #b19cd9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .website-link {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            color: #4a90e2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .website-link a {
+            color: #4a90e2;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .website-link a:hover {
+            color: #7b68ee;
+            text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        }
+
+        .main-section {
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #4a90e2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #7b68ee;
+            font-weight: 600;
+        }
+
+        .numbered-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #4a90e2;
+            display: flex;
+            gap: 25px;
+        }
+
+        .number {
+            background: linear-gradient(45deg, #4a90e2, #7b68ee);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 5px;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #4a90e2;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+
+        .bullet-point {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-size: 1.02rem;
+        }
+
+        .bullet-point::before {
+            content: "▶";
+            color: #4a90e2;
+            margin-right: 12px;
+            font-size: 0.9rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .scenarios-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #7b68ee;
+            margin-bottom: 40px;
+        }
+
+        .scenarios-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #4a90e2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .scenario-item {
+            margin-bottom: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #ffa726;
+        }
+
+        .scenario-item::before {
+            content: "💡";
+            margin-right: 10px;
+        }
+
+        .scenario {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .scenario-title {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .signs-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .summary-table th {
+            background: linear-gradient(45deg, #4a90e2, #7b68ee);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .summary-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .summary-table tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .icon {
+            font-size: 1.3rem;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 25px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-top: 2px solid #4a90e2;
+        }
+
+        .copyright {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            color: #b19cd9;
+            letter-spacing: 1px;
+        }
+
+        .footer-website {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .footer-website a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .footer-website a:hover {
+            color: #7b68ee;
+            text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .numbered-item {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .number {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-section">
+            <div class="section-title">
+                <span class="icon">🔍</span>
+                ¿Breakout Real o Fake Out?
+            </div>
+
+            <div class="numbered-item">
+                <div class="number">1</div>
+                <div class="content">
+                    <div class="item-title">Flujo Agresivo de Prima de Call (Compra Front-Loaded)</div>
+                    <div class="description">
+                        Viste prima de call rápida y apilada a través de múltiples strikes <span class="highlight">mientras el precio se disparó hacia arriba</span>. Esto a menudo refleja:
+                    </div>
+                    <div class="bullet-point">Un algoritmo persiguiendo momentum o reaccionando a noticias.</div>
+                    <div class="bullet-point">Dealers o instituciones cubriendo deltas dinámicamente (comprando futuros/acciones mientras se compran calls).</div>
+                    <div class="bullet-point">Traders front-running exposición gamma, especialmente si esos strikes estaban cerca de ATM o en niveles populares.</div>
+                </div>
+            </div>
+
+            <div class="numbered-item">
+                <div class="number">2</div>
+                <div class="content">
+                    <div class="item-title">Exposición Gamma del Dealer e Impacto de Cobertura</div>
+                    <div class="description">
+                        Si el mercado tenía gamma corta neta (los dealers habían vendido esos calls), los precios en alza los obligarían a <span class="highlight">comprar más para cubrir, acelerando el movimiento hacia arriba</span>. Eso crea el spike.
+                    </div>
+                </div>
+            </div>
+
+            <div class="numbered-item">
+                <div class="number">3</div>
+                <div class="content">
+                    <div class="item-title">Sin Seguimiento = Barrido de Liquidez o Trampa</div>
+                    <div class="description">
+                        El hecho de que se contrajo de 5825 → 5811 significa:
+                    </div>
+                    <div class="bullet-point">Los compradores no estaban tratando de mantener—estaban extrayendo liquidez.</div>
+                    <div class="bullet-point">Podría haber sido una <span class="highlight">stop hunt, scalp gamma, o falso breakout</span>.</div>
+                    <div class="bullet-point">El flujo de calls podría no haber sido convicción direccional—podría haber sido <span class="highlight">creadores de mercado o HFTs alimentando spikes de prima</span>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenarios-section">
+            <div class="scenarios-title">
+                <span class="icon">💡</span>
+                Escenarios Posibles:
+            </div>
+            <div class="scenario-item">Headline released, algos reaccionaron, pujaron el mercado.</div>
+            <div class="scenario-item">Cascada stop-loss (un barrido para activar stops y empujar hacia zonas ilíquidas).</div>
+            <div class="scenario-item">Cobertura gamma a corto plazo por dealers, luego el posicionamiento se reinició o revirtió.</div>
+            <div class="scenario-item">Longs atrapados que persiguieron calls tardíos en el spike, llevando a la reversión rápida.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📉</span>
+                Si el Movimiento es Bajista y las Primas de Put Aumentan:
+            </div>
+            <div class="description">
+                Probablemente estés viendo un barrido de liquidez a la baja o una liquidación impulsada por el pánico, y podría significar:
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">▼ Escenario A: El Mercado está en Gamma Larga (Dealers con Puts Largas Netas)</div>
+                <div class="bullet-point">Los dealers compran en la caída para cubrir (flujo de apoyo).</div>
+                <div class="bullet-point">Las compras masivas de puts no aceleran el movimiento hacia abajo - el mercado absorbe y <span class="highlight">puede incluso conducir a un rebote</span>.</div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">▼ Escenario B: El Mercado está en Gamma Corta (Dealers con Puts Cortas Netas)</div>
+                <div class="bullet-point">Los puts están siendo comprados agresivamente → los dealers <span class="highlight">deben vender futuros o acciones</span> para cubrir, empujando el precio hacia abajo más rápido.</div>
+                <div class="bullet-point">Si ves primas de put grandes golpeando strikes OTM o ATM mientras el precio cae, probablemente significa una <span class="highlight">cascada de venta forzada</span>.</div>
+            </div>
+
+            <div class="signs-section">
+                <div class="section-subtitle">Señales:</div>
+                <div class="bullet-point">Los puts near-the-money se iluminan con grandes $$.</div>
+                <div class="bullet-point">El precio cae rápido, especialmente a través de strikes clave.</div>
+                <div class="bullet-point">A menudo se sobrepasa, luego rebota violentamente si la liquidez se agota.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⚖️</span>
+                Si Ves Tanto Calls como Puts Aumentando:
+            </div>
+            <div class="description">
+                Esto a menudo <span class="highlight">no es</span> convicción direccional, sino más bien:
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">🎯 Escenario A: Cobertura o Flujo de Straddle (Apuesta de Volatilidad)</div>
+                <div class="bullet-point">Los traders están jugando ambos lados—esperan un gran movimiento, pero no están seguros en qué dirección.</div>
+                <div class="bullet-point">Los algoritmos pueden estar pujando tanto calls como puts para capturar expansión de IV o movimientos de escalado gamma.</div>
+            </div>
+
+            <div class="scenario">
+                <div class="scenario-title">📊 Escenario B: Creadores de Mercado/Wings Activándose</div>
+                <div class="bullet-point">A veces tanto calls como puts se disparan debido a <span class="highlight">arbitraje de volatilidad</span> o flujos impulsados por noticias.</div>
+                <div class="bullet-point">Los dealers ajustan sus deltas y gammas en ambos lados—esto puede causar <span class="highlight">fakeouts, whipsaws, o formas de V pronunciadas</span>.</div>
+            </div>
+
+            <div class="signs-section">
+                <div class="section-subtitle">Qué observar:</div>
+                <div class="bullet-point">Si ambos lados se iluminan y <span class="highlight">el precio no se mueve mucho</span>, la IV puede estar expandiéndose, no apuestas direccionales.</div>
+                <div class="bullet-point">Si ambos lados se iluminan y <span class="highlight">el precio salta arriba/abajo</span>, a menudo es posicionamiento de flip o reset de squeeze gamma.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📋</span>
+                Resumen:
+            </div>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Tipo de Movimiento</th>
+                        <th>Flujo Dominante</th>
+                        <th>Resultado Probable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Spike Alcista</strong></td>
+                        <td>Prima de Call</td>
+                        <td>Persecución gamma, squeeze, trampa potencial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spike Bajista</strong></td>
+                        <td>Prima de Put</td>
+                        <td>Liquidación gamma, pánico de venta, posible flush y rebote</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ambos Lados</strong></td>
+                        <td>Call + Put</td>
+                        <td>Apuesta de volatilidad, whipsaws, recalibración del dealer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

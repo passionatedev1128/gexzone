@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEX ZONE</title>
+
+  <!-- =====================
+       GLOBAL STYLES
+  ====================== -->
+  <style>
+    :root{
+      --bg-dark:#0b0f1a;
+      --bg-soft:#11162a;
+      --primary:#4a9eff;
+      --secondary:#8b5cf6;
+      --text:#e6e6e6;
+      --muted:#9aa4bf;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:linear-gradient(180deg,#090c18,#0b1022);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    section{padding:120px 8%}
+
+    h1,h2,h3{font-weight:300;letter-spacing:0.04em}
+
+    /* =====================
+       NAV
+    ====================== */
+    header{
+      position:fixed;top:0;left:0;width:100%;z-index:999;
+      background:rgba(8,10,20,0.85);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.05)
+    }
+    nav{
+      max-width:1400px;margin:auto;padding:20px 8%;
+      display:flex;justify-content:space-between;align-items:center
+    }
+    nav .logo{font-size:20px;letter-spacing:0.4em;color:var(--primary)}
+    nav ul{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--muted)}
+    nav ul li:hover{color:white}
+
+    /* =====================
+       HERO BLOCKS
+    ====================== */
+    .hero{
+      min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center
+    }
+    .hero h1{font-size:42px}
+    .hero p{color:var(--muted);margin-top:24px;max-width:520px}
+    .hero img{width:100%;border-radius:14px;opacity:0.85}
+
+    .hero.center{grid-template-columns:1fr;text-align:center}
+
+    /* =====================
+       EMBED HTML BLOCK
+    ====================== */
+    .html-embed{
+      background:var(--bg-soft);
+      border-radius:16px;
+      padding:40px;
+      margin:120px auto;
+      max-width:1400px;
+      border:1px solid rgba(255,255,255,0.06)
+    }
+
+    /* =====================
+       VIDEO SECTION
+    ====================== */
+    .video-section{
+      padding:0;height:80vh;position:relative
+    }
+    .video-section video{
+      width:100%;height:100%;object-fit:cover
+    }
+    .video-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(5,8,18,0.2),rgba(5,8,18,0.9))
+    }
+
+    /* =====================
+       TESTIMONIALS
+    ====================== */
+    .testimonials{
+      background:var(--bg-soft)
+    }
+    .test-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;margin-top:60px
+    }
+    .testimonial{
+      background:rgba(255,255,255,0.04);
+      padding:32px;border-radius:16px;text-align:center
+    }
+    .testimonial img{
+      width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:20px
+    }
+    .testimonial p{font-size:14px;color:var(--muted)}
+
+    /* =====================
+       GENERIC SECTIONS
+    ====================== */
+    .simple-section h2{margin-bottom:24px}
+    .simple-section p{max-width:800px;color:var(--muted)}
+
+    /* =====================
+       COMING SOON
+    ====================== */
+    .coming{
+      font-size:32px;letter-spacing:0.3em;color:var(--secondary);margin-top:40px
+    }
+
+    /* =====================
+       FOOTER
+    ====================== */
+    footer{
+      padding:80px 8%;background:#050812;color:var(--muted)
+    }
+    footer .cols{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px
+    }
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      section{padding:100px 6%}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">GEX ZONE</div>
+    <ul>
+      <li>Formación</li>
+      <li>Trading Room</li>
+      <li>Recursos</li>
+      <li>Volatilidad</li>
+      <li>Software / Bots</li>
+      <li>Contacto</li>
+    </ul>
+  </nav>
+</header>
+
+<!-- =====================
+     HERO 1
+====================== -->
+<section class="hero">
+  <div>
+    <h1>Estamos buscando um desenvolvedor freelancer experiente para criar um aplicativo móvel nativo para as plataformas iOS e Android.</h1>
+  </div>
+  <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a" alt="Wall Street" />
+</section>
+
+<!-- =====================
+     HERO 2
+====================== -->
+<section class="hero center">
+  <h1>É Essencial que o aplicativo ofereça uma experiência de usuário intuitiva e um desempenho estável em ambos os sistemas operacionais.</h1>
+</section>
+
+<!-- =====================
+     HTML EMBED 1
+====================== -->
+<section class="html-embed">
+  <!-- gex_zone_analisis_completo.html -->
+  <!-- CONTENT TO BE INLINED OR IFRAME -->
+  <iframe src="gex_zone_analisis_completo.html" style="width:100%;height:900px;border:none"></iframe>
+</section>
+
+<!-- =====================
+     TEXT BLOCK
+====================== -->
+<section class="hero center">
+  <h1>Busco un experto en administración de servidores y despliegue web para poner en marcha un proyecto que ya ha sido desarrollado.</h1>
+</section>
+
+<!-- =====================
+     HTML EMBED 2
+====================== -->
+<section class="html-embed">
+  <iframe src="guia-0dte-gex.html" style="width:100%;height:900px;border:none"></iframe>
+</section>
+
+<!-- =====================
+     VIDEO SKYLINE
+====================== -->
+<section class="video-section">
+  <video autoplay muted loop playsinline>
+    <source src="skyline-drone.mp4" type="video/mp4" />
+  </video>
+  <div class="video-overlay"></div>
+</section>
+
+<!-- =====================
+     TESTIMONIALS
+====================== -->
+<section class="testimonials">
+  <h2>Testimonios</h2>
+  <div class="test-grid">
+    <div class="testimonial">
+      <img src="https://i.pravatar.cc/150?img=12" />
+      <p>“La formación cambió completamente mi forma de entender el mercado.”</p>
+    </div>
+    <div class="testimonial">
+      <img src="https://i.pravatar.cc/150?img=32" />
+      <p>“Nunca había visto el flujo institucional explicado así.”</p>
+    </div>
+    <div class="testimonial">
+      <img src="https://i.pravatar.cc/150?img=45" />
+      <p>“Ahora opero con contexto, no con intuición.”</p>
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     SUBPAGES STRUCTURE
+====================== -->
+<section class="simple-section">
+  <h2>Recursos</h2>
+  <p>Conexión de Backend: Asegurar que el frontend se comunique correctamente con la base de datos/backend</p>
+</section>
+
+<section class="simple-section">
+  <h2>Software / Bots</h2>
+  <p>Productos en fase de desarrollo.</p>
+  <div class="coming">PRÓXIMAMENTE</div>
+</section>
+
+<section class="simple-section">
+  <h2>Contacto</h2>
+  <p>Propuesta: chatbot ligero + formulario extendido por email (fase siguiente).</p>
+</section>
+
+<footer>
+  <div class="cols">
+    <div>© GEX ZONE</div>
+    <div>Formación</div>
+    <div>Recursos</div>
+    <div>Contacto</div>
+  </div>
+</footer>
+
+</body>
+</html>
