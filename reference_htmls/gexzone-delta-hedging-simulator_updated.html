@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEXZONE - Simulador Delta Hedging</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div id="gexzone-simulator-v1">
+    <style>
+        /* RESET Y ENCAPSULAMIENTO */
+        #gexzone-simulator-v1 {
+            font-family: 'Courier New', Consolas, monospace;
+            background: #0a0b14;
+            color: #e0e6ed;
+            padding: 40px 20px;
+            margin: 0;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+        
+        #gexzone-simulator-v1 * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* HEADER CON LOGO */
+        .gex-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #121625 0%, #1a1f3a 100%);
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gex-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3a7bd5, #8c52ff, #3a7bd5);
+            animation: gex-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes gex-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .gex-logo-text {
+            font-size: 56px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #5ba2f4, #8c52ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+        }
+
+        .gex-title {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #5ba2f4, #8c52ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            letter-spacing: 3px;
+        }
+
+        .gex-subtitle {
+            color: #8c52ff;
+            font-size: 14px;
+            letter-spacing: 3px;
+            opacity: 0.8;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .gex-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* GRID LAYOUT */
+        .gex-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .gex-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CARDS */
+        .gex-card {
+            background: #121625;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #1f2937;
+            transition: all 0.3s ease;
+        }
+
+        .gex-card:hover {
+            border-color: #5ba2f4;
+            box-shadow: 0 0 20px rgba(91, 162, 244, 0.2);
+        }
+
+        .gex-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5ba2f4;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #1f2937;
+            padding-bottom: 10px;
+        }
+
+        /* CONTROLES */
+        .gex-control-group {
+            margin-bottom: 30px;
+        }
+
+        .gex-control-label {
+            display: block;
+            font-size: 14px;
+            color: #8c52ff;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .gex-control-value {
+            color: #00ff41;
+            font-weight: bold;
+            float: right;
+        }
+
+        /* BOTONES */
+        .gex-btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .gex-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 16px 24px;
+            background: #1f2937;
+            border: 1px solid #3a7bd5;
+            color: #e0e6ed;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gex-btn:hover {
+            background: #2a3548;
+            border-color: #5ba2f4;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gex-btn.active {
+            background: linear-gradient(135deg, #3a7bd5, #5ba2f4);
+            border-color: #5ba2f4;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(91, 162, 244, 0.5);
+        }
+
+        .gex-btn-scenario {
+            background: linear-gradient(135deg, #1f2937, #2a3548);
+            border-color: #8c52ff;
+            padding: 18px 30px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .gex-btn-scenario:hover {
+            background: linear-gradient(135deg, #8c52ff, #a855f7);
+            box-shadow: 0 0 25px rgba(140, 82, 255, 0.6);
+        }
+
+        /* SLIDERS */
+        .gex-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #1f2937;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 10px 0;
+        }
+
+        .gex-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5ba2f4, #8c52ff);
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(91, 162, 244, 0.8);
+        }
+
+        .gex-slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5ba2f4, #8c52ff);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 12px rgba(91, 162, 244, 0.8);
+        }
+
+        /* BALANZA DE INVENTARIO */
+        .gex-balance-container {
+            margin-top: 25px;
+            padding: 25px;
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+        }
+
+        .gex-balance-title {
+            text-align: center;
+            color: #5ba2f4;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gex-balance-bar {
+            display: flex;
+            height: 50px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #3a7bd5;
+            position: relative;
+        }
+
+        .gex-balance-client {
+            background: linear-gradient(90deg, #8c52ff, #a855f7);
+            transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .gex-balance-mm {
+            background: linear-gradient(90deg, #00ff41, #00cc33);
+            transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: #0a0b14;
+        }
+
+        .gex-balance-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .gex-balance-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gex-balance-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* GRÁFICOS */
+        .gex-chart-container {
+            position: relative;
+            height: 350px;
+            margin-top: 15px;
+        }
+
+        /* MANUAL COLAPSABLE */
+        .gex-manual {
+            margin-top: 30px;
+            background: #121625;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            overflow: hidden;
+        }
+
+        .gex-manual-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #1f2937, #2a3548);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .gex-manual-header:hover {
+            background: linear-gradient(135deg, #2a3548, #3a4a5e);
+        }
+
+        .gex-manual-title {
+            font-size: 16px;
+            color: #5ba2f4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gex-manual-icon {
+            font-size: 20px;
+            color: #8c52ff;
+            transition: transform 0.3s ease;
+        }
+
+        .gex-manual-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .gex-manual-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .gex-manual-content.open {
+            max-height: 800px;
+        }
+
+        .gex-manual-body {
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        .gex-manual-section {
+            margin-bottom: 20px;
+        }
+
+        .gex-manual-section-title {
+            color: #00ff41;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gex-manual-text {
+            color: #e0e6ed;
+            font-size: 13px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* STATS */
+        .gex-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gex-stat {
+            background: rgba(31, 41, 55, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+            text-align: center;
+        }
+
+        .gex-stat-label {
+            font-size: 11px;
+            color: #8c52ff;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .gex-stat-value {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00ff41;
+        }
+
+        /* FOOTER */
+        .gex-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #1f2937;
+            color: #8c52ff;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .gex-footer a {
+            color: #5ba2f4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .gex-footer a:hover {
+            color: #00ff41;
+        }
+    </style>
+
+    <div class="gex-container">
+        <!-- HEADER -->
+        <div class="gex-header">
+            <div class="gex-logo-text">GEXZONE.COM</div>
+            <div class="gex-title">SIMULADOR DELTA HEDGING</div>
+            <div class="gex-subtitle">MARKET MAKER INVENTORY MANAGEMENT</div>
+        </div>
+
+        <!-- ESCENARIOS PRECONFIGURADOS -->
+        <div class="gex-card" style="margin-bottom: 20px;">
+            <div class="gex-card-title">⚡ PROTOCOLOS AUTOMÁTICOS</div>
+            <div class="gex-btn-group">
+                <button class="gex-btn gex-btn-scenario" onclick="runGammaSqueeze()">
+                    ⚡ GAMMA SQUEEZE
+                </button>
+                <button class="gex-btn gex-btn-scenario" onclick="runVannaRally()">
+                    📉 VANNA RALLY
+                </button>
+                <button class="gex-btn gex-btn-scenario" onclick="runPinning0DTE()">
+                    🧲 PINNING 0DTE
+                </button>
+            </div>
+        </div>
+
+        <!-- GRID PRINCIPAL -->
+        <div class="gex-grid">
+            <!-- CONTROLES -->
+            <div class="gex-card">
+                <div class="gex-card-title">🎯 CONFIGURACIÓN DEL ESCENARIO</div>
+                
+                <!-- Tipo de Opción -->
+                <div class="gex-control-group">
+                    <label class="gex-control-label">TIPO DE OPCIÓN</label>
+                    <div class="gex-btn-group">
+                        <button class="gex-btn active" id="btn-call" onclick="setOptionType('call')">CALL</button>
+                        <button class="gex-btn" id="btn-put" onclick="setOptionType('put')">PUT</button>
+                    </div>
+                </div>
+
+                <!-- Strike -->
+                <div class="gex-control-group">
+                    <label class="gex-control-label">STRIKE POSITION</label>
+                    <div class="gex-btn-group">
+                        <button class="gex-btn" id="btn-itm" onclick="setStrike('itm')">ITM</button>
+                        <button class="gex-btn active" id="btn-atm" onclick="setStrike('atm')">ATM</button>
+                        <button class="gex-btn" id="btn-otm" onclick="setStrike('otm')">OTM</button>
+                    </div>
+                </div>
+
+                <!-- Precio Spot -->
+                <div class="gex-control-group">
+                    <label class="gex-control-label">
+                        PRECIO SPOT
+                        <span class="gex-control-value" id="spot-value">$100.00</span>
+                    </label>
+                    <input type="range" class="gex-slider" id="spot-slider" 
+                           min="80" max="120" value="100" step="0.5" 
+                           oninput="updateSpot(this.value)">
+                </div>
+
+                <!-- DTE -->
+                <div class="gex-control-group">
+                    <label class="gex-control-label">
+                        DÍAS HASTA VENCIMIENTO (DTE)
+                        <span class="gex-control-value" id="dte-value">15 días</span>
+                    </label>
+                    <input type="range" class="gex-slider" id="dte-slider" 
+                           min="0" max="30" value="15" step="1" 
+                           oninput="updateDTE(this.value)">
+                </div>
+
+                <!-- IV -->
+                <div class="gex-control-group">
+                    <label class="gex-control-label">
+                        VOLATILIDAD IMPLÍCITA (IV)
+                        <span class="gex-control-value" id="iv-value">30%</span>
+                    </label>
+                    <input type="range" class="gex-slider" id="iv-slider" 
+                           min="10" max="80" value="30" step="1" 
+                           oninput="updateIV(this.value)">
+                </div>
+
+                <!-- Stats -->
+                <div class="gex-stats">
+                    <div class="gex-stat">
+                        <div class="gex-stat-label">Delta</div>
+                        <div class="gex-stat-value" id="stat-delta">0.50</div>
+                    </div>
+                    <div class="gex-stat">
+                        <div class="gex-stat-label">Gamma</div>
+                        <div class="gex-stat-value" id="stat-gamma">0.025</div>
+                    </div>
+                    <div class="gex-stat">
+                        <div class="gex-stat-label">Vega</div>
+                        <div class="gex-stat-value" id="stat-vega">0.15</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BALANZA DE INVENTARIO -->
+            <div class="gex-card">
+                <div class="gex-card-title">⚖️ INVENTARIO DEL MARKET MAKER</div>
+                
+                <div class="gex-balance-container">
+                    <div class="gex-balance-title">EXPOSICIÓN NETA</div>
+                    <div class="gex-balance-bar">
+                        <div class="gex-balance-client" id="balance-client">CLIENTE: 50%</div>
+                        <div class="gex-balance-mm" id="balance-mm">MM HEDGE: 50%</div>
+                    </div>
+                    <div class="gex-balance-labels">
+                        <div class="gex-balance-label">
+                            <div class="gex-balance-dot" style="background: #8c52ff;"></div>
+                            <span>Exposición Cliente</span>
+                        </div>
+                        <div class="gex-balance-label">
+                            <div class="gex-balance-dot" style="background: #00ff41;"></div>
+                            <span>Cobertura MM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gex-balance-container">
+                    <div class="gex-balance-title">ACCIONES A COMPRAR/VENDER</div>
+                    <div style="text-align: center; font-size: 36px; font-weight: bold; color: #00ff41; margin: 20px 0;" id="shares-hedge">
+                        +250
+                    </div>
+                    <div style="text-align: center; font-size: 13px; color: #8c52ff; opacity: 0.8;" id="hedge-direction">
+                        El Market Maker debe COMPRAR acciones
+                    </div>
+                </div>
+
+                <div class="gex-balance-container">
+                    <div class="gex-balance-title">PRESIÓN DE MERCADO</div>
+                    <div style="text-align: center;">
+                        <div id="market-pressure" style="font-size: 18px; font-weight: bold; color: #00ff41; margin: 10px 0;">
+                            NEUTRAL
+                        </div>
+                        <div style="font-size: 12px; color: #e0e6ed; opacity: 0.7; line-height: 1.6;" id="pressure-description">
+                            Las coberturas del MM están balanceadas
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRÁFICOS -->
+        <div class="gex-grid">
+            <div class="gex-card">
+                <div class="gex-card-title">📊 PERFIL DE GAMMA</div>
+                <div class="gex-chart-container">
+                    <canvas id="gamma-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="gex-card">
+                <div class="gex-card-title">💰 PAYOFF DEL CLIENTE</div>
+                <div class="gex-chart-container">
+                    <canvas id="payoff-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- MANUAL DE OPERACIONES -->
+        <div class="gex-manual">
+            <div class="gex-manual-header" onclick="toggleManual()">
+                <div class="gex-manual-title">📖 MANUAL DE OPERACIONES: INSTRUCCIONES DE VUELO</div>
+                <div class="gex-manual-icon" id="manual-icon">▼</div>
+            </div>
+            <div class="gex-manual-content" id="manual-content">
+                <div class="gex-manual-body">
+                    <div class="gex-manual-section">
+                        <div class="gex-manual-section-title">🟢 CONFIGURA EL ESCENARIO</div>
+                        <div class="gex-manual-text">
+                            Selecciona Call/Put y la posición del Strike (ITM/ATM/OTM). Tú eres el cliente comprando la opción. 
+                            Observa cómo el Market Maker debe reaccionar mecánicamente para cubrir su exposición. 
+                            Una Call ATM requiere que el MM compre aproximadamente 50 acciones por cada contrato (delta 0.5).
+                        </div>
+                    </div>
+
+                    <div class="gex-manual-section">
+                        <div class="gex-manual-section-title">🔴 MANIPULA LAS VARIABLES</div>
+                        <div class="gex-manual-text">
+                            <strong>DTE (Días hasta Vencimiento):</strong> Observa cómo la Gamma se vuelve extremadamente agresiva 
+                            al acercarse a 0 días. Con DTE bajo, pequeños movimientos del precio fuerzan al MM a rebalancear 
+                            grandes cantidades de acciones.<br><br>
+                            <strong>IV (Volatilidad Implícita):</strong> Cuando la IV cae, el MM reduce sus coberturas (efecto Vanna), 
+                            lo que libera presión compradora en el mercado y puede acelerar rallies alcistas.
+                        </div>
+                    </div>
+
+                    <div class="gex-manual-section">
+                        <div class="gex-manual-section-title">⚡ PROTOCOLOS AUTOMÁTICOS</div>
+                        <div class="gex-manual-text">
+                            <strong>Gamma Squeeze:</strong> Simula un movimiento rápido al alza con DTE bajo. El MM se ve forzado 
+                            a comprar exponencialmente más acciones a medida que el precio sube, creando un bucle de retroalimentación.<br><br>
+                            <strong>Vanna Rally:</strong> La IV colapsa mientras el precio sube, forzando al MM a reducir coberturas 
+                            y liberando presión alcista adicional.<br><br>
+                            <strong>Pinning 0DTE:</strong> El día del vencimiento, el precio tiende a "orbitar" el strike más grande 
+                            debido a la magnitud de las coberturas del MM.
+                        </div>
+                    </div>
+
+                    <div class="gex-manual-section">
+                        <div class="gex-manual-section-title">📊 BALANZA DE INVENTARIO</div>
+                        <div class="gex-manual-text">
+                            Si el Market Maker está significativamente desequilibrado (más de 70% en una dirección), 
+                            el mercado está "cargado" para un movimiento brusco. La presión del mercado indica si hay 
+                            riesgo de squeeze alcista o bajista basado en las posiciones actuales.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="gex-footer">
+            © 2026 GEXZONE. Todos los derechos reservados | 
+            <a href="https://gexzone.com" target="_blank">gexzone.com</a>
+        </div>
+    </div>
+
+    <script>
+        // ==================== ESTADO GLOBAL ====================
+        let state = {
+            optionType: 'call',
+            strikePosition: 'atm',
+            spot: 100,
+            strike: 100,
+            dte: 15,
+            iv: 0.30,
+            r: 0.05, // tasa libre de riesgo
+            animating: false
+        };
+
+        let gammaChart, payoffChart;
+
+        // ==================== FUNCIONES MATEMÁTICAS ====================
+        
+        function normalCDF(x) {
+            const t = 1 / (1 + 0.2316419 * Math.abs(x));
+            const d = 0.3989423 * Math.exp(-x * x / 2);
+            const prob = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+            return x > 0 ? 1 - prob : prob;
+        }
+
+        function normalPDF(x) {
+            return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+        }
+
+        function calculateD1(S, K, T, r, sigma) {
+            if (T <= 0) return S > K ? 10 : -10; // Aproximación para T=0
+            return (Math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * Math.sqrt(T));
+        }
+
+        function calculateD2(d1, T, sigma) {
+            if (T <= 0) return d1;
+            return d1 - sigma * Math.sqrt(T);
+        }
+
+        function calculateDelta(isCall, S, K, T, r, sigma) {
+            if (T <= 0) {
+                if (isCall) return S > K ? 1 : 0;
+                return S >= K ? 0 : -1;
+            }
+            const d1 = calculateD1(S, K, T, r, sigma);
+            return isCall ? normalCDF(d1) : normalCDF(d1) - 1;
+        }
+
+        function calculateGamma(S, K, T, r, sigma) {
+            if (T <= 0) return 0;
+            const d1 = calculateD1(S, K, T, r, sigma);
+            return normalPDF(d1) / (S * sigma * Math.sqrt(T));
+        }
+
+        function calculateVega(S, K, T, r, sigma) {
+            if (T <= 0) return 0;
+            const d1 = calculateD1(S, K, T, r, sigma);
+            return S * normalPDF(d1) * Math.sqrt(T) / 100;
+        }
+
+        function calculatePayoff(isCall, S, K) {
+            return isCall ? Math.max(S - K, 0) : Math.max(K - S, 0);
+        }
+
+        // ==================== ACTUALIZACIÓN DE STRIKE ====================
+        
+        function updateStrikeFromPosition() {
+            const spot = state.spot;
+            switch(state.strikePosition) {
+                case 'itm':
+                    state.strike = state.optionType === 'call' ? spot * 0.95 : spot * 1.05;
+                    break;
+                case 'atm':
+                    state.strike = spot;
+                    break;
+                case 'otm':
+                    state.strike = state.optionType === 'call' ? spot * 1.05 : spot * 0.95;
+                    break;
+            }
+        }
+
+        // ==================== CONTROLES ====================
+        
+        function setOptionType(type) {
+            state.optionType = type;
+            document.getElementById('btn-call').classList.toggle('active', type === 'call');
+            document.getElementById('btn-put').classList.toggle('active', type === 'put');
+            updateStrikeFromPosition();
+            updateAll();
+        }
+
+        function setStrike(position) {
+            state.strikePosition = position;
+            document.getElementById('btn-itm').classList.toggle('active', position === 'itm');
+            document.getElementById('btn-atm').classList.toggle('active', position === 'atm');
+            document.getElementById('btn-otm').classList.toggle('active', position === 'otm');
+            updateStrikeFromPosition();
+            updateAll();
+        }
+
+        function updateSpot(value) {
+            state.spot = parseFloat(value);
+            document.getElementById('spot-value').textContent = '$' + state.spot.toFixed(2);
+            updateStrikeFromPosition();
+            updateAll();
+        }
+
+        function updateDTE(value) {
+            state.dte = parseInt(value);
+            document.getElementById('dte-value').textContent = state.dte + ' días';
+            updateAll();
+        }
+
+        function updateIV(value) {
+            state.iv = parseFloat(value) / 100;
+            document.getElementById('iv-value').textContent = value + '%';
+            updateAll();
+        }
+
+        // ==================== ACTUALIZACIÓN GENERAL ====================
+        
+        function updateAll() {
+            updateStats();
+            updateBalance();
+            updateCharts();
+        }
+
+        function updateStats() {
+            const T = state.dte / 365;
+            const isCall = state.optionType === 'call';
+            
+            const delta = calculateDelta(isCall, state.spot, state.strike, T, state.r, state.iv);
+            const gamma = calculateGamma(state.spot, state.strike, T, state.r, state.iv);
+            const vega = calculateVega(state.spot, state.strike, T, state.r, state.iv);
+
+            document.getElementById('stat-delta').textContent = delta.toFixed(3);
+            document.getElementById('stat-gamma').textContent = gamma.toFixed(4);
+            document.getElementById('stat-vega').textContent = vega.toFixed(3);
+        }
+
+        function updateBalance() {
+            const T = state.dte / 365;
+            const isCall = state.optionType === 'call';
+            const delta = Math.abs(calculateDelta(isCall, state.spot, state.strike, T, state.r, state.iv));
+            
+            // El MM necesita cubrir el delta vendido
+            const clientPct = delta * 100;
+            const mmPct = 100 - clientPct;
+
+            const clientBar = document.getElementById('balance-client');
+            const mmBar = document.getElementById('balance-mm');
+            
+            clientBar.style.width = clientPct + '%';
+            mmBar.style.width = mmPct + '%';
+            
+            clientBar.textContent = clientPct > 10 ? `CLIENTE: ${clientPct.toFixed(0)}%` : '';
+            mmBar.textContent = mmPct > 10 ? `MM HEDGE: ${mmPct.toFixed(0)}%` : '';
+
+            // Acciones a cubrir (asumiendo 100 contratos)
+            const contracts = 100;
+            const shares = Math.round(delta * contracts * 100);
+            const sharesEl = document.getElementById('shares-hedge');
+            const directionEl = document.getElementById('hedge-direction');
+            
+            if (isCall) {
+                sharesEl.textContent = '+' + shares;
+                sharesEl.style.color = '#00ff41';
+                directionEl.textContent = 'El Market Maker debe COMPRAR acciones';
+            } else {
+                sharesEl.textContent = '-' + shares;
+                sharesEl.style.color = '#ff4444';
+                directionEl.textContent = 'El Market Maker debe VENDER acciones';
+            }
+
+            // Presión de mercado
+            const pressureEl = document.getElementById('market-pressure');
+            const descEl = document.getElementById('pressure-description');
+            
+            if (delta > 0.7) {
+                pressureEl.textContent = 'ALTA PRESIÓN ALCISTA';
+                pressureEl.style.color = '#00ff41';
+                descEl.textContent = 'El MM necesita comprar muchas acciones - riesgo de Gamma Squeeze';
+            } else if (delta < 0.3) {
+                pressureEl.textContent = 'ALTA PRESIÓN BAJISTA';
+                pressureEl.style.color = '#ff4444';
+                descEl.textContent = 'El MM necesita vender muchas acciones - presión bajista';
+            } else {
+                pressureEl.textContent = 'NEUTRAL';
+                pressureEl.style.color = '#5ba2f4';
+                descEl.textContent = 'Las coberturas del MM están balanceadas';
+            }
+        }
+
+        function updateCharts() {
+            updateGammaChart();
+            updatePayoffChart();
+        }
+
+        // ==================== GRÁFICO DE GAMMA ====================
+        
+        function updateGammaChart() {
+            const T = state.dte / 365;
+            const spotRange = [];
+            const gammaData = [];
+            
+            for (let S = state.spot - 30; S <= state.spot + 30; S += 0.5) {
+                spotRange.push(S);
+                const gamma = calculateGamma(S, state.strike, T, state.r, state.iv);
+                gammaData.push(gamma);
+            }
+
+            gammaChart.data.labels = spotRange;
+            gammaChart.data.datasets[0].data = gammaData;
+            gammaChart.update('none'); // Sin animación para suavidad
+        }
+
+        // ==================== GRÁFICO DE PAYOFF ====================
+        
+        function updatePayoffChart() {
+            const isCall = state.optionType === 'call';
+            const spotRange = [];
+            const payoffData = [];
+            
+            for (let S = state.strike - 40; S <= state.strike + 40; S += 1) {
+                spotRange.push(S);
+                const payoff = calculatePayoff(isCall, S, state.strike);
+                payoffData.push(payoff);
+            }
+
+            payoffChart.data.labels = spotRange;
+            payoffChart.data.datasets[0].data = payoffData;
+            payoffChart.update('none');
+        }
+
+        // ==================== INICIALIZACIÓN DE GRÁFICOS ====================
+        
+        function initCharts() {
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 400,
+                    easing: 'easeOutQuart'
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: '#1f2937',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#8c52ff',
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: '#1f2937',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#8c52ff',
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Gamma Chart
+            const gammaCtx = document.getElementById('gamma-chart').getContext('2d');
+            gammaChart = new Chart(gammaCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Gamma',
+                        data: [],
+                        borderColor: '#8c52ff',
+                        backgroundColor: 'rgba(140, 82, 255, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    plugins: {
+                        ...commonOptions.plugins,
+                        tooltip: {
+                            backgroundColor: '#121625',
+                            borderColor: '#5ba2f4',
+                            borderWidth: 1,
+                            titleColor: '#e0e6ed',
+                            bodyColor: '#e0e6ed'
+                        }
+                    }
+                }
+            });
+
+            // Payoff Chart
+            const payoffCtx = document.getElementById('payoff-chart').getContext('2d');
+            payoffChart = new Chart(payoffCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Payoff',
+                        data: [],
+                        borderColor: '#00ff41',
+                        backgroundColor: 'rgba(0, 255, 65, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    plugins: {
+                        ...commonOptions.plugins,
+                        tooltip: {
+                            backgroundColor: '#121625',
+                            borderColor: '#00ff41',
+                            borderWidth: 1,
+                            titleColor: '#e0e6ed',
+                            bodyColor: '#e0e6ed'
+                        }
+                    }
+                }
+            });
+        }
+
+        // ==================== ESCENARIOS AUTOMÁTICOS ====================
+        
+        async function animateValue(elementId, valueFn, duration, steps) {
+            if (state.animating) return;
+            state.animating = true;
+            
+            const stepDuration = duration / steps;
+            
+            for (let i = 0; i <= steps; i++) {
+                await new Promise(resolve => setTimeout(resolve, stepDuration));
+                valueFn(i / steps);
+                updateAll();
+            }
+            
+            state.animating = false;
+        }
+
+        async function runGammaSqueeze() {
+            // Call ATM, DTE bajo, precio sube rápido
+            setOptionType('call');
+            setStrike('atm');
+            
+            await animateValue('dte-slider', (progress) => {
+                const dte = Math.round(15 - progress * 13); // 15 → 2
+                state.dte = dte;
+                document.getElementById('dte-slider').value = dte;
+                document.getElementById('dte-value').textContent = dte + ' días';
+            }, 1500, 30);
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            await animateValue('spot-slider', (progress) => {
+                const spot = 100 + progress * 15; // 100 → 115
+                state.spot = spot;
+                document.getElementById('spot-slider').value = spot;
+                document.getElementById('spot-value').textContent = '$' + spot.toFixed(2);
+                updateStrikeFromPosition();
+            }, 2000, 40);
+        }
+
+        async function runVannaRally() {
+            // Call ATM, IV cae mientras precio sube
+            setOptionType('call');
+            setStrike('atm');
+            
+            const initialIV = 50;
+            state.iv = initialIV / 100;
+            document.getElementById('iv-slider').value = initialIV;
+            document.getElementById('iv-value').textContent = initialIV + '%';
+            updateAll();
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // IV cae
+            await animateValue('iv-slider', (progress) => {
+                const iv = Math.round(50 - progress * 30); // 50% → 20%
+                state.iv = iv / 100;
+                document.getElementById('iv-slider').value = iv;
+                document.getElementById('iv-value').textContent = iv + '%';
+            }, 2000, 40);
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Precio sube
+            await animateValue('spot-slider', (progress) => {
+                const spot = 100 + progress * 10; // 100 → 110
+                state.spot = spot;
+                document.getElementById('spot-slider').value = spot;
+                document.getElementById('spot-value').textContent = '$' + spot.toFixed(2);
+                updateStrikeFromPosition();
+            }, 1500, 30);
+        }
+
+        async function runPinning0DTE() {
+            // Call ATM, DTE=0, precio orbita el strike
+            setOptionType('call');
+            setStrike('atm');
+            
+            await animateValue('dte-slider', (progress) => {
+                const dte = Math.round(15 - progress * 15); // 15 → 0
+                state.dte = dte;
+                document.getElementById('dte-slider').value = dte;
+                document.getElementById('dte-value').textContent = dte + ' días';
+            }, 1500, 30);
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Precio oscila alrededor del strike
+            for (let i = 0; i < 3; i++) {
+                await animateValue('spot-slider', (progress) => {
+                    const spot = 100 + Math.sin(progress * Math.PI * 2) * 3;
+                    state.spot = spot;
+                    document.getElementById('spot-slider').value = spot;
+                    document.getElementById('spot-value').textContent = '$' + spot.toFixed(2);
+                    updateStrikeFromPosition();
+                }, 1500, 30);
+            }
+        }
+
+        // ==================== MANUAL ====================
+        
+        function toggleManual() {
+            const content = document.getElementById('manual-content');
+            const icon = document.getElementById('manual-icon');
+            content.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        // ==================== INICIALIZACIÓN ====================
+        
+        window.addEventListener('load', () => {
+            initCharts();
+            updateStrikeFromPosition();
+            updateAll();
+        });
+    </script>
+</div>
+
+</body>
+</html>
