@@ -147,7 +147,7 @@
               <p>Claves para leer el flujo de opciones y distinguir movimiento real de trampas de liquidez.</p>
             </header>
             <article class="analysis-main">
-              <h3 class="analysis-section-title"><span aria-hidden="true">🔍</span> Cómo interpretar el movimiento</h3>
+              <h3 class="analysis-section-title">Cómo interpretar el movimiento</h3>
               <div class="analysis-steps">
                 <div class="analysis-numbered-item">
                   <div class="analysis-number-wrap"><span class="analysis-number">1</span></div>
@@ -179,7 +179,7 @@
               </div>
             </article>
             <div class="analysis-scenarios-box">
-              <h3 class="analysis-scenarios-title"><span aria-hidden="true">💡</span> Escenarios posibles</h3>
+              <h3 class="analysis-scenarios-title">Escenarios posibles</h3>
               <div class="analysis-scenarios-grid">
                 <div class="analysis-scenario-item">Headline released, algos reaccionaron, pujaron el mercado.</div>
                 <div class="analysis-scenario-item">Cascada stop-loss (un barrido para activar stops y empujar hacia zonas ilíquidas).</div>
@@ -189,15 +189,15 @@
             </div>
             <div class="analysis-sections-grid">
               <div class="analysis-section">
-                <h3 class="analysis-section-title"><span aria-hidden="true">📉</span> Movimiento bajista y primas de put</h3>
+                <h3 class="analysis-section-title">Movimiento bajista y primas de put</h3>
                 <p class="analysis-desc">Probablemente estés viendo un barrido de liquidez a la baja o una liquidación impulsada por el pánico:</p>
                 <div class="analysis-scenario">
-                  <div class="analysis-scenario-title">▼ Escenario A: Gamma larga (dealers con puts largas netas)</div>
+                  <div class="analysis-scenario-title">Escenario A: Gamma larga (dealers con puts largas netas)</div>
                   <p class="analysis-bullet">Los dealers compran en la caída para cubrir (flujo de apoyo).</p>
                   <p class="analysis-bullet">Las compras masivas de puts no aceleran el movimiento hacia abajo - el mercado absorbe y <span class="analysis-highlight">puede incluso conducir a un rebote</span>.</p>
                 </div>
                 <div class="analysis-scenario">
-                  <div class="analysis-scenario-title">▼ Escenario B: Gamma corta (dealers con puts cortas netas)</div>
+                  <div class="analysis-scenario-title">Escenario B: Gamma corta (dealers con puts cortas netas)</div>
                   <p class="analysis-bullet">Los puts se compran agresivamente → los dealers <span class="analysis-highlight">deben vender futuros o acciones</span> para cubrir, empujando el precio hacia abajo más rápido.</p>
                   <p class="analysis-bullet">Primas de put grandes en strikes OTM o ATM con precio cayendo = <span class="analysis-highlight">cascada de venta forzada</span>.</p>
                 </div>
@@ -208,15 +208,15 @@
                 </div>
               </div>
               <div class="analysis-section">
-                <h3 class="analysis-section-title"><span aria-hidden="true">⚖️</span> Calls y puts subiendo a la vez</h3>
+                <h3 class="analysis-section-title">Calls y puts subiendo a la vez</h3>
                 <p class="analysis-desc">Suele <span class="analysis-highlight">no ser</span> convicción direccional, sino:</p>
                 <div class="analysis-scenario">
-                  <div class="analysis-scenario-title">🎯 Escenario A: Cobertura o straddle (apuesta de volatilidad)</div>
+                  <div class="analysis-scenario-title">Escenario A: Cobertura o straddle (apuesta de volatilidad)</div>
                   <p class="analysis-bullet">Los traders juegan ambos lados—esperan un gran movimiento sin dirección definida.</p>
                   <p class="analysis-bullet">Algoritmos pujando calls y puts para capturar expansión de IV o escalado gamma.</p>
                 </div>
                 <div class="analysis-scenario">
-                  <div class="analysis-scenario-title">📊 Escenario B: Creadores de mercado / wings</div>
+                  <div class="analysis-scenario-title">Escenario B: Creadores de mercado / wings</div>
                   <p class="analysis-bullet">Calls y puts disparados por <span class="analysis-highlight">arbitraje de volatilidad</span> o flujos por noticias.</p>
                   <p class="analysis-bullet">Dealers ajustan deltas y gammas en ambos lados → <span class="analysis-highlight">fakeouts, whipsaws, formas en V</span>.</p>
                 </div>
@@ -228,7 +228,7 @@
               </div>
             </div>
             <div class="analysis-summary-wrap">
-              <h3 class="analysis-section-title"><span aria-hidden="true">📋</span> Resumen</h3>
+              <h3 class="analysis-section-title">Resumen</h3>
               <table class="analysis-table">
                 <thead>
                   <tr>
@@ -259,12 +259,120 @@
           </div>
         </section>
 
-        <div class="recursos-simulator-wrap" style="margin-top: 2rem;">
+        <div class="recursos-simulator-wrap" id="simulator-wrap">
           <div class="recursos-simulator-header">
             <h2 class="recursos-simulator-title">Simulador Delta Hedging</h2>
-            <p class="recursos-simulator-desc">Herramienta interactiva para explorar la cobertura delta: ajusta spot, strike, volatilidad y días al vencimiento y observa el impacto en la posición y el P&amp;L. Incluye gráficos de evolución y sensibilidades.</p>
+            <p class="recursos-simulator-desc">Herramienta interactiva para explorar la cobertura delta: ajusta spot, strike, volatilidad y días al vencimiento. Observa el perfil de gamma, el payoff del cliente y el inventario del Market Maker en tiempo real.</p>
           </div>
-          <iframe src="reference_htmls/gexzone-delta-hedging-simulator_updated.html" title="Simulador Delta Hedging GEXZONE"></iframe>
+          <div class="sim-inline" id="gexzone-simulator-v1">
+            <div class="sim-card" style="margin-bottom: 1rem;">
+              <div class="sim-card-title">Protocolos automáticos</div>
+              <div class="sim-btn-group">
+                <button type="button" class="sim-btn sim-btn-scenario" onclick="runGammaSqueeze()">Gamma Squeeze</button>
+                <button type="button" class="sim-btn sim-btn-scenario" onclick="runVannaRally()">Vanna Rally</button>
+                <button type="button" class="sim-btn sim-btn-scenario" onclick="runPinning0DTE()">Pinning 0DTE</button>
+              </div>
+            </div>
+            <div class="sim-grid">
+              <div class="sim-card">
+                <div class="sim-card-title">Configuración del escenario</div>
+                <div class="sim-control-group">
+                  <label class="sim-control-label">Tipo de opción</label>
+                  <div class="sim-btn-group">
+                    <button type="button" class="sim-btn active" id="btn-call" onclick="setOptionType('call')">Call</button>
+                    <button type="button" class="sim-btn" id="btn-put" onclick="setOptionType('put')">Put</button>
+                  </div>
+                </div>
+                <div class="sim-control-group">
+                  <label class="sim-control-label">Posición del strike</label>
+                  <div class="sim-btn-group">
+                    <button type="button" class="sim-btn" id="btn-itm" onclick="setStrike('itm')">ITM</button>
+                    <button type="button" class="sim-btn active" id="btn-atm" onclick="setStrike('atm')">ATM</button>
+                    <button type="button" class="sim-btn" id="btn-otm" onclick="setStrike('otm')">OTM</button>
+                  </div>
+                </div>
+                <div class="sim-control-group">
+                  <label class="sim-control-label">Precio spot <span class="sim-control-value" id="spot-value">$100.00</span></label>
+                  <input type="range" class="sim-slider" id="spot-slider" min="80" max="120" value="100" step="0.5" oninput="updateSpot(this.value)">
+                </div>
+                <div class="sim-control-group">
+                  <label class="sim-control-label">Días al vencimiento (DTE) <span class="sim-control-value" id="dte-value">15 días</span></label>
+                  <input type="range" class="sim-slider" id="dte-slider" min="0" max="30" value="15" step="1" oninput="updateDTE(this.value)">
+                </div>
+                <div class="sim-control-group">
+                  <label class="sim-control-label">Volatilidad implícita (IV) <span class="sim-control-value" id="iv-value">30%</span></label>
+                  <input type="range" class="sim-slider" id="iv-slider" min="10" max="80" value="30" step="1" oninput="updateIV(this.value)">
+                </div>
+                <div class="sim-stats">
+                  <div class="sim-stat"><div class="sim-stat-label">Delta</div><div class="sim-stat-value" id="stat-delta">0.50</div></div>
+                  <div class="sim-stat"><div class="sim-stat-label">Gamma</div><div class="sim-stat-value" id="stat-gamma">0.025</div></div>
+                  <div class="sim-stat"><div class="sim-stat-label">Vega</div><div class="sim-stat-value" id="stat-vega">0.15</div></div>
+                </div>
+              </div>
+              <div class="sim-card">
+                <div class="sim-card-title">Inventario del Market Maker</div>
+                <div class="sim-balance-container">
+                  <div class="sim-balance-title">Exposición neta</div>
+                  <div class="sim-balance-bar">
+                    <div class="sim-balance-client" id="balance-client">Cliente: 50%</div>
+                    <div class="sim-balance-mm" id="balance-mm">MM Hedge: 50%</div>
+                  </div>
+                  <div class="sim-balance-labels">
+                    <span>Exposición cliente</span>
+                    <span>Cobertura MM</span>
+                  </div>
+                </div>
+                <div class="sim-balance-container">
+                  <div class="sim-balance-title">Acciones a comprar/vender</div>
+                  <div class="sim-shares-display positive" id="shares-hedge">+250</div>
+                  <div class="sim-direction-hint" id="hedge-direction">El Market Maker debe comprar acciones</div>
+                </div>
+                <div class="sim-balance-container">
+                  <div class="sim-balance-title">Presión de mercado</div>
+                  <div style="text-align: center;">
+                    <div id="market-pressure" style="font-size: 1rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.35rem;">Neutral</div>
+                    <div class="sim-direction-hint" id="pressure-description">Las coberturas del MM están balanceadas</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sim-grid">
+              <div class="sim-card">
+                <div class="sim-card-title">Perfil de gamma</div>
+                <div class="sim-chart-container"><canvas id="gamma-chart"></canvas></div>
+              </div>
+              <div class="sim-card">
+                <div class="sim-card-title">Payoff del cliente</div>
+                <div class="sim-chart-container"><canvas id="payoff-chart"></canvas></div>
+              </div>
+            </div>
+            <div class="sim-manual">
+              <div class="sim-manual-header" onclick="toggleManual()">
+                <span class="sim-manual-title">Manual de operaciones: instrucciones</span>
+                <span class="sim-manual-icon" id="manual-icon">▼</span>
+              </div>
+              <div class="sim-manual-content" id="manual-content">
+                <div class="sim-manual-body">
+                  <div class="sim-manual-section">
+                    <div class="sim-manual-section-title">Configura el escenario</div>
+                    <p class="sim-manual-text">Selecciona Call/Put y la posición del strike (ITM/ATM/OTM). Tú eres el cliente comprando la opción. Observa cómo el Market Maker debe reaccionar mecánicamente para cubrir su exposición. Una Call ATM requiere que el MM compre aproximadamente 50 acciones por cada contrato (delta 0.5).</p>
+                  </div>
+                  <div class="sim-manual-section">
+                    <div class="sim-manual-section-title">Manipula las variables</div>
+                    <p class="sim-manual-text"><strong>DTE (Días hasta Vencimiento):</strong> Observa cómo la Gamma se vuelve extremadamente agresiva al acercarse a 0 días. Con DTE bajo, pequeños movimientos del precio fuerzan al MM a rebalancear grandes cantidades de acciones.<br><br><strong>IV (Volatilidad Implícita):</strong> Cuando la IV cae, el MM reduce sus coberturas (efecto Vanna), lo que libera presión compradora en el mercado y puede acelerar rallies alcistas.</p>
+                  </div>
+                  <div class="sim-manual-section">
+                    <div class="sim-manual-section-title">Protocolos automáticos</div>
+                    <p class="sim-manual-text"><strong>Gamma Squeeze:</strong> Simula un movimiento rápido al alza con DTE bajo. El MM se ve forzado a comprar exponencialmente más acciones a medida que el precio sube, creando un bucle de retroalimentación.<br><br><strong>Vanna Rally:</strong> La IV colapsa mientras el precio sube, forzando al MM a reducir coberturas y liberando presión alcista adicional.<br><br><strong>Pinning 0DTE:</strong> El día del vencimiento, el precio tiende a orbitar el strike más grande debido a la magnitud de las coberturas del MM.</p>
+                  </div>
+                  <div class="sim-manual-section">
+                    <div class="sim-manual-section-title">Balanza de inventario</div>
+                    <p class="sim-manual-text">Si el Market Maker está significativamente desequilibrado (más de 70% en una dirección), el mercado está cargado para un movimiento brusco. La presión del mercado indica si hay riesgo de squeeze alcista o bajista basado en las posiciones actuales.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="recursos-intro" style="margin-top: 3rem;">
@@ -300,6 +408,273 @@
     <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="js/app.js"></script>
+  <script>
+(function() {
+  let state = { optionType: 'call', strikePosition: 'atm', spot: 100, strike: 100, dte: 15, iv: 0.30, r: 0.05, animating: false };
+  let gammaChart, payoffChart;
+
+  function normalCDF(x) {
+    const t = 1 / (1 + 0.2316419 * Math.abs(x));
+    const d = 0.3989423 * Math.exp(-x * x / 2);
+    const prob = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+    return x > 0 ? 1 - prob : prob;
+  }
+  function normalPDF(x) { return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI); }
+  function calculateD1(S, K, T, r, sigma) {
+    if (T <= 0) return S > K ? 10 : -10;
+    return (Math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * Math.sqrt(T));
+  }
+  function calculateD2(d1, T, sigma) { return T <= 0 ? d1 : d1 - sigma * Math.sqrt(T); }
+  function calculateDelta(isCall, S, K, T, r, sigma) {
+    if (T <= 0) { if (isCall) return S > K ? 1 : 0; return S >= K ? 0 : -1; }
+    const d1 = calculateD1(S, K, T, r, sigma);
+    return isCall ? normalCDF(d1) : normalCDF(d1) - 1;
+  }
+  function calculateGamma(S, K, T, r, sigma) {
+    if (T <= 0) return 0;
+    const d1 = calculateD1(S, K, T, r, sigma);
+    return normalPDF(d1) / (S * sigma * Math.sqrt(T));
+  }
+  function calculateVega(S, K, T, r, sigma) {
+    if (T <= 0) return 0;
+    const d1 = calculateD1(S, K, T, r, sigma);
+    return S * normalPDF(d1) * Math.sqrt(T) / 100;
+  }
+  function calculatePayoff(isCall, S, K) { return isCall ? Math.max(S - K, 0) : Math.max(K - S, 0); }
+
+  function updateStrikeFromPosition() {
+    switch(state.strikePosition) {
+      case 'itm': state.strike = state.optionType === 'call' ? state.spot * 0.95 : state.spot * 1.05; break;
+      case 'atm': state.strike = state.spot; break;
+      case 'otm': state.strike = state.optionType === 'call' ? state.spot * 1.05 : state.spot * 0.95; break;
+    }
+  }
+
+  window.setOptionType = function(type) {
+    state.optionType = type;
+    document.getElementById('btn-call').classList.toggle('active', type === 'call');
+    document.getElementById('btn-put').classList.toggle('active', type === 'put');
+    updateStrikeFromPosition();
+    updateAll();
+  };
+  window.setStrike = function(position) {
+    state.strikePosition = position;
+    document.getElementById('btn-itm').classList.toggle('active', position === 'itm');
+    document.getElementById('btn-atm').classList.toggle('active', position === 'atm');
+    document.getElementById('btn-otm').classList.toggle('active', position === 'otm');
+    updateStrikeFromPosition();
+    updateAll();
+  };
+  window.updateSpot = function(value) {
+    state.spot = parseFloat(value);
+    document.getElementById('spot-value').textContent = '$' + state.spot.toFixed(2);
+    updateStrikeFromPosition();
+    updateAll();
+  };
+  window.updateDTE = function(value) {
+    state.dte = parseInt(value);
+    document.getElementById('dte-value').textContent = state.dte + ' días';
+    updateAll();
+  };
+  window.updateIV = function(value) {
+    state.iv = parseFloat(value) / 100;
+    document.getElementById('iv-value').textContent = value + '%';
+    updateAll();
+  };
+
+  function updateAll() {
+    const T = state.dte / 365;
+    const isCall = state.optionType === 'call';
+    const delta = calculateDelta(isCall, state.spot, state.strike, T, state.r, state.iv);
+    const gamma = calculateGamma(state.spot, state.strike, T, state.r, state.iv);
+    const vega = calculateVega(state.spot, state.strike, T, state.r, state.iv);
+
+    document.getElementById('stat-delta').textContent = delta.toFixed(3);
+    document.getElementById('stat-gamma').textContent = gamma.toFixed(4);
+    document.getElementById('stat-vega').textContent = vega.toFixed(3);
+
+    const clientPct = Math.abs(delta) * 100;
+    const mmPct = 100 - clientPct;
+    const clientBar = document.getElementById('balance-client');
+    const mmBar = document.getElementById('balance-mm');
+    clientBar.style.width = clientPct + '%';
+    mmBar.style.width = mmPct + '%';
+    clientBar.textContent = clientPct > 10 ? 'Cliente: ' + clientPct.toFixed(0) + '%' : '';
+    mmBar.textContent = mmPct > 10 ? 'MM: ' + mmPct.toFixed(0) + '%' : '';
+
+    const contracts = 100;
+    const shares = Math.round(delta * contracts * 100);
+    const sharesEl = document.getElementById('shares-hedge');
+    const dirEl = document.getElementById('hedge-direction');
+    if (isCall) {
+      sharesEl.textContent = '+' + shares;
+      sharesEl.className = 'sim-shares-display positive';
+      dirEl.textContent = 'El Market Maker debe comprar acciones';
+    } else {
+      sharesEl.textContent = shares;
+      sharesEl.className = 'sim-shares-display negative';
+      dirEl.textContent = 'El Market Maker debe vender acciones';
+    }
+
+    const pressureEl = document.getElementById('market-pressure');
+    const descEl = document.getElementById('pressure-description');
+    if (delta > 0.7) {
+      pressureEl.textContent = 'Alta presión alcista';
+      pressureEl.style.color = 'rgba(34, 197, 94, 0.95)';
+      descEl.textContent = 'El MM necesita comprar muchas acciones — riesgo de Gamma Squeeze';
+    } else if (delta < 0.3) {
+      pressureEl.textContent = 'Alta presión bajista';
+      pressureEl.style.color = 'rgba(248, 113, 113, 0.95)';
+      descEl.textContent = 'El MM necesita vender muchas acciones — presión bajista';
+    } else {
+      pressureEl.textContent = 'Neutral';
+      pressureEl.style.color = 'var(--accent-blue)';
+      descEl.textContent = 'Las coberturas del MM están balanceadas';
+    }
+
+    if (gammaChart && payoffChart) {
+      const spotRange = [], gammaData = [];
+      for (let S = state.spot - 30; S <= state.spot + 30; S += 0.5) {
+        spotRange.push(S);
+        gammaData.push(calculateGamma(S, state.strike, T, state.r, state.iv));
+      }
+      gammaChart.data.labels = spotRange;
+      gammaChart.data.datasets[0].data = gammaData;
+
+      const payoffRange = [], payoffData = [];
+      for (let S = state.strike - 40; S <= state.strike + 40; S += 1) {
+        payoffRange.push(S);
+        payoffData.push(calculatePayoff(isCall, S, state.strike));
+      }
+      payoffChart.data.labels = payoffRange;
+      payoffChart.data.datasets[0].data = payoffData;
+
+      gammaChart.update('none');
+      payoffChart.update('none');
+    }
+  }
+
+  function initCharts() {
+    const gridColor = 'rgba(255, 255, 255, 0.06)';
+    const tickColor = 'rgba(156, 163, 175, 0.9)';
+    const commonOpts = {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 300 },
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 } } },
+        y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 10 } } }
+      }
+    };
+    const gammaCtx = document.getElementById('gamma-chart');
+    if (gammaCtx) {
+      gammaChart = new Chart(gammaCtx.getContext('2d'), {
+        type: 'line',
+        data: { labels: [], datasets: [{ data: [], borderColor: 'rgba(139, 92, 246, 0.9)', backgroundColor: 'rgba(139, 92, 246, 0.08)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 0 }] },
+        options: commonOpts
+      });
+    }
+    const payoffCtx = document.getElementById('payoff-chart');
+    if (payoffCtx) {
+      payoffChart = new Chart(payoffCtx.getContext('2d'), {
+        type: 'line',
+        data: { labels: [], datasets: [{ data: [], borderColor: 'rgba(34, 197, 94, 0.9)', backgroundColor: 'rgba(34, 197, 94, 0.08)', borderWidth: 2, fill: true, tension: 0, pointRadius: 0 }] },
+        options: commonOpts
+      });
+    }
+    updateStrikeFromPosition();
+    updateAll();
+  }
+
+  async function animateValue(elementId, valueFn, duration, steps) {
+    if (state.animating) return;
+    state.animating = true;
+    for (let i = 0; i <= steps; i++) {
+      await new Promise(r => setTimeout(r, duration / steps));
+      valueFn(i / steps);
+      updateAll();
+    }
+    state.animating = false;
+  }
+
+  window.runGammaSqueeze = async function() {
+    setOptionType('call');
+    setStrike('atm');
+    await animateValue('dte-slider', p => {
+      const dte = Math.round(15 - p * 13);
+      state.dte = dte;
+      document.getElementById('dte-slider').value = dte;
+      document.getElementById('dte-value').textContent = dte + ' días';
+    }, 1500, 30);
+    await new Promise(r => setTimeout(r, 300));
+    await animateValue('spot-slider', p => {
+      const spot = 100 + p * 15;
+      state.spot = spot;
+      document.getElementById('spot-slider').value = spot;
+      document.getElementById('spot-value').textContent = '$' + spot.toFixed(2);
+      updateStrikeFromPosition();
+    }, 2000, 40);
+  };
+
+  window.runVannaRally = async function() {
+    setOptionType('call');
+    setStrike('atm');
+    state.iv = 0.5;
+    document.getElementById('iv-slider').value = 50;
+    document.getElementById('iv-value').textContent = '50%';
+    updateAll();
+    await new Promise(r => setTimeout(r, 300));
+    await animateValue('iv-slider', p => {
+      const iv = Math.round(50 - p * 30);
+      state.iv = iv / 100;
+      document.getElementById('iv-slider').value = iv;
+      document.getElementById('iv-value').textContent = iv + '%';
+    }, 2000, 40);
+    await new Promise(r => setTimeout(r, 300));
+    await animateValue('spot-slider', p => {
+      const spot = 100 + p * 10;
+      state.spot = spot;
+      document.getElementById('spot-slider').value = spot;
+      document.getElementById('spot-value').textContent = '$' + spot.toFixed(2);
+      updateStrikeFromPosition();
+    }, 1500, 30);
+  };
+
+  window.runPinning0DTE = async function() {
+    setOptionType('call');
+    setStrike('atm');
+    await animateValue('dte-slider', p => {
+      const dte = Math.round(15 - p * 15);
+      state.dte = dte;
+      document.getElementById('dte-slider').value = dte;
+      document.getElementById('dte-value').textContent = dte + ' días';
+    }, 1500, 30);
+    await new Promise(r => setTimeout(r, 300));
+    for (let i = 0; i < 3; i++) {
+      await animateValue('spot-slider', p => {
+        const spot = 100 + Math.sin(p * Math.PI * 2) * 3;
+        state.spot = spot;
+        document.getElementById('spot-slider').value = spot;
+        document.getElementById('spot-value').textContent = '$' + spot.toFixed(2);
+        updateStrikeFromPosition();
+      }, 1500, 30);
+    }
+  };
+
+  window.toggleManual = function() {
+    document.getElementById('manual-content').classList.toggle('open');
+    document.getElementById('manual-icon').classList.toggle('open');
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { if (document.getElementById('gamma-chart')) initCharts(); });
+  } else {
+    setTimeout(() => { if (document.getElementById('gamma-chart')) initCharts(); }, 100);
+  }
+})();
+  </script>
 </body>
 </html>
