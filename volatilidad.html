@@ -29,20 +29,112 @@
   </header>
 
   <main>
-    <section class="section">
+    <section class="section volatilidad-intro">
       <div class="container">
         <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Volatilidad</h1>
         <p class="hero-sub" style="max-width: 640px;">Ciclo de mercado de volatilidad y trading de spreads VIX basado en estructura temporal.</p>
       </div>
     </section>
 
-    <section class="section volatilidad-embeds" style="padding-top: 0;">
+    <!-- Ciclo de Volatilidad -->
+    <section class="volatilidad-section" aria-labelledby="cycle-heading">
       <div class="container">
-        <div class="embed-block">
-          <iframe src="reference_htmls/gex_volatility_cycle.html" title="Ciclo de volatilidad"></iframe>
+        <header class="volatilidad-hero">
+          <p class="volatilidad-badge">Análisis</p>
+          <h2 id="cycle-heading">El mercado de volatilidad ahora se asemeja cada vez más a un régimen de ciclo tardío</h2>
+          <p>Fig. 4: Fases del ciclo de volatilidad y su impacto en la operativa institucional.</p>
+        </header>
+
+        <div class="volatilidad-cycle">
+          <div class="volatilidad-phase phase-bear">
+            <h3 class="volatilidad-phase-title">Mercado Bajista</h3>
+            <ul class="volatilidad-phase-list">
+              <li><strong>Aumento explosivo en volatilidad,</strong> los mercados exhiben colas gordas</li>
+              <li><strong>Prima de volatilidad grande,</strong> posiciones de volatilidad corta se deshacen y la liquidez es pobre</li>
+            </ul>
+          </div>
+          <div class="volatilidad-phase phase-early">
+            <h3 class="volatilidad-phase-title">Recuperación Temprana</h3>
+            <ul class="volatilidad-phase-list">
+              <li><strong>Las tendencias de RV bajan</strong> pero permanecen muy por encima de los niveles promedio</li>
+              <li><strong>La liquidez mejora</strong> pero VRP se mantiene alto ya que las caídas realizadas son más rápidas que las implícitas</li>
+            </ul>
+          </div>
+          <div class="volatilidad-cycle-center">
+            <span class="volatilidad-cycle-badge">Ciclo de Volatilidad</span>
+          </div>
+          <div class="volatilidad-phase phase-late">
+            <h3 class="volatilidad-phase-title">Ciclo Tardío / Exuberancia</h3>
+            <ul class="volatilidad-phase-list">
+              <li><strong>Las operaciones de vol corta</strong> se vuelven abarrotadas, los niveles de RV se vuelven muy bajos</li>
+              <li><strong>El exceso de toma de riesgos</strong> y el apalancamiento hacen al mercado vulnerable a movimientos desproporcionados</li>
+            </ul>
+          </div>
+          <div class="volatilidad-phase phase-mid">
+            <h3 class="volatilidad-phase-title">Ciclo Medio</h3>
+            <ul class="volatilidad-phase-list">
+              <li><strong>Los niveles de Vol convergen</strong> con las medianas de largo plazo, VRP se comprime</li>
+              <li><strong>Los inversionistas venden vol,</strong> suministrando a los distribuidores con gamma. Esto tiene un efecto autorreforzante de deprimir más la RV.</li>
+            </ul>
+          </div>
         </div>
-        <div class="embed-block">
-          <iframe src="reference_htmls/gex_vix_spread_trading.html" title="Trading spreads VIX"></iframe>
+
+        <div class="volatilidad-key-note">
+          <strong>Nota clave:</strong> El mercado actual muestra características similares a la fase de "Ciclo Tardío/Exuberancia", donde las operaciones de volatilidad corta se vuelven abarrotadas y el exceso de apalancamiento aumenta la vulnerabilidad del mercado.
+        </div>
+        <p class="volatilidad-source">Fuente: BNP Paribas | Análisis: GEX ZONE</p>
+      </div>
+    </section>
+
+    <!-- Trading de Spreads VIX -->
+    <section class="volatilidad-section" aria-labelledby="spreads-heading">
+      <div class="container">
+        <header class="volatilidad-hero">
+          <p class="volatilidad-badge">Estrategias</p>
+          <h2 id="spreads-heading">Trading de Spreads VIX basado en estructura temporal</h2>
+          <p>Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
+        </header>
+
+        <div class="volatilidad-strategies">
+          <article class="volatilidad-strategy">
+            <span class="volatilidad-strategy-num">1</span>
+            <div class="volatilidad-strategy-body">
+              <h3 class="volatilidad-strategy-title">Contango (normal): <span class="volatilidad-highlight-short">Short</span> a corto plazo, <span class="volatilidad-highlight-long">long</span> a largo plazo futuros VIX <span class="volatilidad-strategy-type">Normal</span></h3>
+              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Beneficiarse del roll yield mientras los futuros convergen al VIX spot</p>
+            </div>
+          </article>
+
+          <article class="volatilidad-strategy">
+            <span class="volatilidad-strategy-num">2</span>
+            <div class="volatilidad-strategy-body">
+              <h3 class="volatilidad-strategy-title">Backwardation (raro): <span class="volatilidad-highlight-long">Long</span> a corto plazo, <span class="volatilidad-highlight-short">short</span> a largo plazo futuros VIX <span class="volatilidad-strategy-type">Raro</span></h3>
+              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Capitalizar las expectativas elevadas de volatilidad a corto plazo</p>
+            </div>
+          </article>
+
+          <article class="volatilidad-strategy">
+            <span class="volatilidad-strategy-num">3</span>
+            <div class="volatilidad-strategy-body">
+              <h3 class="volatilidad-strategy-title">Contango pronunciado: Ampliar spread entre posiciones <span class="volatilidad-highlight-short">short</span> y <span class="volatilidad-highlight-long">long</span></h3>
+              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Amplificar ganancias del mayor roll yield</p>
+            </div>
+          </article>
+
+          <article class="volatilidad-strategy">
+            <span class="volatilidad-strategy-num">4</span>
+            <div class="volatilidad-strategy-body">
+              <h3 class="volatilidad-strategy-title">Estructura temporal plana: Reducir tamaños de posición o mantenerse fuera</h3>
+              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Potencial de beneficio limitado de los spread trades</p>
+            </div>
+          </article>
+
+          <article class="volatilidad-strategy">
+            <span class="volatilidad-strategy-num">5</span>
+            <div class="volatilidad-strategy-body">
+              <h3 class="volatilidad-strategy-title">Monitorear ratio <span class="volatilidad-highlight-ratio">VIX/VIX3M</span> para señales de entrada/salida</h3>
+              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Ratio &lt;1 sugiere contango, &gt;1 indica backwardation</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
