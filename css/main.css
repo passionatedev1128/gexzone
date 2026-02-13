@@ -91,7 +91,7 @@ h1, h2, h3, h4 {
 
 /* ---- Layout ---- */
 .section {
-  padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4%, 5%);
 }
 
 .container {
@@ -117,7 +117,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem clamp(1.5rem, 6%, 8%);
+  padding: 0.75rem clamp(1rem, 4%, 5%);
   gap: 1.5rem;
 }
 
@@ -227,7 +227,7 @@ h1, h2, h3, h4 {
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
-  padding: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(4rem, 10vh, 6rem) clamp(1rem, 4%, 5%);
   background: var(--hero-bg);
 }
 
@@ -326,7 +326,7 @@ h1, h2, h3, h4 {
 
 /* ---- HTML embed blocks (visible content) ---- */
 .html-embed-wrap {
-  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4%, 5%);
   background: var(--bg-secondary);
 }
 
@@ -352,7 +352,7 @@ h1, h2, h3, h4 {
 
 /* ---- Inline analysis block (Breakout / Fake Out) - refined layout ---- */
 .analysis-inline {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4%, 5%);
   background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
@@ -370,7 +370,7 @@ h1, h2, h3, h4 {
 }
 
 .analysis-inline .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
 }
@@ -414,8 +414,8 @@ h1, h2, h3, h4 {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  margin-bottom: 2rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.5rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
@@ -430,9 +430,6 @@ h1, h2, h3, h4 {
   font-weight: 600;
   color: var(--accent-blue);
   margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
 }
 
 /* Timeline-style numbered steps */
@@ -501,29 +498,19 @@ h1, h2, h3, h4 {
   color: var(--text-secondary);
   line-height: 1.55;
   margin-bottom: 0.4rem;
-  padding-left: 1.2rem;
+  padding-left: 0;
   position: relative;
 }
 
 .analysis-inline .analysis-bullet::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent-blue);
-  opacity: 0.8;
+  content: none;
 }
 
 .analysis-inline .analysis-highlight {
-  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 167, 38, 0.2));
-  padding: 2px 8px;
-  border-radius: 4px;
   font-weight: 600;
   color: var(--text-primary);
-  border: 1px solid rgba(255, 167, 38, 0.2);
+  border-bottom: 1px solid var(--border-accent);
+  padding-bottom: 1px;
 }
 
 /* Bento grid: Escenarios Posibles */
@@ -536,9 +523,6 @@ h1, h2, h3, h4 {
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .analysis-inline .analysis-scenarios-grid {
@@ -604,7 +588,7 @@ h1, h2, h3, h4 {
 
 .analysis-inline .analysis-scenario-title {
   font-weight: 600;
-  color: rgba(255, 140, 120, 0.95);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   line-height: 1.35;
@@ -706,7 +690,7 @@ h1, h2, h3, h4 {
 
 /* ---- Inline guide: 0DTE (guia-0dte-gex) ---- */
 .guide-0dte {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4%, 5%);
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
@@ -724,7 +708,7 @@ h1, h2, h3, h4 {
 }
 
 .guide-0dte .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
 }
@@ -766,8 +750,8 @@ h1, h2, h3, h4 {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  padding: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 1.75rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.5rem;
   border-left: 4px solid var(--accent-blue);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
@@ -783,9 +767,6 @@ h1, h2, h3, h4 {
   font-weight: 600;
   color: var(--accent-blue);
   margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .guide-0dte .guide-section p {
@@ -814,7 +795,9 @@ h1, h2, h3, h4 {
 
 .guide-0dte .guide-key-point {
   font-weight: 600;
-  color: var(--accent-blue);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-accent);
+  padding-bottom: 1px;
 }
 
 .guide-0dte .guide-warning-box {
@@ -895,7 +878,7 @@ h1, h2, h3, h4 {
 
 .guide-0dte .guide-list li {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 0;
   margin-bottom: 0.65rem;
   font-size: 0.95rem;
   color: var(--text-secondary);
@@ -903,15 +886,7 @@ h1, h2, h3, h4 {
 }
 
 .guide-0dte .guide-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.45em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-blue);
-  opacity: 0.8;
+  content: none;
 }
 
 .guide-0dte .guide-pulse {
@@ -928,7 +903,7 @@ h1, h2, h3, h4 {
   border: 1px solid rgba(139, 92, 246, 0.35);
   border-left: 4px solid rgba(139, 92, 246, 0.9);
   border-radius: 16px;
-  padding: clamp(1.5rem, 2.5vw, 2rem);
+  padding: clamp(1.25rem, 2vw, 1.75rem);
   margin-bottom: 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -941,8 +916,8 @@ h1, h2, h3, h4 {
   background: rgba(255, 107, 107, 0.06);
   border: 1px solid rgba(255, 107, 107, 0.25);
   border-radius: 16px;
-  padding: clamp(1.5rem, 2.5vw, 2rem);
-  margin-bottom: 1.75rem;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  margin-bottom: 1.5rem;
   border-left: 4px solid rgba(255, 107, 107, 0.6);
 }
 
@@ -977,7 +952,7 @@ h1, h2, h3, h4 {
 
 /* ---- Testimonials ---- */
 .testimonials-section {
-  padding: clamp(4rem, 10vw, 6rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4%, 5%);
   background: var(--bg-secondary);
 }
 
@@ -1717,7 +1692,7 @@ h1, h2, h3, h4 {
 
 /* ---- Footer ---- */
 .site-footer {
-  padding: clamp(3rem, 6vw, 4rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4%, 5%);
   background: var(--bg-soft);
   border-top: 1px solid var(--border-subtle);
 }
@@ -1775,7 +1750,7 @@ h1, h2, h3, h4 {
 
 /* Section hero (cycle & spreads) */
 .volatilidad-section {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4%, 5%);
   position: relative;
 }
 
@@ -1897,12 +1872,7 @@ h1, h2, h3, h4 {
 }
 
 .volatilidad-phase-list li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: var(--accent-blue);
-  font-size: 0.85rem;
-  opacity: 0.9;
+  content: none;
 }
 
 .volatilidad-cycle-center {
@@ -2031,27 +2001,24 @@ h1, h2, h3, h4 {
 }
 
 .volatilidad-highlight-short {
-  background: linear-gradient(135deg, rgba(248, 113, 113, 0.25), rgba(239, 68, 68, 0.2));
-  padding: 2px 6px;
-  border-radius: 4px;
   font-weight: 600;
-  color: rgba(252, 165, 165, 0.95);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-accent);
+  padding-bottom: 1px;
 }
 
 .volatilidad-highlight-long {
-  background: linear-gradient(135deg, rgba(52, 211, 153, 0.25), rgba(16, 185, 129, 0.2));
-  padding: 2px 6px;
-  border-radius: 4px;
   font-weight: 600;
-  color: rgba(110, 231, 183, 0.95);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-accent);
+  padding-bottom: 1px;
 }
 
 .volatilidad-highlight-ratio {
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(139, 92, 246, 0.2));
-  padding: 2px 6px;
-  border-radius: 4px;
   font-weight: 600;
-  color: rgba(196, 181, 253, 0.95);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-accent);
+  padding-bottom: 1px;
 }
 
 @media (max-width: 768px) {
