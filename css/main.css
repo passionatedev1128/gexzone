@@ -2292,61 +2292,65 @@ h1, h2, h3, h4 {
   line-height: 1.6;
 }
 
-/* Cycle grid: 2x2 with center badge */
+/* Cycle grid: 2x2 with center circle overlay and arrows (like gex_volatility_cycle.html) */
 .volatilidad-cycle {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1.25rem;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5rem;
   max-width: 1000px;
+  min-height: 420px;
   margin: 0 auto 2rem;
   position: relative;
 }
 
 .volatilidad-phase {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
   padding: 1.5rem 1.35rem;
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .volatilidad-phase:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
 .volatilidad-phase.phase-bear {
-  border-left: 4px solid rgba(248, 113, 113, 0.9);
-  background: linear-gradient(135deg, rgba(248, 113, 113, 0.06) 0%, transparent 100%);
+  border-color: rgba(248, 113, 113, 0.6);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(238, 82, 83, 0.06) 100%);
 }
 
 .volatilidad-phase.phase-early {
-  border-left: 4px solid rgba(52, 211, 153, 0.9);
-  background: linear-gradient(135deg, rgba(52, 211, 153, 0.06) 0%, transparent 100%);
+  border-color: rgba(52, 211, 153, 0.6);
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(85, 239, 196, 0.06) 100%);
 }
 
 .volatilidad-phase.phase-late {
-  border-left: 4px solid rgba(251, 191, 36, 0.95);
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.06) 0%, transparent 100%);
+  border-color: rgba(251, 191, 36, 0.7);
+  background: linear-gradient(135deg, rgba(255, 167, 38, 0.1) 0%, rgba(255, 183, 77, 0.06) 100%);
 }
 
 .volatilidad-phase.phase-mid {
-  border-left: 4px solid rgba(167, 139, 250, 0.9);
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0.06) 0%, transparent 100%);
+  border-color: rgba(167, 139, 250, 0.6);
+  background: linear-gradient(135deg, rgba(162, 155, 254, 0.1) 0%, rgba(116, 185, 255, 0.06) 100%);
 }
 
 .volatilidad-phase-title {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 1rem;
   line-height: 1.3;
+  text-align: center;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.volatilidad-phase.phase-bear .volatilidad-phase-title { color: rgba(248, 113, 113, 0.95); }
-.volatilidad-phase.phase-early .volatilidad-phase-title { color: rgba(52, 211, 153, 0.95); }
-.volatilidad-phase.phase-late .volatilidad-phase-title { color: rgba(251, 191, 36, 0.95); }
+.volatilidad-phase.phase-bear .volatilidad-phase-title { color: rgba(255, 107, 107, 0.95); }
+.volatilidad-phase.phase-early .volatilidad-phase-title { color: rgba(78, 205, 196, 0.95); }
+.volatilidad-phase.phase-late .volatilidad-phase-title { color: rgba(255, 167, 38, 0.95); }
 .volatilidad-phase.phase-mid .volatilidad-phase-title { color: rgba(167, 139, 250, 0.95); }
 
 .volatilidad-phase-list {
@@ -2357,9 +2361,9 @@ h1, h2, h3, h4 {
 
 .volatilidad-phase-list li {
   position: relative;
-  padding-left: 1.25rem;
-  margin-bottom: 0.6rem;
-  font-size: 0.92rem;
+  padding-left: 1.35rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.55;
 }
@@ -2369,31 +2373,95 @@ h1, h2, h3, h4 {
 }
 
 .volatilidad-phase-list li::before {
-  content: none;
+  content: "▶";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  color: var(--accent-blue);
+  font-size: 0.65rem;
 }
 
+/* Center circle overlay (like reference) */
 .volatilidad-cycle-center {
-  grid-column: 1 / -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f7cf8 0%, #7c3aed 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.5rem 0;
+  box-shadow: 0 10px 32px rgba(102, 126, 234, 0.4);
+  z-index: 10;
 }
 
 .volatilidad-cycle-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(139, 92, 246, 0.2));
-  border: 1px solid var(--border-accent);
-  border-radius: 12px;
-  font-size: 0.85rem;
+  display: block;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--accent-blue);
+  letter-spacing: 0.12em;
+  color: #fff;
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.35;
+}
+
+/* Arrows from center to phases */
+.volatilidad-cycle-arrows {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.volatilidad-arrow {
+  position: absolute;
+  width: 28px;
+  height: 3px;
+  background: var(--accent-blue);
+  border-radius: 2px;
+}
+
+.volatilidad-arrow::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid var(--accent-blue);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.volatilidad-arrow-right {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.volatilidad-arrow-down {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.volatilidad-arrow-left {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.volatilidad-arrow-up {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(270deg);
 }
 
 /* Key note callout */
@@ -2509,6 +2577,28 @@ h1, h2, h3, h4 {
 @media (max-width: 768px) {
   .volatilidad-cycle {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: 0;
+  }
+
+  .volatilidad-cycle-center {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    margin: 1.25rem auto;
+    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.25), rgba(124, 58, 237, 0.25));
+  }
+
+  .volatilidad-cycle-badge {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .volatilidad-cycle-arrows {
+    display: none;
   }
 
   .volatilidad-strategy {
