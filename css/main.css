@@ -108,6 +108,7 @@ a:hover {
 
 main {
   flex: 1 0 auto;
+  padding-top: 4.5rem;
 }
 
 img {
@@ -129,7 +130,7 @@ h1, h2, h3, h4 {
 
 /* ---- Layout ---- */
 .section {
-  padding: clamp(2rem, 5vw, 3rem) clamp(0.75rem, 3%, 4%);
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(0.75rem, 3%, 4%);
 }
 
 .container {
@@ -199,10 +200,33 @@ h1, h2, h3, h4 {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
-/* Language & theme toggles */
+/* Header action buttons */
+.header-actions .btn-icon {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: color 0.2s, background 0.2s;
+}
+
+.header-actions .btn-icon:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Legacy .btn-icon for other contexts (nav-toggle, etc.) */
 .btn-icon {
   width: 2.25rem;
   height: 2.25rem;
@@ -271,7 +295,7 @@ h1, h2, h3, h4 {
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
-  padding: clamp(3.5rem, 8vh, 5rem) clamp(0.75rem, 3%, 4%);
+  padding: clamp(2.5rem, 6vh, 4rem) clamp(0.75rem, 3%, 4%);
   background: var(--hero-bg);
 }
 
@@ -396,7 +420,7 @@ h1, h2, h3, h4 {
 
 /* ---- Inline analysis block (Breakout / Fake Out) - refined layout ---- */
 .analysis-inline {
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(0.75rem, 3%, 4%);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(0.75rem, 3%, 4%);
   background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
@@ -422,7 +446,7 @@ h1, h2, h3, h4 {
 /* Section header */
 .analysis-inline .analysis-hero {
   text-align: center;
-  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .analysis-inline .analysis-badge {
@@ -459,7 +483,7 @@ h1, h2, h3, h4 {
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
@@ -559,7 +583,7 @@ h1, h2, h3, h4 {
 
 /* Bento grid: Escenarios Posibles */
 .analysis-inline .analysis-scenarios-box {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .analysis-inline .analysis-scenarios-title {
@@ -597,8 +621,8 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  margin-bottom: 2rem;
-  align-items: start;
+  margin-bottom: 1.5rem;
+  align-items: stretch;
 }
 
 .analysis-inline .analysis-section {
@@ -611,6 +635,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  min-height: 0;
 }
 
 .analysis-inline .analysis-section:hover {
@@ -740,7 +765,7 @@ h1, h2, h3, h4 {
 
 /* ---- Inline guide: 0DTE (guia-0dte-gex) ---- */
 .guide-0dte {
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(0.75rem, 3%, 4%);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(0.75rem, 3%, 4%);
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
@@ -1002,7 +1027,7 @@ h1, h2, h3, h4 {
 
 /* ---- Testimonials ---- */
 .testimonials-section {
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(0.75rem, 3%, 4%);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(0.75rem, 3%, 4%);
   background: var(--bg-secondary);
 }
 
@@ -1773,7 +1798,7 @@ h1, h2, h3, h4 {
 /* ---- Software/Bots —— Próximamente ---- */
 .coming-soon-section {
   text-align: center;
-  padding: clamp(4rem, 10vw, 6rem) clamp(1.5rem, 6%, 8%);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(0.75rem, 3%, 4%);
 }
 
 .coming-soon-section .badge {
@@ -2133,7 +2158,7 @@ h1, h2, h3, h4 {
 
 /* Section hero (cycle & spreads) */
 .volatilidad-section {
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4%, 5%);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(0.75rem, 3%, 4%);
   position: relative;
 }
 
