@@ -11,18 +11,23 @@
 
   // ---- Theme ----
   function getTheme() {
-    return localStorage.getItem(STORAGE_THEME) || 'day';
+    return localStorage.getItem(STORAGE_THEME) || 'night';
   }
 
   function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(STORAGE_THEME, theme);
     const btn = document.getElementById('theme-toggle');
-    if (btn) btn.setAttribute('aria-label', theme === 'night' ? 'Modo día' : 'Modo noche');
+    if (btn) {
+      btn.setAttribute('aria-label', theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      var icon = btn.querySelector('.theme-toggle-icon');
+      if (icon) icon.textContent = theme === 'night' ? '\u263C' : '\uD83C\uDF19';
+    }
   }
 
   function initTheme() {
-    setTheme(getTheme());
+    var theme = getTheme();
+    setTheme(theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
       btn.addEventListener('click', function () {
