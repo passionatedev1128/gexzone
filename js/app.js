@@ -67,7 +67,7 @@
 
   function setLang(lang) {
     localStorage.setItem(STORAGE_LANG, lang);
-    document.documentElement.lang = lang === 'ar' ? 'ar' : 'es';
+    document.documentElement.lang = lang === 'ar' ? 'ar' : 'es_ES';
     document.body.classList.toggle('rtl', lang === 'ar');
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     applyTranslations(lang);

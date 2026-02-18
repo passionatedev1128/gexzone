@@ -3,15 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GEXZONE — Formación en opciones y lectura institucional</title>
+  <title>GEXZONE - Formación en opciones y lectura institucional</title>
   <meta name="description" content="Academia de trading. Comprende las griegas, el flujo institucional y la dinámica del mercado moderno." />
   <style>
-/* GEXZONE — main.css (inline for Odoo) */
-/* ============================================================
-   GEXZONE — Main stylesheet
-   Day/Night theme, typography, layout, components
-   Elegant UI/UX — refined 2025
-   ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');
 
@@ -3810,7 +3804,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
   function setLang(lang) {
     localStorage.setItem(STORAGE_LANG, lang);
-    document.documentElement.lang = lang === 'ar' ? 'ar' : 'es';
+    document.documentElement.lang = lang === 'ar' ? 'ar' : 'es_ES';
     document.body.classList.toggle('rtl', lang === 'ar');
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     applyTranslations(lang);
