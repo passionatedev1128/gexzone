@@ -3014,6 +3014,73 @@ h1, h2, h3, h4 {
 .vol-badge-rare { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
 .vol-badge-ratio { background: rgba(96, 165, 250, 0.2); color: var(--accent-blue); }
 
+/* VIX Spread: charts subsection + ratio band + glossary */
+.vol-charts-subsection { margin-bottom: 2rem; }
+.vol-subsection-title {
+  font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-secondary); margin-bottom: 1rem; padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.vol-charts-subsection .vol-charts-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+}
+@media (max-width: 640px) {
+  .vol-charts-subsection .vol-charts-grid { grid-template-columns: 1fr; }
+}
+.vol-ratio-band {
+  display: flex; align-items: center; gap: 0; margin-top: 0.75rem;
+  border-radius: 8px; overflow: hidden; height: 28px;
+}
+.vol-ratio-contango {
+  flex: 1; background: linear-gradient(90deg, rgba(52,211,153,0.25), rgba(52,211,153,0.1));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 600; color: #34d399;
+  border: 1px solid rgba(52,211,153,0.2); border-radius: 8px 0 0 8px;
+}
+.vol-ratio-mid { width: 2px; height: 100%; background: var(--text-muted); }
+.vol-ratio-backwardation {
+  flex: 1; background: linear-gradient(90deg, rgba(248,113,113,0.1), rgba(248,113,113,0.25));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 600; color: #f87171;
+  border: 1px solid rgba(248,113,113,0.2); border-radius: 0 8px 8px 0;
+}
+.vol-glossary-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.5rem;
+  margin-top: 2rem;
+}
+.vol-glossary-title {
+  font-size: 0.95rem; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;
+}
+.vol-glossary-title::after {
+  content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-subtle), transparent);
+}
+.vol-glossary-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+@media (max-width: 768px) {
+  .vol-glossary-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .vol-glossary-grid { grid-template-columns: 1fr; }
+}
+.vol-glossary-item {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+.vol-glossary-term {
+  font-size: 0.8rem; font-weight: 700; color: var(--accent-blue);
+  margin-bottom: 0.35rem;
+}
+.vol-glossary-def {
+  font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;
+}
+
 /* Espejismo: curves, VVIX */
 .vol-curves-section { margin-bottom: 2.5rem; }
 .vol-curves-toggle { display: flex; gap: 0; margin-bottom: 1.25rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; width: fit-content; }
@@ -3141,6 +3208,14 @@ h1, h2, h3, h4 {
 .vol-gex-pos-card .vol-gex-card-sub { color: #4ade80; }
 .vol-gex-card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
 .vol-gex-card-body { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+.vol-gex-stat-pill {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  margin-top: 0.5rem; padding: 0.35rem 0.75rem; border-radius: 6px;
+  font-size: 0.75rem; font-weight: 700;
+  border: 1px solid var(--border-subtle);
+}
+.vol-gex-stat-red   { background: rgba(248, 113, 113, 0.12); color: #f87171; }
+.vol-gex-stat-green { background: rgba(74, 222, 128, 0.12);  color: #4ade80; }
 
 /* OPEX */
 .vol-opex-timeline { display: flex; align-items: stretch; gap: 1rem; margin: 1rem 0; flex-wrap: wrap; }
@@ -3167,6 +3242,7 @@ h1, h2, h3, h4 {
 .vol-pill-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
 .vol-earnings-box { background: rgba(251, 191, 36, 0.06); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem; }
 .vol-earnings-tactic { font-size: 0.8rem; font-weight: 700; color: #fbbf24; margin-bottom: 0.5rem; }
+.vol-earnings-title { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
 .vol-earnings-body { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
 .vol-reversion-card { border-top: 3px solid var(--accent-blue) !important; }
 .vol-compare-table td:nth-child(2) { color: var(--accent-blue); }

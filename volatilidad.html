@@ -49,6 +49,21 @@
           <p>Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
         </header>
 
+        <div class="vol-charts-subsection">
+          <div class="vol-charts-grid">
+            <div class="vol-chart-card">
+              <div class="vol-chart-title">Estructura Temporal VIX</div>
+              <div class="vol-chart-subtitle">Contango vs Backwardation</div>
+              <canvas id="termStructureChart" class="vol-chart-canvas"></canvas>
+            </div>
+            <div class="vol-chart-card">
+              <div class="vol-chart-title">Ratio VIX / VIX3M</div>
+              <div class="vol-chart-subtitle">Señales históricas de entrada/salida</div>
+              <canvas id="ratioChart" class="vol-chart-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
         <div class="volatilidad-strategies vol-strategies-grid">
           <article class="volatilidad-strategy vol-strategy-card">
             <span class="volatilidad-strategy-num">01</span>
@@ -92,8 +107,43 @@
               <h3 class="volatilidad-strategy-title">Indicador clave — Ratio VIX / VIX3M</h3>
               <div class="vol-strategy-badges"><span class="vol-badge vol-badge-ratio">VIX/VIX3M</span></div>
               <p class="volatilidad-strategy-desc">Ratio &lt;1 sugiere contango; &gt;1 indica backwardation. Señal de entrada/salida fundamental para los spread trades.</p>
+              <div class="vol-ratio-band">
+                <span class="vol-ratio-contango">Ratio &lt; 1 → Contango</span>
+                <span class="vol-ratio-mid"></span>
+                <span class="vol-ratio-backwardation">Ratio &gt; 1 → Backwardation</span>
+              </div>
             </div>
           </article>
+        </div>
+
+        <div class="vol-glossary-section">
+          <h3 class="vol-glossary-title">📖 Glosario de Conceptos Técnicos</h3>
+          <div class="vol-glossary-grid">
+            <div class="vol-glossary-item">
+              <div class="vol-glossary-term">Contango</div>
+              <div class="vol-glossary-def">Condición en que los futuros de mayor vencimiento cotizan más alto que los de menor vencimiento. Es la estructura habitual del VIX; indica mercado en calma con expectativa de volatilidad futura.</div>
+            </div>
+            <div class="vol-glossary-item">
+              <div class="vol-glossary-term">Backwardation</div>
+              <div class="vol-glossary-def">Condición inversa al contango: los futuros cercanos cotizan más caro que los lejanos. Señal de estrés inminente o miedo extremo en el mercado a corto plazo.</div>
+            </div>
+            <div class="vol-glossary-item">
+              <div class="vol-glossary-term">Roll Yield</div>
+              <div class="vol-glossary-def">Ganancia (o pérdida) resultante de renovar un contrato de futuro cercano a su vencimiento. En contango, «rollar» futuros cortos genera rendimiento positivo sistemático.</div>
+            </div>
+            <div class="vol-glossary-item">
+              <div class="vol-glossary-term">VIX Spot</div>
+              <div class="vol-glossary-def">Índice de volatilidad implícita del S&amp;P 500 a 30 días, calculado en tiempo real por CBOE. Mide la expectativa del mercado sobre movimientos futuros, no volatilidad pasada.</div>
+            </div>
+            <div class="vol-glossary-item">
+              <div class="vol-glossary-term">VIX3M</div>
+              <div class="vol-glossary-def">Volatilidad implícita del S&amp;P 500 a 3 meses. Junto al VIX spot, permite construir el ratio que define la estructura temporal y guía las señales de entrada/salida.</div>
+            </div>
+            <div class="vol-glossary-item">
+              <div class="vol-glossary-term">Spread Trade (VIX)</div>
+              <div class="vol-glossary-def">Estrategia que toma posiciones opuestas en dos vencimientos distintos de futuros VIX. Busca explotar la diferencia de precios entre contratos, reduciendo la exposición direccional al mercado.</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -340,11 +390,13 @@
                   <div class="vol-gex-card-sub">GEX &lt; 0</div>
                   <div class="vol-gex-card-title">Régimen Amplificador</div>
                   <p class="vol-gex-card-body">Los dealers amplifican los movimientos. El mercado se mueve un <strong>18% más rápido</strong>. Vender volatilidad (Iron Condors) cuando IVR alto y GEX negativo tiene <strong>72% de éxito</strong>.</p>
+                  <div class="vol-gex-stat-pill vol-gex-stat-red">⚡ +18% velocidad</div>
                 </div>
                 <div class="vol-gex-card vol-gex-pos-card">
                   <div class="vol-gex-card-sub">GEX &gt; 0</div>
                   <div class="vol-gex-card-title">Régimen Estabilizador</div>
                   <p class="vol-gex-card-body">Los dealers compran en caídas y venden en subidas. <strong>Amortiguador natural</strong>. Comprar en retrocesos tiene <strong>68% de tasa de éxito</strong>.</p>
+                  <div class="vol-gex-stat-pill vol-gex-stat-green">🛡 68% win rate</div>
                 </div>
               </div>
             </div>
@@ -514,6 +566,7 @@
             <p class="vol-section-body">Si miras el IVR de grandes compañías una semana antes de resultados trimestrales, verás que está por las nubes. Un operador inexperto vendería. <strong>Error.</strong> Los Earnings inflan las métricas por incertidumbre binaria puntual.</p>
             <div class="vol-earnings-box">
               <div class="vol-earnings-tactic">⚡ Dato Táctico — El Sesgo del «IV Crush»</div>
+              <div class="vol-earnings-title">Cómo convertir el IV Crush en una ventaja</div>
               <p class="vol-earnings-body">Históricamente, la IV cae <strong>más rápido de lo que el precio se mueve</strong>, si el movimiento se mantiene dentro del <strong>Expected Move</strong>. Si vendes una estrategia con alas justo en el borde del Expected Move, tu beneficio viene de la <strong>evaporación instantánea del IVR inflado</strong> al publicarse el dato.</p>
             </div>
           </div>
