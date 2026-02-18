@@ -1,6 +1,14 @@
 # GEXZONE — Sitio web
 
-Sitio estático de la academia de trading GEXZONE. Diseñado para integrarse después en **Odoo** (constructor de sitio y CRM).
+Sitio estático de la academia de trading GEXZONE. Diseñado para **Odoo Online** (sin módulos personalizados): **solo HTML, CSS y JavaScript** en el frontend.
+
+## Odoo Online — Sin módulos personalizados
+
+Este proyecto está pensado para **Odoo Online** (SaaS), donde no se pueden instalar módulos a medida. Todo el frontend es **HTML, CSS y JS puro**:
+
+- **Cada página HTML** incluye los estilos (CSS) y la lógica (JS) **inline** o en el mismo archivo, para poder copiar/pegar en el constructor de sitios de Odoo.
+- No se requiere backend personalizado ni módulos Python: formularios y CTAs se pueden conectar a las apps estándar de Odoo (Formularios, CRM, Calendario).
+- Tras ejecutar `node build-inline.js`, cada `.html` es **autocontenido**: ideal para usar en **Bloques HTML** o páginas del Website de Odoo.
 
 ## Estructura
 
@@ -30,12 +38,13 @@ Sitio estático de la academia de trading GEXZONE. Diseñado para integrarse des
 - **Responsive:** menú hamburguesa en móvil, secciones adaptadas.
 - **Video:** sección con video de skyline (sustituir `source` por tu propio archivo o enlace definitivo).
 
-## Integración con Odoo
+## Integración con Odoo Online (HTML/CSS/JS puro)
 
-- Cada página puede replicarse como **bloques HTML** o **secciones** en el constructor de Odoo.
-- Los iframes que cargan `reference_htmls/*.html` pueden sustituirse por **bloques HTML** de Odoo pegando el contenido, o manteniendo los archivos en un recurso estático y embeber por URL.
-- Formulario de contacto y CTA “Evalúa tu perfil”: en Odoo conectar a **Formulario de contacto** y **CRM / Calendario** según tu flujo.
-- Legal: sustituir el contenido de `legal/*.html` por los textos definitivos (asesoría legal) y enlazarlos desde el footer.
+- **Páginas autocontenidas:** tras `node build-inline.js`, cada `*.html` lleva CSS y JS embebidos. Copia el contenido completo (o solo `<body>` + `<style>` + `<script>`) en un **Bloque HTML** o en una página del Website de Odoo.
+- **Sin módulos:** no hace falta instalar nada en Odoo; solo usar el editor de sitio y bloques HTML.
+- **Formulario de contacto y CTAs:** conectar a la app **Formularios** o **CRM / Calendario** de Odoo (enlaces y acciones que configuras en Odoo).
+- **Imágenes:** subir assets a Odoo (Archivos / Medios) y sustituir rutas tipo `images/...` por la URL que te dé Odoo, o usar el selector de medios en el editor.
+- **Legal:** sustituir el contenido de `legal/*.html` por los textos definitivos y enlazarlos desde el pie de página.
 
 ## Próximos pasos sugeridos
 
