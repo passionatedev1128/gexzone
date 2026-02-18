@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 44" fill="none" class="logo-svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="logo-gex-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="logo-bars-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <!-- GEX -->
+  <text x="0" y="15" font-family="'DM Sans', system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="0.15em" fill="url(#logo-gex-fill)">GEX</text>
+  <!-- ZONE -->
+  <text x="10" y="27" font-family="'DM Sans', system-ui, sans-serif" font-size="8" font-weight="500" letter-spacing="0.2em" fill="#a78bfa">ZONE</text>
+  <!-- Bars (42, 54, 32, 48 px wide; 3px tall; 4px gap) -->
+  <rect x="52" y="0" width="42" height="3" rx="2" fill="url(#logo-bars-fill)"/>
+  <rect x="52" y="7" width="54" height="3" rx="2" fill="url(#logo-bars-fill)"/>
+  <rect x="52" y="14" width="32" height="3" rx="2" fill="url(#logo-bars-fill)"/>
+  <rect x="52" y="21" width="48" height="3" rx="2" fill="url(#logo-bars-fill)"/>
+</svg>
