@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Volatilidad — GEXZONE</title>
-  <meta name="description" content="Ciclo de volatilidad y trading de spreads VIX. Análisis GEX ZONE." />
+  <meta name="description" content="Trading de spreads VIX, El Espejismo del VIX, Mano Invisible del Dealer, IV Rank vs IV Percentile. Análisis GEX ZONE." />
   <link rel="stylesheet" href="css/main.css" />
 </head>
-<body>
+<body>                                                                                                                                                            
 
   <header class="site-header">
     <div class="container">
@@ -40,72 +40,8 @@
   </header>
 
   <main>
-    <!-- <section class="section volatilidad-intro">
-      <div class="container">
-        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Volatilidad</h1>
-        <p class="hero-sub" style="max-width: 640px;">Ciclo de mercado de volatilidad y trading de spreads VIX basado en estructura temporal.</p>
-      </div>
-    </section> -->
-
-    <!-- Ciclo de Volatilidad (Fig. 4 - como gex_volatility_cycle.html) -->
-    <section class="volatilidad-section" aria-labelledby="cycle-heading">
-      <div class="container">
-        <header class="volatilidad-hero">
-          <p class="volatilidad-badge">Análisis</p>
-          <h2 id="cycle-heading">Fig. 4: El mercado de volatilidad ahora se asemeja cada vez más a un régimen de ciclo tardío</h2>
-          <p>Fases del ciclo de volatilidad y su impacto en la operativa institucional.</p>
-        </header>
-
-        <div class="volatilidad-cycle">
-          <div class="volatilidad-phase phase-bear">
-            <h3 class="volatilidad-phase-title">Mercado Bajista</h3>
-            <ul class="volatilidad-phase-list">
-              <li><strong>Aumento explosivo en volatilidad,</strong> los mercados exhiben colas gordas</li>
-              <li><strong>Prima de volatilidad grande,</strong> posiciones de volatilidad corta se deshacen y la liquidez es pobre</li>
-            </ul>
-          </div>
-          <div class="volatilidad-phase phase-early">
-            <h3 class="volatilidad-phase-title">Recuperación Temprana</h3>
-            <ul class="volatilidad-phase-list">
-              <li><strong>Las tendencias de RV bajan</strong> pero permanecen muy por encima de los niveles promedio</li>
-              <li><strong>La liquidez mejora</strong> pero VRP se mantiene alto ya que las caídas realizadas son más rápidas que las implícitas</li>
-            </ul>
-          </div>
-          <div class="volatilidad-phase phase-late">
-            <h3 class="volatilidad-phase-title">Ciclo Tardío / Exuberancia</h3>
-            <ul class="volatilidad-phase-list">
-              <li><strong>Las operaciones de vol corta</strong> se vuelven abarrotadas, los niveles de RV se vuelven muy bajos</li>
-              <li><strong>El exceso de toma de riesgos</strong> y el apalancamiento hacen al mercado vulnerable a movimientos desproporcionados</li>
-            </ul>
-          </div>
-          <div class="volatilidad-phase phase-mid">
-            <h3 class="volatilidad-phase-title">Ciclo Medio</h3>
-            <ul class="volatilidad-phase-list">
-              <li><strong>Los niveles de Vol convergen</strong> con las medianas de largo plazo, VRP se comprime</li>
-              <li><strong>Los inversionistas venden vol,</strong> suministrando a los distribuidores con gamma. Esto tiene un efecto autorreforzante de deprimir más la RV.</li>
-            </ul>
-          </div>
-
-          <div class="volatilidad-cycle-center" aria-hidden="true">
-            <span class="volatilidad-cycle-badge">Ciclo de<br>Volatilidad</span>
-          </div>
-          <div class="volatilidad-cycle-arrows" aria-hidden="true">
-            <span class="volatilidad-arrow volatilidad-arrow-right"></span>
-            <span class="volatilidad-arrow volatilidad-arrow-down"></span>
-            <span class="volatilidad-arrow volatilidad-arrow-left"></span>
-            <span class="volatilidad-arrow volatilidad-arrow-up"></span>
-          </div>
-        </div>
-
-        <div class="volatilidad-key-note">
-          <strong>Nota clave:</strong> El mercado actual muestra características similares a la fase de "Ciclo Tardío/Exuberancia", donde las operaciones de volatilidad corta se vuelven abarrotadas y el exceso de apalancamiento aumenta la vulnerabilidad del mercado.
-        </div>
-        <p class="volatilidad-source">Fuente: BNP Paribas | Análisis: GEX ZONE</p>
-      </div>
-    </section>
-
-    <!-- Trading de Spreads VIX -->
-    <!-- <section class="volatilidad-section" aria-labelledby="spreads-heading">
+    <!-- 1. Trading de Spreads VIX -->
+    <section class="volatilidad-section" aria-labelledby="spreads-heading">
       <div class="container">
         <header class="volatilidad-hero">
           <p class="volatilidad-badge">Estrategias</p>
@@ -113,49 +49,567 @@
           <p>Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
         </header>
 
-        <div class="volatilidad-strategies">
-          <article class="volatilidad-strategy">
-            <span class="volatilidad-strategy-num">1</span>
+        <div class="volatilidad-strategies vol-strategies-grid">
+          <article class="volatilidad-strategy vol-strategy-card">
+            <span class="volatilidad-strategy-num">01</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Contango (normal): <span class="volatilidad-highlight-short">Short</span> a corto plazo, <span class="volatilidad-highlight-long">long</span> a largo plazo futuros VIX <span class="volatilidad-strategy-type">Normal</span></h3>
-              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Beneficiarse del roll yield mientras los futuros convergen al VIX spot</p>
+              <h3 class="volatilidad-strategy-title">Contango — Short corto plazo, Long largo plazo</h3>
+              <div class="vol-strategy-badges"><span class="vol-badge vol-badge-short">SHORT</span><span class="vol-badge vol-badge-long">LONG</span><span class="vol-badge vol-badge-normal">NORMAL</span></div>
+              <p class="volatilidad-strategy-desc">Capitaliza el <em>roll yield</em> positivo mientras los futuros de corto plazo convergen (caen) hacia el VIX spot. Estructura ideal cuando el mercado está en calma.</p>
             </div>
           </article>
 
-          <article class="volatilidad-strategy">
-            <span class="volatilidad-strategy-num">2</span>
+          <article class="volatilidad-strategy vol-strategy-card">
+            <span class="volatilidad-strategy-num">02</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Backwardation (raro): <span class="volatilidad-highlight-long">Long</span> a corto plazo, <span class="volatilidad-highlight-short">short</span> a largo plazo futuros VIX <span class="volatilidad-strategy-type">Raro</span></h3>
-              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Capitalizar las expectativas elevadas de volatilidad a corto plazo</p>
+              <h3 class="volatilidad-strategy-title">Backwardation — Long corto plazo, Short largo plazo</h3>
+              <div class="vol-strategy-badges"><span class="vol-badge vol-badge-long">LONG</span><span class="vol-badge vol-badge-short">SHORT</span><span class="vol-badge vol-badge-rare">RARO</span></div>
+              <p class="volatilidad-strategy-desc">Aparece en eventos de estrés agudo. La prima de riesgo inmediata supera la expectativa futura, generando un diferencial negativo explotable.</p>
             </div>
           </article>
 
-          <article class="volatilidad-strategy">
-            <span class="volatilidad-strategy-num">3</span>
+          <article class="volatilidad-strategy vol-strategy-card">
+            <span class="volatilidad-strategy-num">03</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Contango pronunciado: Ampliar spread entre posiciones <span class="volatilidad-highlight-short">short</span> y <span class="volatilidad-highlight-long">long</span></h3>
-              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Amplificar ganancias del mayor roll yield</p>
+              <h3 class="volatilidad-strategy-title">Contango pronunciado — Ampliar spread</h3>
+              <div class="vol-strategy-badges"><span class="vol-badge vol-badge-short">SHORT</span><span class="vol-badge vol-badge-long">LONG</span></div>
+              <p class="volatilidad-strategy-desc">Cuando la pendiente de la curva es especialmente empinada, se incrementa el tamaño relativo del spread para amplificar el <em>roll yield</em> capturado.</p>
             </div>
           </article>
 
-          <article class="volatilidad-strategy">
-            <span class="volatilidad-strategy-num">4</span>
+          <article class="volatilidad-strategy vol-strategy-card">
+            <span class="volatilidad-strategy-num">04</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Estructura temporal plana: Reducir tamaños de posición o mantenerse fuera</h3>
-              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Potencial de beneficio limitado de los spread trades</p>
+              <h3 class="volatilidad-strategy-title">Curva plana — Reducir o mantenerse fuera</h3>
+              <div class="vol-strategy-badges"><span class="vol-badge vol-badge-normal">NEUTRAL</span></div>
+              <p class="volatilidad-strategy-desc">Una estructura temporal plana reduce el diferencial entre vencimientos. El potencial de beneficio del spread trading disminuye significativamente.</p>
             </div>
           </article>
 
-          <article class="volatilidad-strategy">
-            <span class="volatilidad-strategy-num">5</span>
+          <article class="volatilidad-strategy vol-strategy-card vol-strategy-highlight">
+            <span class="volatilidad-strategy-num">05</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Monitorear ratio <span class="volatilidad-highlight-ratio">VIX/VIX3M</span> para señales de entrada/salida</h3>
-              <p class="volatilidad-strategy-desc"><span class="bullet-point">•</span> Ratio &lt;1 sugiere contango, &gt;1 indica backwardation</p>
+              <h3 class="volatilidad-strategy-title">Indicador clave — Ratio VIX / VIX3M</h3>
+              <div class="vol-strategy-badges"><span class="vol-badge vol-badge-ratio">VIX/VIX3M</span></div>
+              <p class="volatilidad-strategy-desc">Ratio &lt;1 sugiere contango; &gt;1 indica backwardation. Señal de entrada/salida fundamental para los spread trades.</p>
             </div>
           </article>
         </div>
       </div>
-    </section> -->
+    </section>
+
+    <!-- 2. El Espejismo del VIX -->
+    <section class="volatilidad-section volatilidad-article" aria-labelledby="espejismo-heading">
+      <div class="container">
+        <header class="volatilidad-hero">
+          <p class="volatilidad-badge">Análisis de Volatilidad</p>
+          <h2 id="espejismo-heading" class="font-serif">El Espejismo del VIX: ¿Miedo real o simple geometría de mercado?</h2>
+          <p class="vol-article-lead">El VIX es el «termómetro» por excelencia del mercado. La mayoría asume erróneamente que cada subida refleja pánico real. La realidad: el VIX puede dispararse sin que cambie el sentimiento. Para operar con ventaja hay que distinguir entre el <strong>deslizamiento mecánico</strong> y el <strong>desplazamiento del riesgo</strong>.</p>
+        </header>
+
+        <figure class="vol-infographic-frame vol-infographic-espejismo">
+          <img src="images/volatilidad/espejismo_vix.png" alt="La geometría oculta del miedo en opciones" class="vol-infographic-img" />
+        </figure>
+
+        <div class="vol-article-content">
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Deslizamiento vs. Desplazamiento: El Diagnóstico Clave</h3>
+            <p class="vol-section-body">Imagina un tobogán. El mercado tiene una estructura donde las protecciones (puts OTM) son siempre más caras por el sesgo de volatilidad. La pregunta crítica no es «¿subió el VIX?», sino <strong>«¿cambió la estructura del tobogán?»</strong></p>
+            <div class="vol-two-col">
+              <div class="vol-concept-card vol-card-teal">
+                <div class="vol-card-icon">01 — Deslizamiento Mecánico</div>
+                <h4 class="vol-card-title">La Subida «Falsa» por Inercia</h4>
+                <p class="vol-card-body">Cuando el mercado cae, el precio «baja por el tobogán». El VIX sube porque estamos en una parte <strong>más alta de la estructura existente</strong>, no porque el tobogán haya cambiado. Es pura <strong>inercia geométrica</strong>.</p>
+              </div>
+              <div class="vol-concept-card vol-card-orange">
+                <div class="vol-card-icon">02 — Desplazamiento Real</div>
+                <h4 class="vol-card-title">Cuando la Estructura se Rompe</h4>
+                <p class="vol-card-body">Un evento inesperado obliga a <strong>re-tasar el riesgo</strong>. Ya no es que bajemos por el tobogán; es que <strong>toda la protección se ha encarecido a la vez</strong>. Las opciones de cobertura se disparan incluso en escenarios antes «improbables».</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section vol-curves-section">
+            <h3 class="vol-section-title">Curvas de Volatilidad Animadas</h3>
+            <p class="vol-section-body">Alterna entre los dos escenarios. En <strong>deslizamiento</strong> la curva mantiene su forma mientras el precio se desplaza; en <strong>desplazamiento</strong> toda la curva se eleva.</p>
+            <div class="vol-curves-toggle">
+              <button type="button" class="vol-toggle-btn vol-toggle-teal" id="btn-slide" onclick="switchModeEspejismo('slide')">① Deslizamiento</button>
+              <button type="button" class="vol-toggle-btn" id="btn-shift" onclick="switchModeEspejismo('shift')">② Desplazamiento</button>
+            </div>
+            <div class="vol-chart-wrap">
+              <div class="vol-chart-header">
+                <span class="vol-chart-label vol-label-teal" id="chart-mode-label">CURVA SIN CAMBIO DE ESTRUCTURA</span>
+                <div class="vol-chart-legend">
+                  <span class="vol-legend-item"><span class="vol-legend-dot" style="background:#2dd4bf"></span>Curva Actual</span>
+                  <span class="vol-legend-item"><span class="vol-legend-dot" style="background:rgba(45,212,191,0.3)"></span>Referencia</span>
+                  <span class="vol-legend-item" id="legend-shifted" style="display:none"><span class="vol-legend-dot" style="background:#fb923c"></span>Curva Elevada</span>
+                </div>
+              </div>
+              <svg class="vol-svg-chart" id="vol-chart" viewBox="0 0 800 260" preserveAspectRatio="xMidYMid meet">
+                <line x1="60" y1="20" x2="780" y2="20" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="65" x2="780" y2="65" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="110" x2="780" y2="110" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="155" x2="780" y2="155" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="200" x2="780" y2="200" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="10" x2="60" y2="230" stroke="rgba(71,85,105,0.4)" stroke-width="1.5"/>
+                <line x1="60" y1="230" x2="790" y2="230" stroke="rgba(71,85,105,0.4)" stroke-width="1.5"/>
+                <text x="48" y="24" text-anchor="end" font-size="11" fill="#475569">50</text>
+                <text x="48" y="69" text-anchor="end" font-size="11" fill="#475569">40</text>
+                <text x="48" y="114" text-anchor="end" font-size="11" fill="#475569">30</text>
+                <text x="48" y="159" text-anchor="end" font-size="11" fill="#475569">20</text>
+                <text x="48" y="204" text-anchor="end" font-size="11" fill="#475569">10</text>
+                <text x="90" y="248" text-anchor="middle" font-size="10" fill="#475569">Put Lejano</text>
+                <text x="260" y="248" text-anchor="middle" font-size="10" fill="#475569">Put OTM</text>
+                <text x="420" y="248" text-anchor="middle" font-size="10" fill="#475569">ATM</text>
+                <text x="580" y="248" text-anchor="middle" font-size="10" fill="#475569">Call OTM</text>
+                <text x="750" y="248" text-anchor="middle" font-size="10" fill="#475569">Call Lejano</text>
+                <path id="curve-ref" d="" stroke="rgba(45,212,191,0.25)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+                <path id="curve-shifted" d="" stroke="rgba(251,146,60,0)" stroke-width="2.5" fill="none"/>
+                <path id="area-shifted" d="" fill="rgba(251,146,60,0)"/>
+                <path id="area-main" d="" fill="rgba(45,212,191,0.06)"/>
+                <path id="curve-main" d="" stroke="#2dd4bf" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <line id="price-line" x1="420" y1="20" x2="420" y2="230" stroke="rgba(251,191,36,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text id="price-label" x="422" y="35" font-size="10" fill="#fbbf24">PRECIO</text>
+              </svg>
+              <div class="vol-chart-tooltip" id="vol-chart-tooltip" aria-hidden="true"></div>
+              <p class="vol-chart-annot" id="chart-annotation">Deslizamiento: el precio se mueve a lo largo de la curva existente. La estructura de volatilidad no cambia.</p>
+            </div>
+            <div class="vol-vvix-wrap">
+              <div class="vol-vvix-label">FILTRO MAESTRO — VIX vs. VVIX</div>
+              <svg class="vol-svg-chart" id="vvix-chart" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
+                <line x1="60" y1="20" x2="780" y2="20" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="70" x2="780" y2="70" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="120" x2="780" y2="120" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="170" x2="780" y2="170" stroke="rgba(71,85,105,0.15)" stroke-width="1"/>
+                <line x1="60" y1="10" x2="60" y2="185" stroke="rgba(71,85,105,0.4)" stroke-width="1.5"/>
+                <line x1="60" y1="185" x2="790" y2="185" stroke="rgba(71,85,105,0.4)" stroke-width="1.5"/>
+                <path id="vix-line" d="" stroke="#2dd4bf" stroke-width="2.5" fill="none"/>
+                <path id="vvix-line" d="" stroke="#c084fc" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+                <circle cx="640" cy="18" r="5" fill="#2dd4bf"/><text x="650" y="22" font-size="10" fill="#94a3b8">VIX</text>
+                <circle cx="690" cy="18" r="5" fill="#c084fc"/><text x="700" y="22" font-size="10" fill="#94a3b8">VVIX</text>
+              </svg>
+              <p class="vol-vvix-note">VIX sube + VVIX estable → Deslizamiento (vende volatilidad). Ambos suben en vertical → Desplazamiento (compra protección).</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Tabla Táctica: Diagnóstico y Probabilidades</h3>
+            <div class="vol-table-wrap">
+              <table class="vol-table">
+                <thead>
+                  <tr>
+                    <th>Indicador</th>
+                    <th>Deslizamiento (Mecánico)</th>
+                    <th>Desplazamiento (Real)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Origen</strong></td><td>Movimiento rutinario del precio.</td><td>Noticia de impacto o cisne negro.</td></tr>
+                  <tr><td><strong>Curva de Vol</strong></td><td>Estable — sin cambios de forma.</td><td>Elevación vertical de toda la curva.</td></tr>
+                  <tr><td><strong>Recuperación S&P</strong></td><td><strong>72–75%</strong> recupera en 3–5 días.</td><td><strong>65%</strong> recupera en semanas.</td></tr>
+                  <tr><td><strong>Acción</strong></td><td>✅ <strong>Vender el pico</strong> (Short Vol).</td><td>⚠️ <strong>Precaución</strong>; riesgo de caída mayor.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">El «Filtro Maestro»: VVIX y la Correlación de Pánico</h3>
+            <p class="vol-section-body">Para saber si el VIX te miente, mira el <strong>VVIX</strong> (volatilidad del VIX). Correlación VIX–VVIX es el dato clave.</p>
+            <div class="vol-two-col">
+              <div class="vol-concept-card vol-card-teal">
+                <h4 class="vol-card-title">VIX sube, VVIX estable → Deslizamiento</h4>
+                <p class="vol-card-body">Si el VIX sube pero el VVIX <strong>no lo acompaña</strong>, estás ante un deslizamiento. Oportunidad de venta.</p>
+              </div>
+              <div class="vol-concept-card vol-card-orange">
+                <h4 class="vol-card-title">VIX y VVIX suben juntos → Desplazamiento</h4>
+                <p class="vol-card-body">En picos de estrés real (VIX &gt; 40), la correlación salta a <strong>0.84</strong>. Si ambos suben en vertical, el desplazamiento ha comenzado. Compra protección.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Datos Históricos: Asimetría de la Reversión (2020–2026)</h3>
+            <p class="vol-section-body">La volatilidad implícita se comporta de forma predecible pero profundamente asimétrica.</p>
+            <div class="vol-stats-row">
+              <div class="vol-stat-card vol-stat-teal">
+                <div class="vol-stat-num">78.4%</div>
+                <div class="vol-stat-label">de los casos en que el VIX supera 30, revierte a la baja en <strong>10 días</strong> (promedio: 7.2 días).</div>
+              </div>
+              <div class="vol-stat-card vol-stat-orange">
+                <div class="vol-stat-num">71.3%</div>
+                <div class="vol-stat-label">de los casos en que el VIX cae por debajo de 13, sube de nuevo (pero tarda el <strong>doble: 14.8 días</strong>).</div>
+              </div>
+              <div class="vol-stat-card vol-stat-purple">
+                <div class="vol-stat-num">72%</div>
+                <div class="vol-stat-label">de los días el mercado <strong>sobreestima</strong> la volatilidad real. El «edge» del vendedor de opciones.</div>
+              </div>
+            </div>
+            <p class="vol-section-body vol-stat-note">La caída es más rápida que la subida: los picos de VIX revierten mucho más velozmente de lo que se construyen.</p>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Cuadro de Mando: Casos Reales (Febrero 2026)</h3>
+            <p class="vol-section-body">Divergencias actuales en activos clave.</p>
+            <div class="vol-dashboard-grid">
+              <div class="vol-dash-card">
+                <div class="vol-dash-ticker">SPY — ETF S&P 500</div>
+                <div class="vol-dash-metric"><span>IV Implícita</span><span class="vol-dash-val">~18%</span></div>
+                <div class="vol-dash-metric"><span>IV Rank</span><span class="vol-dash-val vol-amber">45%</span></div>
+                <div class="vol-dash-metric"><span>IV Percentile</span><span class="vol-dash-val">62%</span></div>
+                <p class="vol-dash-note">Rango medio. Zona vigilar.</p>
+              </div>
+              <div class="vol-dash-card">
+                <div class="vol-dash-ticker">AAPL — Apple Inc.</div>
+                <div class="vol-dash-metric"><span>IV Implícita</span><span class="vol-dash-val vol-orange">~22%</span></div>
+                <div class="vol-dash-metric"><span>IV Rank</span><span class="vol-dash-val vol-orange">55%</span></div>
+                <div class="vol-dash-metric"><span>IV Percentile</span><span class="vol-dash-val vol-orange">70%</span></div>
+                <p class="vol-dash-note">Mayor presión de desplazamiento. Re-tasación de riesgo en tecnología.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Conclusión: Geometría vs. Sentimiento</h3>
+            <div class="vol-rules-list">
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">01</span>
+                <div class="vol-rule-content">
+                  <strong>Si la curva se mantiene → Deslizamiento.</strong> Oportunidad estadística ~75% de éxito en la reversión. Vende volatilidad en el pico.
+                </div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">02</span>
+                <div class="vol-rule-content">
+                  <strong>Si la curva se eleva + VVIX confirma → Desplazamiento.</strong> Compra protección. No vendas el pico.
+                </div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">03</span>
+                <div class="vol-rule-content">
+                  <strong>El VVIX es tu árbitro definitivo.</strong> Correlación baja (~0.35) = deslizamiento. Correlación alta (&gt;0.80) = desplazamiento. No operes sin mirar ambos.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. La Mano Invisible del Dealer -->
+    <section class="volatilidad-section volatilidad-article" aria-labelledby="dealer-heading">
+      <div class="container">
+        <header class="volatilidad-hero">
+          <p class="volatilidad-badge">Gamma Exposure</p>
+          <h2 id="dealer-heading" class="font-serif">La Mano Invisible del Dealer: Dominando los Flujos de Cobertura</h2>
+          <p class="vol-article-lead">El mercado experimenta movimientos violentos sin noticias que los justifiquen. No es manipulación: es <strong>cobertura mecánica</strong>. Detrás de cada opción, hay un dealer obligado por las matemáticas a mantenerse <strong>Delta Neutral</strong>. Sus ajustes automáticos representan entre el <strong>10% y el 30% del volumen diario</strong> en acciones.</p>
+        </header>
+
+        <figure class="vol-infographic-frame">
+          <img src="images/volatilidad/mano_invisible.jpg" alt="Gamma Exposure - Dealer Hedging" class="vol-infographic-img" />
+        </figure>
+
+        <div class="vol-article-content">
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">El Motor del Flujo: ¿Qué es la Cobertura de Delta?</h3>
+            <p class="vol-section-body">Un dealer no apuesta a la dirección del precio; su negocio es la liquidez. Para no asumir riesgos direccionales, debe <strong>equilibrar constantemente su cartera</strong>. Si el Delta de sus opciones cambia, el dealer <strong>debe</strong> comprar o vender el activo subyacente para volver a cero. En el SPX actual, el hedging representa ~15% del volumen intradía.</p>
+          </div>
+
+          <div class="vol-article-section vol-flow-section">
+            <h3 class="vol-section-title">Flujos de Cobertura del Dealer por Escenario</h3>
+            <p class="vol-section-body">Selecciona el escenario de volatilidad para ver cómo reacciona el dealer en cada tipo de opción.</p>
+            <div class="vol-scenario-tabs">
+              <button type="button" class="vol-tab-btn vol-tab-up" id="tab-up" onclick="setScenarioDealer('up')">↑ Volatilidad Sube</button>
+              <button type="button" class="vol-tab-btn" id="tab-down" onclick="setScenarioDealer('down')">↓ Volatilidad Baja</button>
+            </div>
+            <div id="flow-grid" class="vol-flow-grid"></div>
+            <div class="vol-gex-visual">
+              <div class="vol-gex-label">Régimen GEX — Exposición de Gamma del Mercado</div>
+              <div class="vol-gex-track">
+                <div class="vol-gex-fill vol-gex-neg" style="width:35%"></div>
+                <div class="vol-gex-fill vol-gex-pos" style="width:35%"></div>
+                <div class="vol-gex-center"></div>
+              </div>
+              <div class="vol-gex-labels">
+                <span>GEX Negativo (&lt;0) — Amplificador</span>
+                <span>⬤ Neutro</span>
+                <span>GEX Positivo (&gt;0) — Estabilizador</span>
+              </div>
+              <div class="vol-gex-cards">
+                <div class="vol-gex-card vol-gex-neg-card">
+                  <div class="vol-gex-card-sub">GEX &lt; 0</div>
+                  <div class="vol-gex-card-title">Régimen Amplificador</div>
+                  <p class="vol-gex-card-body">Los dealers amplifican los movimientos. El mercado se mueve un <strong>18% más rápido</strong>. Vender volatilidad (Iron Condors) cuando IVR alto y GEX negativo tiene <strong>72% de éxito</strong>.</p>
+                </div>
+                <div class="vol-gex-card vol-gex-pos-card">
+                  <div class="vol-gex-card-sub">GEX &gt; 0</div>
+                  <div class="vol-gex-card-title">Régimen Estabilizador</div>
+                  <p class="vol-gex-card-body">Los dealers compran en caídas y venden en subidas. <strong>Amortiguador natural</strong>. Comprar en retrocesos tiene <strong>68% de tasa de éxito</strong>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Escenarios de Mercado: Pánico y Rally Mecánico</h3>
+            <div class="vol-scenario vol-scenario-bear">
+              <h4 class="vol-scenario-title">Escenario A — Volatilidad ↑ El Pánico que se Alimenta a sí Mismo</h4>
+              <p>Cuando los dealers están en <strong>Gamma Negativo</strong>, deben vender a medida que el mercado cae, amplificando el movimiento. Durante COVID-2020, los dealers vendieron ~$50B en acciones, contribuyendo al 25% del drawdown total del -34%. Tras el desplome, vender volatilidad ha generado un <strong>ROI promedio del 15% en 5 días</strong>.</p>
+            </div>
+            <div class="vol-scenario vol-scenario-bull">
+              <h4 class="vol-scenario-title">Escenario B — Volatilidad ↓ (Vol Crush) El Rally Mecánico</h4>
+              <p>Cuando la incertidumbre desaparece se produce el «Vol Crush»: los dealers <strong>compran, independientemente del sentimiento</strong>. Un rally de NVDA del +8% sin noticias fue atribuido a un colapso de volatilidad. Si el OI en Calls supera 2M en contratos OTM, anticipa un squeeze: la venta de Puts muestra <strong>75% de win rate</strong>.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Matriz de Flujos: El Mapa de GEXZONE</h3>
+            <div class="vol-table-wrap">
+              <table class="vol-table">
+                <thead>
+                  <tr>
+                    <th>Volatilidad</th>
+                    <th>Posición Dealer</th>
+                    <th>Tipo de Opción</th>
+                    <th>Acción</th>
+                    <th>Impacto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>↑ Sube</td><td>Largo Put</td><td>Put ITM</td><td>Vende</td><td>Presión Bajista</td></tr>
+                  <tr><td>↑ Sube</td><td>Corto Put</td><td>Put OTM</td><td>Compra</td><td>Soporte Mecánico</td></tr>
+                  <tr><td>↓ Baja</td><td>Corto Call</td><td>Call OTM</td><td>Compra</td><td>Impulso Alcista</td></tr>
+                  <tr><td>↓ Baja</td><td>Corto Call</td><td>Call ITM</td><td>Vende</td><td>Techo Mecánico</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">La Ventaja de la Expiración (OPEX)</h3>
+            <p class="vol-section-body">El vencimiento mensual es el momento de <strong>mayor ajuste de inventarios institucionales</strong>. Los flujos de cierre crean patrones estadísticos predecibles.</p>
+            <div class="vol-opex-timeline">
+              <div class="vol-opex-phase vol-opex-pre">
+                <div class="vol-opex-label">Pre-OPEX</div>
+                <div class="vol-opex-val">−0.5%</div>
+                <p class="vol-opex-desc">Retorno medio SPX. Gamma alto = presión vendedora. Desvanece los rallies del jueves y viernes de OPEX.</p>
+              </div>
+              <div class="vol-opex-arrow">→</div>
+              <div class="vol-opex-phase vol-opex-post">
+                <div class="vol-opex-label">Post-OPEX</div>
+                <div class="vol-opex-val">+1.2%</div>
+                <p class="vol-opex-desc">Cierre de coberturas (unwind) genera impulso alcista. Ventana táctica de entrada para compras.</p>
+              </div>
+            </div>
+            <p class="vol-opex-note">Las estrategias conscientes del hedging han superado al mercado por un <strong>8–12% anual</strong> en la última década.</p>
+            <div class="vol-stats-row">
+              <div class="vol-stat-card vol-stat-gold">
+                <div class="vol-stat-num">15%</div>
+                <div class="vol-stat-label">ROI promedio en 5 días vendiendo volatilidad tras pico VIX &gt; 30%.</div>
+              </div>
+              <div class="vol-stat-card vol-stat-green">
+                <div class="vol-stat-num">75%</div>
+                <div class="vol-stat-label">Win rate vendiendo Puts durante Vol Crush con OI Calls &gt; 2M.</div>
+              </div>
+              <div class="vol-stat-card vol-stat-red">
+                <div class="vol-stat-num">25%</div>
+                <div class="vol-stat-label">Del drawdown -34% en COVID-2020 fue por ventas mecánicas de dealers.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">El Edge del Operador: Reglas de Aplicación</h3>
+            <div class="vol-rules-list">
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">01</span>
+                <div class="vol-rule-content"><strong>Monitorea el GEX.</strong> GEX positivo: compra retrocesos (68% éxito). GEX negativo: vende volatilidad alta con Iron Condors (72% éxito).</div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">02</span>
+                <div class="vol-rule-content"><strong>VIX &gt; 30%</strong> activa la señal post-pánico. Tras el desplome, ventana de venta de volatilidad → ROI ~15% en 5 días.</div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">03</span>
+                <div class="vol-rule-content"><strong>OI en Calls OTM &gt; 2M</strong> = anticipa squeeze. Venta de Puts: 75% win rate.</div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">04</span>
+                <div class="vol-rule-content"><strong>Opera el ciclo OPEX:</strong> Fade rallies del jueves/viernes de OPEX. Entra en compras el lunes post-OPEX.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. IV Rank vs IV Percentile -->
+    <section class="volatilidad-section volatilidad-article" aria-labelledby="ivr-heading">
+      <div class="container">
+        <header class="volatilidad-hero">
+          <p class="volatilidad-badge">Data Science para Opciones</p>
+          <h2 id="ivr-heading" class="font-serif">IV Rank vs. IV Percentile: ¿Estás vendiendo miedo o simplemente ruido?</h2>
+          <p class="vol-article-lead">La ventaja estadística no está en predecir hacia dónde irá la acción, sino en entender la <strong>Volatilidad Implícita (IV)</strong>. Mirar la IV de forma aislada es como leer un termómetro sin contexto: el mismo número significa cosas distintas según el entorno.</p>
+        </header>
+
+        <figure class="vol-infographic-frame">
+          <img src="images/volatilidad/ivr_ivp.jpg" alt="IV Rank vs IV Percentile" class="vol-infographic-img" />
+        </figure>
+
+        <div class="vol-article-content">
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">El Conflicto: Rango vs. Frecuencia</h3>
+            <p class="vol-section-body">La mayoría usa IV Rank e IV Percentile como sinónimos. No lo son. Uno mide la <strong>«intensidad»</strong> del momento, el otro la <strong>«rareza estadística»</strong>.</p>
+            <div class="vol-two-col">
+              <div class="vol-concept-card">
+                <div class="vol-card-icon">— IVR</div>
+                <h4 class="vol-card-title">IV Rank — El Mapa de Intensidad</h4>
+                <p class="vol-card-body">Ubica la IV actual dentro del <strong>rango máximo y mínimo</strong> de las últimas 52 semanas. Sensible a eventos extremos.</p>
+              </div>
+              <div class="vol-concept-card">
+                <div class="vol-card-icon">— IVP</div>
+                <h4 class="vol-card-title">IV Percentile — El Mapa de Probabilidad</h4>
+                <p class="vol-card-body">Indica el <strong>porcentaje de días</strong> en que la IV ha sido inferior a la actual. Robusta ante picos únicos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Las Fórmulas: La Ciencia detrás del Trading</h3>
+            <p class="vol-section-body">Para operar con precisión, debemos entender cómo se construye el dato.</p>
+            <div class="vol-formula-block">
+              <div class="vol-formula-label">IV Rank — Cálculo Lineal sobre el Rango Anual</div>
+              <div class="vol-formula-display">IVR = (IV<sub>actual</sub> − IV<sub>min</sub>) / (IV<sub>max</sub> − IV<sub>min</sub>) × 100</div>
+              <p class="vol-formula-note">Calcula la posición relativa de la IV actual entre mínimo y máximo anual. Sensible a eventos extremos (picos únicos).</p>
+            </div>
+            <div class="vol-formula-block vol-formula-purple">
+              <div class="vol-formula-label">IV Percentile — Medida de Densidad de Datos</div>
+              <div class="vol-formula-display">IVP = N.º de días con IV &lt; IV<sub>actual</sub> / 252 × 100</div>
+              <p class="vol-formula-note">Usa los 252 días hábiles. Mide con qué frecuencia la volatilidad ha estado por debajo del nivel actual. Robusta ante eventos extremos.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">La Anomalía del Cisne Negro</h3>
+            <p class="vol-section-body">Aquí es donde el <strong>IV Rank puede engañarte</strong>. Imagina que una acción tuvo un colapso hace 6 meses y la IV saltó a 200%, pero el resto del año ha estado en 20%.</p>
+            <div class="vol-example-box">
+              <div class="vol-ex-title">⚡ Escenario: IV sube al 40% hoy</div>
+              <p class="vol-ex-body">Un pico histórico de 200% «aplasta» la escala del IVR y lo hace aparecer artificialmente bajo, aunque el 40% actual sea una <strong>anomalía estadística importante</strong>.</p>
+              <div class="vol-result-row">
+                <div class="vol-result-pill">
+                  <span class="vol-pill-badge vol-pill-low">IVR ≈ 11</span>
+                  <span class="vol-pill-text">El pico de 200% aplasta la escala. Parece que no hay premium.</span>
+                </div>
+                <div class="vol-result-pill">
+                  <span class="vol-pill-badge vol-pill-high">IVP ≈ 90</span>
+                  <span class="vol-pill-text">El 40% supera al 90% de los días. Gran oportunidad.</span>
+                </div>
+              </div>
+              <p class="vol-ex-body"><strong>Conclusión:</strong> El IVR te protege de extremos, pero el IVP te dice qué es «normal». Ignorar el IVP te haría perder oportunidades de venta.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">El Caballo de Troya: La Distorsión de los Earnings</h3>
+            <p class="vol-section-body">Si miras el IVR de grandes compañías una semana antes de resultados trimestrales, verás que está por las nubes. Un operador inexperto vendería. <strong>Error.</strong> Los Earnings inflan las métricas por incertidumbre binaria puntual.</p>
+            <div class="vol-earnings-box">
+              <div class="vol-earnings-tactic">⚡ Dato Táctico — El Sesgo del «IV Crush»</div>
+              <p class="vol-earnings-body">Históricamente, la IV cae <strong>más rápido de lo que el precio se mueve</strong>, si el movimiento se mantiene dentro del <strong>Expected Move</strong>. Si vendes una estrategia con alas justo en el borde del Expected Move, tu beneficio viene de la <strong>evaporación instantánea del IVR inflado</strong> al publicarse el dato.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">El Filtro Maestro: Mean Reversion</h3>
+            <p class="vol-section-body">La volatilidad es una de las pocas fuerzas que <strong>siempre vuelve a su promedio</strong>. Este principio es la base de las estrategias más rentables.</p>
+            <div class="vol-two-col">
+              <div class="vol-concept-card vol-reversion-card">
+                <div class="vol-card-icon">Regla de Mean Reversion</div>
+                <h4 class="vol-card-title">IVR &gt; 50 → Alta Probabilidad de Caída</h4>
+                <p class="vol-card-body">Si el IVR supera 50, la probabilidad de que la IV <strong>caiga en los próximos 21 días</strong> es drásticamente superior. La media tirará hacia abajo.</p>
+              </div>
+              <div class="vol-concept-card vol-reversion-card">
+                <div class="vol-card-icon">Arbitraje de Expectativas</div>
+                <h4 class="vol-card-title">IVR &gt; 50 con IVP &lt; 40</h4>
+                <p class="vol-card-body">Busca activos donde el <strong>IVR supere 50 pero el IVP sea inferior a 40</strong>. Indica volatilidad que sube de forma orgánica. Ideal para <em>Debit Spreads</em>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">La Matriz de Decisión</h3>
+            <div class="vol-table-wrap">
+              <table class="vol-table">
+                <thead>
+                  <tr>
+                    <th>Escenario</th>
+                    <th>IVR</th>
+                    <th>IVP</th>
+                    <th>Estrategia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Divergencia Bajista</td><td>Bajo</td><td>Alto</td><td>No vendas todavía. El premium no compensa.</td></tr>
+                  <tr><td>Divergencia Alcista</td><td>Alto</td><td>Bajo</td><td>Oportunidad agresiva. Vende el pico de miedo.</td></tr>
+                  <tr><td>Confluencia de Venta</td><td>&gt; 50</td><td>&gt; 80</td><td>⭐ Zona de Oro. Iron Condors y estrategias neutrales.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Resumen de Ventaja Táctica</h3>
+            <div class="vol-rules-list">
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">01</span>
+                <div class="vol-rule-content"><strong>Cuidado con el IVR «Zombi».</strong> Si hubo noticia extrema reciente, usa el IVP como brújula. El IVR queda distorsionado.</div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">02</span>
+                <div class="vol-rule-content"><strong>El Ciclo de 30 Días.</strong> El IVR es potente para opciones 30–45 DTE. En 0DTE es ruido estadístico.</div>
+              </div>
+              <div class="vol-rule-item">
+                <span class="vol-rule-num">03</span>
+                <div class="vol-rule-content"><strong>Vende Miedo, Compra Incertidumbre.</strong> Cuando IVR e IVP coinciden &gt;70, cobra los premiums más caros del año.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">Tabla Comparativa: IVR vs IVP</h3>
+            <div class="vol-table-wrap">
+              <table class="vol-table vol-compare-table">
+                <thead>
+                  <tr><th>Característica</th><th>IV Rank (IVR)</th><th>IV Percentile (IVP)</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>¿Qué mide?</td><td>Nivel actual respecto a los <strong>extremos</strong> (Min/Max) anuales.</td><td>Nivel actual respecto a la <strong>frecuencia</strong> de días históricos.</td></tr>
+                  <tr><td>Punto fuerte</td><td>Identifica cuándo el premium está <strong>«caro»</strong> en términos de rango.</td><td>Identifica cuándo el miedo es una <strong>«anomalía estadística»</strong> genuina.</td></tr>
+                  <tr><td>Punto débil</td><td>Un solo pico histórico puede <strong>arruinar la escala</strong>.</td><td>No distingue si estás cerca de un <strong>máximo histórico</strong>.</td></tr>
+                  <tr><td>Cuándo usarlo</td><td>Para decidir <strong>cuánto cobrar</strong> por una opción.</td><td>Para decidir <strong>si entrar o no</strong> según probabilidad histórica.</td></tr>
+                  <tr><td>Señal Maestra</td><td><span class="vol-signal-badge">IVR &gt; 50</span> = Venta de Volatilidad.</td><td><span class="vol-signal-badge vol-signal-ivp">IVP &gt; 80</span> = Pánico extremo.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="volatilidad-section vol-disclaimer-section">
+      <div class="container">
+        <div class="vol-disclaimer-box">
+          <div class="vol-disclaimer-title">⚠ Disclaimer — Aviso Legal</div>
+          <div class="vol-disclaimer-text">
+            <strong>Este contenido es exclusivamente de carácter educativo e informativo.</strong>
+            Todo el material presentado ha sido elaborado por <strong>GEXZONE LLC</strong> con fines pedagógicos únicamente.
+            Los datos históricos mostrados no constituyen resultados reales ni garantizados.
+            <strong>Nada de lo aquí expuesto representa asesoramiento financiero.</strong>
+            El uso de opciones implica riesgos significativos. Consulte siempre a un profesional calificado.
+            <strong>Los resultados pasados no garantizan resultados futuros.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -167,6 +621,8 @@
     <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/volatilidad.js"></script>
 </body>
 </html>
