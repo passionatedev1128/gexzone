@@ -572,15 +572,20 @@ h1, h2, h3, h4 {
   border: 1px solid var(--border-subtle);
 }
 
-.hero-image-wrap img {
+.hero-image-wrap img,
+.hero-image-wrap .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   min-height: 340px;
+  display: block;
   transition: transform var(--transition-smooth);
 }
-
-.hero-image-wrap:hover img {
+.hero-image-wrap .hero-video {
+  min-height: 340px;
+}
+.hero-image-wrap:hover img,
+.hero-image-wrap:hover .hero-video {
   transform: scale(1.02);
 }
 
@@ -3407,7 +3412,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <p class="hero-body">Las matemáticas de las opciones dictan el precio, ni la probabilidad, ni el sentimiento lo hacen.</p>
       </div>
       <div class="hero-image-wrap">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80" alt="Wall Street, mundo financiero" loading="lazy" />
+        <video autoplay muted loop playsinline class="hero-video" aria-label="Flujo de agua en la orilla, sube y baja">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-coming-to-the-beach-5016-large.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
@@ -3703,10 +3710,10 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </div>
     </section>
 
-    <!-- VIDEO: Skyline -->
+    <!-- VIDEO: Vista aérea distrito financiero -->
     <section class="video-section">
-      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1920&q=80">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-skyscrapers-4172-large.mp4" type="video/mp4" />
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1920&q=80">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-city-during-the-day-1616-large.mp4" type="video/mp4" />
       </video>
       <div class="video-overlay"></div>
     </section>

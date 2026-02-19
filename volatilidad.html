@@ -2440,6 +2440,37 @@ h1, h2, h3, h4 {
   line-height: 1.25;
 }
 
+/* Article separators and title emphasis (5 distinct articles) */
+.vol-article-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-gold), var(--accent-blue), transparent);
+  opacity: 0.5;
+  margin: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4%, 5%);
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.volatilidad-section.volatilidad-article .volatilidad-hero h2 {
+  font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-subtle);
+  position: relative;
+}
+
+.volatilidad-section.volatilidad-article .volatilidad-hero h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-gold));
+  border-radius: 1px;
+}
+
 .volatilidad-section .volatilidad-hero p {
   font-size: 0.98rem;
   color: var(--text-secondary);
@@ -3522,6 +3553,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </div>
     </section>
 
+    <div class="vol-article-separator" aria-hidden="true"></div>
     <!-- 2. El Espejismo del VIX -->
     <section class="volatilidad-section volatilidad-article" aria-labelledby="espejismo-heading">
       <div class="container">
@@ -3720,6 +3752,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </div>
     </section>
 
+    <div class="vol-article-separator" aria-hidden="true"></div>
     <!-- 3. La Mano Invisible del Dealer -->
     <section class="volatilidad-section volatilidad-article" aria-labelledby="dealer-heading">
       <div class="container">
@@ -3869,6 +3902,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </div>
     </section>
 
+    <div class="vol-article-separator" aria-hidden="true"></div>
     <!-- 4. IV Rank vs IV Percentile -->
     <section class="volatilidad-section volatilidad-article" aria-labelledby="ivr-heading">
       <div class="container">
@@ -4022,6 +4056,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </div>
     </section>
 
+    <div class="vol-article-separator" aria-hidden="true"></div>
     <!-- 5. Vixpiration -->
     <section class="volatilidad-section volatilidad-article" aria-labelledby="vixpiration-heading">
       <div class="container">

@@ -1652,6 +1652,144 @@ h1, h2, h3, h4 {
   background: var(--bg-soft);
 }
 
+/* Estética cyberpunk (fiel al simulador original) */
+.recursos-simulator-wrap.sim-cyberpunk {
+  font-family: 'Courier New', Consolas, monospace;
+  background: #0a0b14;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(91, 162, 244, 0.08);
+}
+.recursos-simulator-wrap.sim-cyberpunk .recursos-simulator-header {
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, #121625 0%, #1a1f3a 100%);
+  border-bottom: 1px solid #1f2937;
+  position: relative;
+}
+.recursos-simulator-wrap.sim-cyberpunk .recursos-simulator-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3a7bd5, #8c52ff, #3a7bd5);
+  opacity: 0.8;
+}
+.recursos-simulator-wrap.sim-cyberpunk .recursos-simulator-title {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #5ba2f4, #8c52ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.15em;
+}
+.recursos-simulator-wrap.sim-cyberpunk .recursos-simulator-desc {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-inline {
+  padding: 1.5rem;
+  background: #0a0b14;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-card {
+  background: #121625;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-card:hover {
+  border-color: #5ba2f4;
+  box-shadow: 0 0 20px rgba(91, 162, 244, 0.2);
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-card-title {
+  color: #5ba2f4;
+  border-bottom-color: #1f2937;
+  font-family: inherit;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-control-label {
+  color: #8c52ff;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-control-value {
+  color: #00ff41;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-btn {
+  background: #1f2937;
+  border: 1px solid #3a7bd5;
+  color: #e0e6ed;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-btn:hover {
+  background: #2a3548;
+  border-color: #5ba2f4;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-btn.active {
+  background: linear-gradient(135deg, #3a7bd5, #5ba2f4);
+  border-color: #5ba2f4;
+  color: #fff;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-btn-scenario {
+  border-color: #8c52ff;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-btn-scenario:hover {
+  background: linear-gradient(135deg, #8c52ff, #a855f7);
+  box-shadow: 0 0 25px rgba(140, 82, 255, 0.5);
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-slider {
+  background: #1f2937;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-slider::-webkit-slider-thumb {
+  background: linear-gradient(135deg, #5ba2f4, #8c52ff);
+  box-shadow: 0 0 12px rgba(91, 162, 244, 0.8);
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-stat-value {
+  color: #00ff41;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-balance-container {
+  background: rgba(31, 41, 55, 0.5);
+  border: 1px solid #1f2937;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-balance-title {
+  color: #5ba2f4;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual {
+  background: #121625;
+  border: 1px solid #1f2937;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual-header {
+  background: linear-gradient(135deg, #1f2937, #2a3548);
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual-header:hover {
+  background: linear-gradient(135deg, #2a3548, #3a4a5e);
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual-title {
+  color: #5ba2f4;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual-icon {
+  color: #8c52ff;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual-section-title {
+  color: #00ff41;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-manual-text {
+  color: #e0e6ed;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-stat-label {
+  color: #8c52ff;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-balance-bar {
+  border-color: #3a7bd5;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-shares-display.positive {
+  color: #00ff41;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-shares-display.negative {
+  color: #ff6b6b;
+}
+.recursos-simulator-wrap.sim-cyberpunk .sim-direction-hint {
+  color: #9ca3af;
+}
+
 .recursos-simulator-wrap .recursos-simulator-header {
   padding: 1.25rem 1.5rem;
   background: var(--bg-card);
@@ -3631,7 +3769,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
           </div>
         </section> -->
 
-        <div class="recursos-simulator-wrap" id="simulator-wrap">
+        <div class="recursos-simulator-wrap sim-cyberpunk" id="simulator-wrap">
           <div class="recursos-simulator-header">
             <h2 class="recursos-simulator-title">Simulador Delta Hedging</h2>
             <p class="recursos-simulator-desc">Herramienta interactiva para explorar la cobertura delta: ajusta spot, strike, volatilidad y días al vencimiento. Observa el perfil de gamma, el payoff del cliente y el inventario del Market Maker en tiempo real.</p>
@@ -3718,7 +3856,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
                 <div class="sim-chart-container"><canvas id="payoff-chart"></canvas></div>
               </div>
             </div>
-            <!-- <div class="sim-manual">
+            <div class="sim-manual">
               <div class="sim-manual-header" onclick="toggleManual()">
                 <span class="sim-manual-title">Manual de operaciones: instrucciones</span>
                 <span class="sim-manual-icon" id="manual-icon">▼</span>
@@ -3743,7 +3881,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
 
