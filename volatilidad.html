@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Volatilidad - GEXZONE</title>
-  <meta name="description" content="Trading de spreads VIX, El Espejismo del VIX, Mano Invisible del Dealer, IV Rank vs IV Percentile. Análisis GEX ZONE." />
+  <meta name="description" content="Trading de spreads VIX, Vixpiration, El Espejismo del VIX, Mano Invisible del Dealer, IV Rank vs IV Percentile. Análisis GEX ZONE." />
   <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');
@@ -2775,6 +2775,24 @@ h1, h2, h3, h4 {
   margin-top: 1.25rem;
 }
 
+.volatilidad-article .vol-article-steps {
+  list-style: decimal;
+  margin: 1.25rem 0;
+  padding-left: 1.75rem;
+}
+
+.volatilidad-article .vol-article-steps li {
+  margin-bottom: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.volatilidad-article .vol-nota-gexzone {
+  border-top: 3px solid var(--accent-blue);
+  background: linear-gradient(135deg, var(--accent-blue-dim) 0%, rgba(96, 165, 250, 0.04) 100%);
+}
+
 .vol-concept-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -4004,17 +4022,297 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </div>
     </section>
 
+    <!-- 5. Vixpiration -->
+    <section class="volatilidad-section volatilidad-article" aria-labelledby="vixpiration-heading">
+      <div class="container">
+        <header class="volatilidad-hero">
+          <p class="volatilidad-badge">Análisis de Mercado · Volatilidad</p>
+          <h2 id="vixpiration-heading" class="font-serif">Vixpiration: La Mecánica de Flujos y la Arquitectura de la Volatilidad</h2>
+          <p class="vol-article-lead">La expiración de opciones y futuros del VIX (conocida como <strong>Vixpiration</strong>) representa uno de los eventos de liquidez más determinantes para el S&amp;P 500. A diferencia de las expiraciones de renta variable estándar, la liquidación del VIX se rige por procesos de subasta complejos que dictan el comportamiento del mercado mucho antes de que se imprima el primer precio.</p>
+        </header>
+
+        <div class="vol-article-content">
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">01 · El SOQ y la «Purga» de Coberturas</h3>
+            <p class="vol-section-body">El pilar fundamental de la Vixpiration es el <strong>SOQ (Special Opening Quotation)</strong>. Este valor de liquidación no se basa en el precio de cotización del VIX en pantalla, sino en una cesta de opciones del SPX que expiran en 30 días.</p>
+            <p class="vol-section-body">El periodo previo al SOQ es una ventana de presión sintética. Los Market Makers ajustan sus deltas agresivamente para cubrir posiciones que están a punto de expirar. Una vez fijado el SOQ, se produce la «purga» de coberturas: un volumen masivo de posiciones defensivas se libera al mercado, catalizando una reversión a la media.</p>
+            <div class="vol-chart-card">
+              <div class="vol-chart-title">Patrón de Vol Crush en torno al SOQ</div>
+              <svg class="vol-svg-chart" viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="vixp-gVolFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="vixp-gVolFill2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                  </linearGradient>
+                  <filter id="vixp-glow1">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <line x1="60" y1="10" x2="60" y2="185" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="185" x2="740" y2="185" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <text x="52" y="20" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">40</text>
+                <text x="52" y="65" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">30</text>
+                <text x="52" y="110" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">20</text>
+                <text x="52" y="155" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">10</text>
+                <line x1="60" y1="20" x2="740" y2="20" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="65" x2="740" y2="65" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="110" x2="740" y2="110" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="155" x2="740" y2="155" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="430" y1="10" x2="430" y2="185" stroke="rgba(234,179,8,0.5)" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="434" y="22" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-gold)">SOQ</text>
+                <path d="M60,155 L100,148 L140,138 L180,120 L220,100 L260,78 L300,58 L340,38 L380,28 L420,22 L430,24 L460,60 L500,95 L540,120 L580,138 L620,150 L660,158 L700,162 L740,165" fill="url(#vixp-gVolFill)" stroke="none"/>
+                <path d="M60,155 L100,148 L140,138 L180,120 L220,100 L260,78 L300,58 L340,38 L380,28 L420,22 L430,24 L460,60 L500,95 L540,120 L580,138 L620,150 L660,158 L700,162 L740,165" fill="none" stroke="var(--accent-blue)" stroke-width="2" filter="url(#vixp-glow1)"/>
+                <path d="M60,50 L100,55 L140,62 L180,72 L220,88 L260,108 L300,125 L340,145 L380,160 L420,170 L430,168 L460,140 L500,118 L540,98 L580,82 L620,70 L660,62 L700,57 L740,54" fill="url(#vixp-gVolFill2)" stroke="none"/>
+                <path d="M60,50 L100,55 L140,62 L180,72 L220,88 L260,108 L300,125 L340,145 L380,160 L420,170 L430,168 L460,140 L500,118 L540,98 L580,82 L620,70 L660,62 L700,57 L740,54" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="80" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--text-muted)">-10d</text>
+                <text x="190" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--text-muted)">-7d</text>
+                <text x="300" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--text-muted)">-4d</text>
+                <text x="430" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-gold)">0</text>
+                <text x="550" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--text-muted)">+4d</text>
+                <text x="660" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--text-muted)">+7d</text>
+                <text x="738" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--text-muted)">+10d</text>
+                <circle cx="420" cy="22" r="4" fill="var(--accent-blue)" opacity=".8"/>
+                <text x="370" y="16" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">Pico VIX</text>
+                <text x="460" y="55" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-gold)">Vol Crush ↓</text>
+              </svg>
+              <div class="vol-chart-legend">
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:var(--accent-blue)"></span>VIX implícito</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:#3b82f6"></span>S&amp;P 500 (normalizado)</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:var(--accent-gold)"></span>Evento SOQ</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">02 · Umbrales Críticos y Muros de Gamma</h3>
+            <div class="vol-chart-card">
+              <div class="vol-chart-title">Gamma Exposure (GEX) por strike del VIX</div>
+              <svg class="vol-svg-chart" viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="vixp-gBar1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.3"/>
+                  </linearGradient>
+                  <linearGradient id="vixp-gBar2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.25"/>
+                  </linearGradient>
+                  <linearGradient id="vixp-gBarWall" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.95"/>
+                    <stop offset="100%" stop-color="#f97316" stop-opacity="0.3"/>
+                  </linearGradient>
+                  <filter id="vixp-glow2">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <line x1="60" y1="10" x2="60" y2="180" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="180" x2="740" y2="180" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="110" x2="740" y2="110" stroke="rgba(96,165,250,0.15)" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="52" y="113" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">0</text>
+                <rect x="66" y="82" width="28" height="28" fill="url(#vixp-gBar2)" rx="2"/>
+                <rect x="134" y="70" width="28" height="40" fill="url(#vixp-gBar2)" rx="2"/>
+                <rect x="202" y="75" width="28" height="35" fill="url(#vixp-gBar2)" rx="2"/>
+                <rect x="270" y="65" width="28" height="45" fill="url(#vixp-gBar2)" rx="2"/>
+                <rect x="338" y="18" width="34" height="92" fill="url(#vixp-gBarWall)" rx="2" filter="url(#vixp-glow2)"/>
+                <text x="355" y="14" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#f97316">MURO</text>
+                <rect x="408" y="80" width="28" height="30" fill="url(#vixp-gBar2)" rx="2"/>
+                <rect x="472" y="26" width="34" height="84" fill="url(#vixp-gBarWall)" rx="2" filter="url(#vixp-glow2)"/>
+                <text x="489" y="22" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#f97316">MURO</text>
+                <rect x="542" y="110" width="28" height="38" fill="url(#vixp-gBar1)" rx="2" opacity=".7"/>
+                <rect x="608" y="110" width="28" height="52" fill="url(#vixp-gBar1)" rx="2" opacity=".7"/>
+                <rect x="674" y="110" width="28" height="45" fill="url(#vixp-gBar1)" rx="2" opacity=".6"/>
+                <text x="80" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">12</text>
+                <text x="148" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">15</text>
+                <text x="216" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">17</text>
+                <text x="284" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">18</text>
+                <text x="355" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#f97316" font-weight="bold">20</text>
+                <text x="422" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">22</text>
+                <text x="489" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#f97316" font-weight="bold">25</text>
+                <text x="556" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">28</text>
+                <text x="622" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">30</text>
+                <text x="688" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">35</text>
+              </svg>
+              <div class="vol-chart-legend">
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:#f97316"></span>Muro de Calls (imán magnético)</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:#3b82f6"></span>Long Gamma (vol contenida)</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:var(--accent-blue)"></span>Short Gamma (vol expansiva)</span>
+              </div>
+            </div>
+            <div class="vol-concept-card vol-card-teal">
+              <div class="vol-card-icon">Muro de Calls</div>
+              <h4 class="vol-card-title">Niveles redondos como imanes</h4>
+              <p class="vol-card-body">Niveles redondos (20, 25 en el VIX) actúan como «imanes» magnéticos antes de la expiración. Si el VIX cotiza cerca de un strike con interés abierto masivo, los dealers tienden a «pinear» el precio para minimizar el impacto del rebalanceo.</p>
+            </div>
+            <div class="vol-concept-card vol-card-orange">
+              <div class="vol-card-icon">Zona de Transición de Gamma</div>
+              <h4 class="vol-card-title">Long Gamma vs Short Gamma</h4>
+              <p class="vol-card-body">Identificar si el mercado se encuentra en régimen <strong>Long Gamma</strong> (volatilidad contenida) o <strong>Short Gamma</strong> (volatilidad expansiva) es vital. La Vixpiration marca el punto de inflexión donde los dealers pasan de compradores a vendedores de volatilidad, facilitando el <em>Vol Crush</em> post-evento.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">03 · Pautas Comportamentales e Historia</h3>
+            <p class="vol-section-body">Un análisis histórico revela patrones recurrentes. En episodios de alta tensión —como la crisis de liquidez de 2020 o la rotación agresiva de 2022— la Vixpiration ha servido como punto de clímax.</p>
+            <div class="vol-chart-card">
+              <div class="vol-chart-title">Estructura de Plazos VIX — Backwardation vs Contango</div>
+              <svg class="vol-svg-chart" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="vixp-gBack" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#f87171"/>
+                    <stop offset="100%" stop-color="#f87171" stop-opacity="0.3"/>
+                  </linearGradient>
+                  <linearGradient id="vixp-gCont" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#60a5fa"/>
+                    <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.4"/>
+                  </linearGradient>
+                  <filter id="vixp-glow3">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <line x1="60" y1="10" x2="60" y2="175" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="175" x2="720" y2="175" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="40" x2="720" y2="40" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="80" x2="720" y2="80" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="120" x2="720" y2="120" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <text x="52" y="43" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">45</text>
+                <text x="52" y="83" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">30</text>
+                <text x="52" y="123" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">20</text>
+                <text x="52" y="175" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-muted)">10</text>
+                <polyline points="80,35 180,55 280,80 380,108 480,130 580,148 680,158" fill="none" stroke="#f87171" stroke-width="2.5" filter="url(#vixp-glow3)"/>
+                <polygon points="80,35 180,55 280,80 380,108 480,130 580,148 680,158 680,175 80,175" fill="rgba(248,113,113,0.08)"/>
+                <polyline points="80,148 180,138 280,125 380,110 480,98 580,88 680,82" fill="none" stroke="var(--accent-blue)" stroke-width="2" stroke-dasharray="6,3"/>
+                <text x="88" y="30" font-family="system-ui,sans-serif" font-size="8.5" fill="#f87171">BACKWARDATION</text>
+                <text x="88" y="160" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--accent-blue)">CONTANGO</text>
+                <circle cx="80" cy="35" r="5" fill="#f87171" opacity=".9"/>
+                <text x="90" y="22" font-family="system-ui,sans-serif" font-size="8" fill="#f87171">Techo VOL (SOQ)</text>
+                <text x="80" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">Spot</text>
+                <text x="180" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">M1</text>
+                <text x="280" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">M2</text>
+                <text x="380" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">M3</text>
+                <text x="480" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">M4</text>
+                <text x="580" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">M5</text>
+                <text x="680" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--text-secondary)">M6</text>
+              </svg>
+              <div class="vol-chart-legend">
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:#f87171"></span>Backwardation (pico de miedo)</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:var(--accent-blue)"></span>Contango (mercado normalizado)</span>
+              </div>
+            </div>
+            <div class="vol-concept-card">
+              <div class="vol-card-icon">Lección en Alta Volatilidad</div>
+              <h4 class="vol-card-title">Backwardation y techo de VOL</h4>
+              <p class="vol-card-body">Cuando el VIX llega a la expiración en <strong>backwardation</strong>, el SOQ suele marcar el techo de volatilidad para ese ciclo. El miedo tiende a ser sobrecomprado justo antes de la liquidación, creando una oportunidad táctica de venta de volatilidad o compra de spot una vez que el evento ha pasado.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">04 · El Diferencial VIX / VVIX</h3>
+            <p class="vol-section-body">Como añadido estratégico de Gexzone, proponemos el uso del <strong>VVIX</strong> (la volatilidad de la volatilidad) como indicador adelantado de divergencias que anticipan el Vol Crush.</p>
+            <div class="vol-chart-card">
+              <div class="vol-chart-title">Divergencia Táctica VIX ↑ / VVIX ↓ — Señal de Agotamiento</div>
+              <svg class="vol-svg-chart" viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="vixp-gVix" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="vixp-gVvix" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+                  </linearGradient>
+                  <filter id="vixp-glow4">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <line x1="60" y1="10" x2="60" y2="180" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="180" x2="720" y2="180" stroke="rgba(96,165,250,0.25)" stroke-width="1"/>
+                <line x1="720" y1="10" x2="720" y2="180" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+                <line x1="60" y1="45" x2="720" y2="45" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="90" x2="720" y2="90" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="60" y1="135" x2="720" y2="135" stroke="rgba(96,165,250,0.08)" stroke-width="1" stroke-dasharray="4,4"/>
+                <text x="52" y="48" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">35</text>
+                <text x="52" y="93" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">25</text>
+                <text x="52" y="138" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-blue)">15</text>
+                <text x="728" y="48" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#a78bfa">130</text>
+                <text x="728" y="93" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#a78bfa">100</text>
+                <text x="728" y="138" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#a78bfa">80</text>
+                <path d="M80,160 C110,155 130,148 160,140 C190,132 210,122 240,108 C270,94 295,80 320,68 C345,56 365,46 390,42 C410,40 425,38 450,40 C460,58 475,95 510,122 C545,148 580,162 620,168 L680,172" fill="url(#vixp-gVix)" stroke="none"/>
+                <path d="M80,160 C110,155 130,148 160,140 C190,132 210,122 240,108 C270,94 295,80 320,68 C345,56 365,46 390,42 C410,40 425,38 450,40 C460,58 475,95 510,122 C545,148 580,162 620,168 L680,172" fill="none" stroke="var(--accent-blue)" stroke-width="2.2" filter="url(#vixp-glow4)"/>
+                <path d="M80,155 C110,145 130,132 160,120 C190,108 210,95 240,82 C265,72 285,62 310,55 C330,50 350,44 375,40 C395,37 415,36 430,38 C445,44 458,55 480,70 C505,88 530,108 560,125 C585,138 615,150 650,158 L680,162" fill="url(#vixp-gVvix)" stroke="none"/>
+                <path d="M80,155 C110,145 130,132 160,120 C190,108 210,95 240,82 C265,72 285,62 310,55 C330,50 350,44 375,40 C395,37 415,36 430,38 C445,44 458,55 480,70 C505,88 530,108 560,125 C585,138 615,150 650,158 L680,162" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="6,3"/>
+                <rect x="370" y="10" width="90" height="170" fill="rgba(234,179,8,0.04)" rx="2"/>
+                <line x1="370" y1="10" x2="370" y2="180" stroke="rgba(234,179,8,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
+                <line x1="460" y1="10" x2="460" y2="180" stroke="rgba(234,179,8,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
+                <text x="415" y="22" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="var(--accent-gold)">DIVERGENCIA</text>
+                <text x="395" y="48" font-family="system-ui,sans-serif" font-size="11" fill="var(--accent-blue)">↑</text>
+                <text x="415" y="52" font-family="system-ui,sans-serif" font-size="11" fill="#a78bfa">↓</text>
+                <line x1="460" y1="10" x2="460" y2="180" stroke="rgba(234,179,8,0.6)" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="464" y="25" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-gold)">SOQ</text>
+                <text x="520" y="115" font-family="system-ui,sans-serif" font-size="8.5" fill="#22c55e">Rally alivio →</text>
+                <text x="80" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--text-secondary)">-15d</text>
+                <text x="200" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--text-secondary)">-10d</text>
+                <text x="330" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--text-secondary)">-5d</text>
+                <text x="415" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--accent-gold)">Div.</text>
+                <text x="460" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--accent-gold)">SOQ</text>
+                <text x="570" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--text-secondary)">+5d</text>
+                <text x="680" y="196" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="var(--text-secondary)">+10d</text>
+              </svg>
+              <div class="vol-chart-legend">
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:var(--accent-blue)"></span>VIX (eje izquierdo)</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:#a78bfa"></span>VVIX (eje derecho)</span>
+                <span class="vol-legend-item"><span class="vol-legend-dot" style="background:var(--accent-gold)"></span>Zona de divergencia táctica</span>
+              </div>
+            </div>
+            <div class="vol-concept-card">
+              <div class="vol-card-icon">Divergencia Táctica</div>
+              <h4 class="vol-card-title">VIX sube, VVIX baja: señal de agotamiento</h4>
+              <p class="vol-card-body">Si en los días previos el VIX sube pero el VVIX comienza a bajar o se estanca, estamos ante una señal clara de agotamiento en la demanda de protección. Esta divergencia suele preceder a un rally de alivio en el S&amp;P 500 inmediatamente después del SOQ.</p>
+            </div>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">05 · Ejecución y Gestión de Riesgos</h3>
+            <p class="vol-section-body">El operador sofisticado debe evitar la ejecución «ciega» durante la primera hora post-SOQ. El proceso recomendado:</p>
+            <ol class="vol-article-steps">
+              <li><strong>Monitorear el diferencial:</strong> Observar la distancia entre el precio spot del VIX y el valor del SOQ. Un diferencial amplio indica una distorsión de precios que el mercado arbitrará rápidamente.</li>
+              <li><strong>Identificar la Liquidez Sistémica:</strong> Si la expiración coincide con una retirada de liquidez por parte de los bancos centrales, el <em>Vol Crush</em> puede ser breve o inexistente. La liquidez macro es la condición necesaria.</li>
+            </ol>
+          </div>
+
+          <div class="vol-article-section">
+            <h3 class="vol-section-title">06 · Conclusión: El Reset de la Pizarra</h3>
+            <p class="vol-section-body">En última instancia, la Vixpiration es el mecanismo de <em>reset</em> del mercado. Borra el posicionamiento antiguo y obliga a los participantes a reevaluar el coste de la protección para el mes siguiente. Entender la mecánica de los flujos de los dealers y los umbrales de Gamma permite a Gexzone posicionarse no donde está el precio, sino donde la liquidez forzará al precio a estar.</p>
+          </div>
+
+          <div class="vol-concept-card vol-nota-gexzone">
+            <div class="vol-card-icon">Nota Gexzone</div>
+            <h4 class="vol-card-title">La clave del posicionamiento</h4>
+            <p class="vol-card-body">La clave no es predecir el nivel exacto del VIX, sino comprender quién está forzado a comprar o vender en el momento de la liquidación.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="volatilidad-section vol-disclaimer-section">
       <div class="container">
         <div class="vol-disclaimer-box">
           <div class="vol-disclaimer-title">⚠ Disclaimer — Aviso Legal</div>
           <div class="vol-disclaimer-text">
-            <strong>Este contenido es exclusivamente de carácter educativo e informativo.</strong>
+            <!-- <strong>Este contenido es exclusivamente de carácter educativo e informativo.</strong>
             Todo el material presentado ha sido elaborado por <strong>GEXZONE LLC</strong> con fines pedagógicos únicamente.
             Los datos históricos mostrados no constituyen resultados reales ni garantizados.
             <strong>Nada de lo aquí expuesto representa asesoramiento financiero.</strong>
             El uso de opciones implica riesgos significativos. Consulte siempre a un profesional calificado.
-            <strong>Los resultados pasados no garantizan resultados futuros.</strong>
+            <strong>Los resultados pasados no garantizan resultados futuros.</strong> -->
+            <p>El contenido publicado por GEXZONE LLC tiene carácter exclusivamente informativo y educativo. No constituye asesoramiento financiero, recomendación de inversión ni oferta de compra o venta de ningún instrumento financiero. La operativa en mercados financieros conlleva un riesgo significativo de pérdida de capital. Los rendimientos pasados no garantizan resultados futuros. Consulte a un asesor financiero cualificado antes de tomar decisiones de inversión. GEXZONE LLC no asume responsabilidad alguna por las decisiones tomadas basándose en este contenido.</p>
           </div>
         </div>
       </div>
