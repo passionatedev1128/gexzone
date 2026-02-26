@@ -23,7 +23,7 @@
       --accent-blue: #60a5fa;
       --accent-blue-dim: rgba(96, 165, 250, 0.15);
       --border-subtle: rgba(255, 255, 255, 0.06);
-      --border-accent: rgba(96, 165, 250, 0.4);
+      --border-accent: rgba(96, 165, 250, 0.4); 
       --nav-bg: rgba(10, 14, 20, 0.88);
       --btn-primary-bg: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     }
@@ -463,6 +463,17 @@
       'live-event': '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-25'
     }
   };
+  // Same paths: save to localStorage before navigate (values per requirement for currentProduct)
+  var PATH_TO_CURRENT_PRODUCT = {
+    'financial-options': {
+      'on-demand': '/shop/asymmetric-knowledge-with-financial-options-22',
+      'live-event': '/shop/asymmetric-knowledge-with-financial-options-26'
+    },
+    'flow-dynamics': {
+      'on-demand': '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-25',
+      'live-event': '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-27'
+    }
+  };
   function getPathSegment() {
     var path = (window.location.pathname || '').replace(/^\/|\/$/g, '');
     var parts = path.split('/');
@@ -476,6 +487,8 @@
     if (!course) return null;
     return '/slides?course=' + encodeURIComponent(course) + '&course_type=' + encodeURIComponent(courseType);
   }
+  var STORAGE_CURRENT_PRODUCT = 'gexzone_current_product';
+
   function goTo(courseType) {
     var segment = getPathSegment();
     var shopUrls = PATH_TO_SHOP[segment];
@@ -490,6 +503,13 @@
       err.textContent = 'Formato no reconocido para esta ruta. Rutas válidas: training/options-manual, training/beyond-the-flow, training/financial-options, training/flow-dynamics.';
       err.hidden = false;
       return;
+    }
+    // For financial-options and flow-dynamics, save currentProduct to localStorage before navigating
+    var currentProductPayload = PATH_TO_CURRENT_PRODUCT[segment] && PATH_TO_CURRENT_PRODUCT[segment][courseType];
+    if (currentProductPayload) {
+      try {
+        localStorage.setItem(STORAGE_CURRENT_PRODUCT, JSON.stringify({ currentProduct: currentProductPayload }));
+      } catch (e) {}
     }
     window.location.href = url;
   }
