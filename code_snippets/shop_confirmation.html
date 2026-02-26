@@ -1,0 +1,50 @@
+<script>
+(function () {
+  'use strict';
+  var KEY = 'gexzone_current_product';
+
+  var SHOP_TO_SLIDES = {
+    '/shop/asymmetric-knowledge-with-financial-options-22': '/slides/conocimiento-asimetrico-con-opciones-financieras-12',
+    '/shop/asymmetric-knowledge-with-financial-options-26': '/slides/conocimiento-asimetrico-con-opciones-financieras-14',
+    '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-25': '/slides/flow-dynamics-market-mechanics-exposure-protocol-program-13',
+    '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-27': '/slides/flow-dynamics-market-mechanics-exposure-protocol-program-15'
+  };
+
+  function goToCourse() {
+    var raw = localStorage.getItem(KEY);
+    if (!raw) return;
+
+    var shopUrl = null;
+    try {
+      var parsed = JSON.parse(raw);
+      shopUrl = parsed && typeof parsed.currentProduct === 'string' ? parsed.currentProduct.trim() : null;
+    } catch (e) {
+      shopUrl = typeof raw === 'string' ? raw.trim() : null;
+    }
+
+    if (!shopUrl) return;
+
+    var slidesUrl = SHOP_TO_SLIDES[shopUrl];
+    if (slidesUrl)
+      window.location.href = slidesUrl;
+  }
+
+  function init() {
+    var btn = document.getElementById('gexzone-go-to-course') ||
+      document.querySelector('[data-gexzone="go-to-course"]') ||
+      Array.prototype.find.call(document.querySelectorAll('button, a[href="#"]'), function (el) {
+        return /Go to Course/i.test(el.textContent || '');
+      });
+    if (btn)
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        goToCourse();
+      });
+  }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else
+    init();
+})();
+</script>
