@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="es_ES">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elige formato — Formación | GEXZONE</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@400;500;600;700&display=swap');
-
+    
     :root {
       --radius-sm: 8px;
       --radius-md: 12px;
       --transition-fast: 0.15s ease;
       --transition-base: 0.25s ease;
-    }
+    } 
+    
     /* Dark theme (default) */
     :root, [data-theme="night"] {
       --bg-primary: #0a0e14;
@@ -32,7 +30,7 @@
     [data-theme="day"] {
       --bg-primary: #f8fafc;
       --bg-secondary: #f1f5f9;
-      --bg-soft: #e2e8f0;
+      --bg-soft: #e2e8f0; 
       --bg-card: rgba(0, 0, 0, 0.03);
       --text-primary: #0f172a;
       --text-secondary: #475569;
@@ -45,21 +43,19 @@
       --btn-primary-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; height: 100%; }
     body {
-      font-family: 'DM Sans', system-ui, sans-serif;
+      /* font-family: 'DM Sans', system-ui, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100%;
       display: flex;
-      flex-direction: column;
+      flex-direction: column; */
     }
     a { text-decoration: none; color: inherit; transition: color var(--transition-fast), opacity var(--transition-fast); }
     a:hover { opacity: 0.92; }
     main { flex: 1 0 auto; padding-top: 5rem; }
 
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 4%, 5%); }
+    /* .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem, 4%, 5%); } */
 
     /* ---- Header ---- */
     .site-header {
@@ -312,73 +308,73 @@
       margin-top: 1rem;
     }
   </style>
-</head>
-<body>
 
-  <header class="site-header">
-    <div class="container">
-      <a href="../index.html" class="logo">
-        <span class="logo__brand">
-          <span class="logo__text">GEX</span>
-          <span class="logo__tagline">ZONE</span>
-        </span>
-        <span class="logo__bars" aria-hidden="true">
-          <span class="logo__bar"></span>
-          <span class="logo__bar"></span>
-          <span class="logo__bar"></span>
-          <span class="logo__bar"></span>
-        </span>
-      </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-      <ul class="nav-main" id="nav-main">
-        <li><a href="../formacion.html" data-i18n="nav.formacion">Formación</a></li>
-        <li><a href="../trading-room.html" data-i18n="nav.tradingRoom">Trading Room</a></li>
-        <li><a href="../recursos.html" data-i18n="nav.recursos">Recursos</a></li>
-        <li><a href="../volatilidad.html" data-i18n="nav.volatilidad">Volatilidad</a></li>
-        <li><a href="../software-bots.html" data-i18n="nav.software">Software / Bots</a></li>
-        <li><a href="../contacto.html" data-i18n="nav.contacto">Contacto</a></li>
-      </ul>
-      <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
-        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
-      </div>
-    </div> 
-  </header>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   <main>
-    <section class="section training-choice">
+    <section class="section training-choice" style="background: var(--bg-secondary);">
       <div class="container">
         <h1>Elige el formato</h1>
         <p class="sub">Accede al contenido en vídeo bajo demanda o al evento en vivo.</p>
         <div class="buttons">
           <button type="button" class="btn btn-on-demand" id="btn-on-demand">On Demand GRATIS</button>
-          <button type= "button" class="btn btn-live" id="btn-live">Evento en vivo</button>
+          <button type="button" class="btn btn-live" id="btn-live">Evento en vivo</button>
         </div>
-        <p class="error" id="error" role="alert" hidden></p>
+        <p class="error" id="error" role="alert" hidden=""></p>
       </div>
     </section>
-  </main> 
+  </main>
 
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <a href="../formacion.html">Formación</a>
-        <a href="../trading-room.html">Trading Room</a>
-        <a href="../recursos.html">Recursos</a>
-      </div>
-      <div>
-        <a href="../volatilidad.html">Volatilidad</a>
-        <a href="../software-bots.html">Software / Bots</a>
-        <a href="../contacto.html">Contacto</a>
-      </div>
-      <div>
-        <a href="../legal/terminos.html">Términos y condiciones</a>
-        <a href="../legal/cookies.html">Política de cookies</a>
-        <a href="../legal/aviso.html">Aviso legal / Financial advisor</a>
-      </div>
-    </div>
-    <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
-  </footer>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   <script>
 (function () {
@@ -492,5 +488,3 @@
   else init();
 })();
   </script>
-</body>
-</html>
