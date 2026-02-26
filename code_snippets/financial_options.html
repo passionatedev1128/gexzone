@@ -445,12 +445,23 @@
     });
   }
 
-  // Training buttons: redirect by path + course_type
+  // Training buttons: redirect by path (shop URLs for financial-options & flow-dynamics, else slides)
   var PATH_TO_COURSE = {
     'options-manual': 'options-manua',
     'beyond-the-flow': 'beyond-the-flow',
     'financial-options': 'financial-options',
     'flow-dynamics': 'flow-dynamics'
+  };
+  // Path segment -> { on-demand: '/shop/...', 'live-event': '/shop/...' }; only for paths that go to shop
+  var PATH_TO_SHOP = {
+    'financial-options': {
+      'on-demand': '/shop/asymmetric-knowledge-with-financial-options-22',
+      'live-event': '/shop/asymmetric-knowledge-with-financial-options-24'
+    },
+    'flow-dynamics': {
+      'on-demand': '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-23',
+      'live-event': '/shop/flow-dynamics-market-mechanics-exposure-protocol-program-25'
+    }
   };
   function getPathSegment() {
     var path = (window.location.pathname || '').replace(/^\/|\/$/g, '');
@@ -466,7 +477,14 @@
     return '/slides?course=' + encodeURIComponent(course) + '&course_type=' + encodeURIComponent(courseType);
   }
   function goTo(courseType) {
-    var url = getSlidesUrl(courseType);
+    var segment = getPathSegment();
+    var shopUrls = PATH_TO_SHOP[segment];
+    var url;
+    if (shopUrls && shopUrls[courseType]) {
+      url = shopUrls[courseType];
+    } else {
+      url = getSlidesUrl(courseType);
+    }
     if (!url) {
       var err = document.getElementById('error');
       err.textContent = 'Formato no reconocido para esta ruta. Rutas válidas: training/options-manual, training/beyond-the-flow, training/financial-options, training/flow-dynamics.';
