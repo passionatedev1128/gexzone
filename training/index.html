@@ -138,23 +138,27 @@
 
     .header-actions { display: flex; align-items: center; gap: 0.5rem; }
     .header-lang-toggle {
-      min-width: 4.5rem;
-      height: 2rem;
-      padding: 0 0.6rem;
+      display: inline-flex;
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
       background: var(--bg-card);
+      overflow: hidden;
+    }
+    .header-lang-toggle button {
+      min-width: 2.25rem;
+      height: 2rem;
+      padding: 0 0.5rem;
+      border: none;
+      background: transparent;
       color: var(--text-secondary);
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+      transition: color var(--transition-fast), background var(--transition-fast);
     }
-    .header-lang-toggle:hover { color: var(--text-primary); background: var(--accent-blue-dim); border-color: var(--border-accent); }
+    .header-lang-toggle button:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
+    .header-lang-toggle button.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
     .header-theme-toggle {
       width: 2.5rem;
       height: 2.5rem;
@@ -339,7 +343,10 @@
         <li><a href="../contacto.html" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
+        <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
+          <button type="button" data-lang="ar" aria-label="العربية">Ar</button>
+          <button type="button" data-lang="es" aria-label="Español">Sp</button>
+        </div>
         <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
     </div> 
@@ -422,8 +429,18 @@
   }
   function initLang() {
     setLang(getLang());
-    var btn = document.getElementById('lang-toggle');
-    if (btn) btn.addEventListener('click', function () { setLang(getLang() === 'es' ? 'ar' : 'es'); });
+    var group = document.getElementById('lang-toggle');
+    if (!group) return;
+    group.querySelectorAll('button[data-lang]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === getLang());
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-lang');
+        setLang(lang);
+        group.querySelectorAll('button[data-lang]').forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        });
+      });
+    });
   }
 
   function initNav() {
