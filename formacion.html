@@ -338,38 +338,30 @@ h1, h2, h3, h4 {
   gap: 0.5rem;
 }
 
-/* Lang toggle: pill with ES / AR */
-#lang-toggle,
+/* Lang toggle: Ar / Sp dropdown-style buttons */
 .header-lang-toggle {
-  min-width: 4.5rem;
-  height: 2rem;
-  padding: 0 0.6rem;
+  display: inline-flex;
   border: 1px solid var(--border-subtle);
-  border-radius: 999px;
+  border-radius: 8px;
+  overflow: hidden;
   background: var(--bg-card);
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  cursor: pointer;
+}
+.header-lang-toggle .dropdown-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast), background var(--transition-fast);
 }
-
-#lang-toggle:hover,
-.header-lang-toggle:hover {
-  color: var(--text-primary);
-  background: var(--accent-blue-dim);
-  border-color: var(--border-accent);
-}
-
-#lang-toggle:focus-visible,
-.header-lang-toggle:focus-visible {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 2px;
-}
+.header-lang-toggle .dropdown-item:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
+.header-lang-toggle .dropdown-item.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
+.header-lang-toggle .dropdown-item:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
 /* Theme toggle: icon button */
 #theme-toggle,
@@ -3363,7 +3355,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
 </style>
 </head>
-<body>
+<body data-i18n-page="formacion">
 
   <header class="site-header">
     <div class="container">
@@ -3379,7 +3371,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <span class="logo__bar"></span>
       </span>
     </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <button type="button" class="nav-toggle" id="nav-toggle" data-i18n-aria="aria.openMenu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul class="nav-main" id="nav-main">
         <li><a href="formacion.html" class="active" data-i18n="nav.formacion">Formación</a></li>
         <li><a href="trading-room.html" data-i18n="nav.tradingRoom">Trading Room</a></li>
@@ -3389,8 +3381,11 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <li><a href="contacto.html" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
-        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
+        <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
+          <a class="dropdown-item js_change_lang" role="menuitem" href="#" data-url_code="ar" title="الْعَرَبيّة"><span>الْعَرَبيّة</span></a>
+          <a class="dropdown-item js_change_lang active" role="menuitem" href="#" data-url_code="es" title="Español"><span>Español</span></a>
+        </div>
+        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" data-i18n-aria="aria.themeToggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
     </div>
   </header>
@@ -3398,16 +3393,16 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   <main>
     <section class="section">
       <div class="container">
-        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Formación</h1>
-        <p class="hero-sub" style="max-width: 720px;">Programas técnicos para leer el mercado con lógica institucional y ventaja estructural.</p>
+        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;" data-i18n="formacion.heroTitle">Formación</h1>
+        <p class="hero-sub" style="max-width: 720px;" data-i18n="formacion.heroSub">Programas técnicos para leer el mercado con lógica institucional y ventaja estructural.</p>
 
         <div class="formacion-intro" style="margin-top: 2rem;">
-          <p class="font-serif" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">Acompañamiento Profesional, no solo contenido.</p>
-          <p class="subtitle" style="margin-bottom: 1rem;">Aquí, el contenido es el punto de partida, pero el valor real está en el mentor:</p>
+          <p class="font-serif" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;" data-i18n="formacion.introTitle">Acompañamiento Profesional, no solo contenido.</p>
+          <p class="subtitle" style="margin-bottom: 1rem;" data-i18n="formacion.introSub">Aquí, el contenido es el punto de partida, pero el valor real está en el mentor:</p>
           <ul class="formacion-intro-cols" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0; padding: 0; list-style: none;">
-            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Mentoring Directo:</span> Olvídate de hablar con un bot o esperar semanas a que alguien responda un ticket. Tienes a un profesional experto a tu lado para validar tus pasos.</li>
-            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Feedback en Tiempo Real:</span> No se trata de ver cómo otros operan, sino de que tú lo hagas bien. Corregimos tus errores antes de que te cuesten dinero en el mercado.</li>
-            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Sin "Letra Pequeña" de Abandono:</span> La mayoría de los cursos grabados tienen una tasa de abandono del 90%. Nosotros estamos encima de tu progreso porque nuestro objetivo es que domines el sistema, no que solo lo compres.</li>
+            <li data-i18n="formacion.intro1"><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Mentoring Directo:</span> Olvídate de hablar con un bot o esperar semanas a que alguien responda un ticket. Tienes a un profesional experto a tu lado para validar tus pasos.</li>
+            <li data-i18n="formacion.intro2"><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Feedback en Tiempo Real:</span> No se trata de ver cómo otros operan, sino de que tú lo hagas bien. Corregimos tus errores antes de que te cuesten dinero en el mercado.</li>
+            <li data-i18n="formacion.intro3"><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Sin "Letra Pequeña" de Abandono:</span> La mayoría de los cursos grabados tienen una tasa de abandono del 90%. Nosotros estamos encima de tu progreso porque nuestro objetivo es que domines el sistema, no que solo lo compres.</li>
           </ul>
         </div>
       </div>
@@ -3417,23 +3412,23 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="section" style="background: var(--bg-secondary);">
       <div class="container">
         <div class="program-card">
-          <h3>BEYOND THE FLOW</h3>
-          <p class="subtitle">Formación gratuita para entender el mercado moderno desde sus flujos invisibles.</p>
+          <h3 data-i18n="formacion.prog1Title">BEYOND THE FLOW</h3>
+          <p class="subtitle" data-i18n="formacion.prog1Sub">Formación gratuita para entender el mercado moderno desde sus flujos invisibles.</p>
           <div class="two-col-list-wrap">
             <ul class="two-col-list">
-              <li>Evolución del volumen de opciones y su impacto en el precio: por qué hoy la cola mueve al perro.</li>
-              <li>ODTE y vencimientos semanales: cómo multiplican el efecto inmediato sobre el spot.</li>
-              <li>Qué hacen realmente los Market Makers: provisión de liquidez, delta hedging y retroalimentaciones mecánicas.</li>
-              <li>Fundamentos de Gamma Exposure (GEX).</li>
-              <li>Pinning y niveles dominantes: regla 5/10, muros de gamma y lectura básica de rangos.</li>
-              <li>Escenarios prácticos: un strike dominante vs. múltiples strikes y cómo se operan sus extremos.</li>
-              <li>Dark Pools: qué son, por qué importan y cómo leer prints y MPIDs relevantes (SPY/QQQ).</li>
-              <li>Prints tardíos: cuándo un rastro invisible anticipa intención institucional.</li>
-              <li>Señales combinadas DIX + GEX para swing.</li>
+              <li data-i18n="formacion.prog1Li1">Evolución del volumen de opciones y su impacto en el precio: por qué hoy la cola mueve al perro.</li>
+              <li data-i18n="formacion.prog1Li2">ODTE y vencimientos semanales: cómo multiplican el efecto inmediato sobre el spot.</li>
+              <li data-i18n="formacion.prog1Li3">Qué hacen realmente los Market Makers: provisión de liquidez, delta hedging y retroalimentaciones mecánicas.</li>
+              <li data-i18n="formacion.prog1Li4">Fundamentos de Gamma Exposure (GEX).</li>
+              <li data-i18n="formacion.prog1Li5">Pinning y niveles dominantes: regla 5/10, muros de gamma y lectura básica de rangos.</li>
+              <li data-i18n="formacion.prog1Li6">Escenarios prácticos: un strike dominante vs. múltiples strikes y cómo se operan sus extremos.</li>
+              <li data-i18n="formacion.prog1Li7">Dark Pools: qué son, por qué importan y cómo leer prints y MPIDs relevantes (SPY/QQQ).</li>
+              <li data-i18n="formacion.prog1Li8">Prints tardíos: cuándo un rastro invisible anticipa intención institucional.</li>
+              <li data-i18n="formacion.prog1Li9">Señales combinadas DIX + GEX para swing.</li>
             </ul>
           </div>
           <div class="cta-wrap">
-            <a href="contacto.html" class="btn btn-primary">Acceder gratis</a>
+            <a href="contacto.html" class="btn btn-primary" data-i18n="formacion.prog1Cta">Acceder gratis</a>
           </div>
         </div>
       </div>
@@ -3443,17 +3438,17 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="section">
       <div class="container">
         <div class="program-card">
-          <h3>Manual de Opciones — Glosario Esencial</h3>
-          <p class="subtitle">Conceptos base explicados con ejemplos y visualización en gráfico de riesgo: call, put, strike, vencimiento, OPEX, derecho, obligación y combinaciones básicas.</p>
+          <h3 data-i18n="formacion.prog2Title">Manual de Opciones — Glosario Esencial</h3>
+          <p class="subtitle" data-i18n="formacion.prog2Sub">Conceptos base explicados con ejemplos y visualización en gráfico de riesgo: call, put, strike, vencimiento, OPEX, derecho, obligación y combinaciones básicas.</p>
           <ul class="two-col-list">
-            <li>Qué es una opción: derecho vs. obligación.</li>
-            <li>Diferencia entre Call y Put.</li>
-            <li>Cómo se define un strike y su relevancia en la estructura del mercado.</li>
-            <li>Qué implica el vencimiento y cómo afecta el valor temporal (Theta).</li>
-            <li>Cómo graficar una Call, una Put y combinaciones básicas en el gráfico de riesgo.</li>
+            <li data-i18n="formacion.prog2Li1">Qué es una opción: derecho vs. obligación.</li>
+            <li data-i18n="formacion.prog2Li2">Diferencia entre Call y Put.</li>
+            <li data-i18n="formacion.prog2Li3">Cómo se define un strike y su relevancia en la estructura del mercado.</li>
+            <li data-i18n="formacion.prog2Li4">Qué implica el vencimiento y cómo afecta el valor temporal (Theta).</li>
+            <li data-i18n="formacion.prog2Li5">Cómo graficar una Call, una Put y combinaciones básicas en el gráfico de riesgo.</li>
           </ul>
           <div class="cta-wrap">
-            <a href="contacto.html" class="btn btn-primary">Acceder gratis</a>
+            <a href="contacto.html" class="btn btn-primary" data-i18n="formacion.prog2Cta">Acceder gratis</a>
           </div>
         </div>
       </div>
@@ -3463,30 +3458,30 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="section" style="background: var(--bg-secondary);">
       <div class="container">
         <div class="program-card">
-          <h3>Entrenamiento en Lectura Institucional y Dinámica del Flujo</h3>
-          <p class="subtitle">Flow Dynamics: Market Mechanics & Exposure Protocol Program</p>
-          <p class="subtitle" style="margin-bottom: 1.25rem;">Programa de 18 módulos para leer el mercado con lógica institucional y ventaja estructural.</p>
+          <h3 data-i18n="formacion.prog3Title">Entrenamiento en Lectura Institucional y Dinámica del Flujo</h3>
+          <p class="subtitle" data-i18n="formacion.prog3Sub1">Flow Dynamics: Market Mechanics & Exposure Protocol Program</p>
+          <p class="subtitle" style="margin-bottom: 1.25rem;" data-i18n="formacion.prog3Sub2">Programa de 18 módulos para leer el mercado con lógica institucional y ventaja estructural.</p>
           <ul class="two-col-list">
-            <li>Comprenderás por qué las opciones dominan la estructura de precios actual ("la cola mueve al perro").</li>
-            <li>Aprenderás cómo y cuándo los market makers cubren posiciones (no siempre delta-neutral).</li>
-            <li>Identificarás cuándo el mercado está controlado por dealers o dominado por el flujo especulativo.</li>
-            <li>Te alinearás con la fuerza que impulsa al mercado, no con la multitud que la persigue.</li>
-            <li>Dimensionarás el tiempo como variable: sabrás cuándo operar, cuándo observar y cuándo dejar que el mercado respire.</li>
-            <li>Aplicarás 7 setups nacidos del comportamiento institucional, cada uno calibrado para convertir los movimientos en oportunidades medibles con precisión matemática.</li>
-            <li>Comprenderás el poder oculto de las exposures de segundo y tercer orden, ese lenguaje que sólo domina quien ve más allá del delta y la gamma.</li>
-            <li>Dominarás la lógica de los flujos institucionales, anticipando rebalanceos y posicionándote por delante.</li>
-            <li>Combinarás exposures para crear ventajas tácticas cuantificables.</li>
-            <li>Podrás anticipar los movimientos leyendo la cobertura de los dealers, no el gráfico.</li>
-            <li>Tendrás una metodología cuantitativa aplicable a cualquier activo, marco temporal o estilo operativo.</li>
-            <li>Habrás desarrollado una mente estructurada, capaz de analizar sin sesgo y responder con precisión ante cualquier entorno de mercado.</li>
-            <li>Dominarás la lógica interna del mercado moderno: sabrás identificar cuándo la estructura favorece la estabilidad y cuándo anticipa un cambio de régimen.</li>
-            <li>Tu operativa será consistente y tranquila: sin impulsos, sin persecuciones, con una claridad que nace de comprender los flujos, no de adivinar el precio.</li>
-            <li>Convertirás la incertidumbre en un dato más dentro de tu análisis, no en una fuente de ansiedad.</li>
-            <li>Sabrás cuándo intervenir, cuándo esperar y cuándo dejar que el mercado haga su trabajo—porque operar también es saber no operar.</li>
-            <li>Al final del proceso, no solo entenderás cómo se mueve el mercado: pensarás como quien realmente lo mueve.</li>
+            <li data-i18n="formacion.prog3Li1">Comprenderás por qué las opciones dominan la estructura de precios actual ("la cola mueve al perro").</li>
+            <li data-i18n="formacion.prog3Li2">Aprenderás cómo y cuándo los market makers cubren posiciones (no siempre delta-neutral).</li>
+            <li data-i18n="formacion.prog3Li3">Identificarás cuándo el mercado está controlado por dealers o dominado por el flujo especulativo.</li>
+            <li data-i18n="formacion.prog3Li4">Te alinearás con la fuerza que impulsa al mercado, no con la multitud que la persigue.</li>
+            <li data-i18n="formacion.prog3Li5">Dimensionarás el tiempo como variable: sabrás cuándo operar, cuándo observar y cuándo dejar que el mercado respire.</li>
+            <li data-i18n="formacion.prog3Li6">Aplicarás 7 setups nacidos del comportamiento institucional, cada uno calibrado para convertir los movimientos en oportunidades medibles con precisión matemática.</li>
+            <li data-i18n="formacion.prog3Li7">Comprenderás el poder oculto de las exposures de segundo y tercer orden, ese lenguaje que sólo domina quien ve más allá del delta y la gamma.</li>
+            <li data-i18n="formacion.prog3Li8">Dominarás la lógica de los flujos institucionales, anticipando rebalanceos y posicionándote por delante.</li>
+            <li data-i18n="formacion.prog3Li9">Combinarás exposures para crear ventajas tácticas cuantificables.</li>
+            <li data-i18n="formacion.prog3Li10">Podrás anticipar los movimientos leyendo la cobertura de los dealers, no el gráfico.</li>
+            <li data-i18n="formacion.prog3Li11">Tendrás una metodología cuantitativa aplicable a cualquier activo, marco temporal o estilo operativo.</li>
+            <li data-i18n="formacion.prog3Li12">Habrás desarrollado una mente estructurada, capaz de analizar sin sesgo y responder con precisión ante cualquier entorno de mercado.</li>
+            <li data-i18n="formacion.prog3Li13">Dominarás la lógica interna del mercado moderno: sabrás identificar cuándo la estructura favorece la estabilidad y cuándo anticipa un cambio de régimen.</li>
+            <li data-i18n="formacion.prog3Li14">Tu operativa será consistente y tranquila: sin impulsos, sin persecuciones, con una claridad que nace de comprender los flujos, no de adivinar el precio.</li>
+            <li data-i18n="formacion.prog3Li15">Convertirás la incertidumbre en un dato más dentro de tu análisis, no en una fuente de ansiedad.</li>
+            <li data-i18n="formacion.prog3Li16">Sabrás cuándo intervenir, cuándo esperar y cuándo dejar que el mercado haga su trabajo—porque operar también es saber no operar.</li>
+            <li data-i18n="formacion.prog3Li17">Al final del proceso, no solo entenderás cómo se mueve el mercado: pensarás como quien realmente lo mueve.</li>
           </ul>
           <div class="cta-wrap">
-            <a href="contacto.html" class="btn btn-primary">Inscribirme — 4000 €</a>
+            <a href="contacto.html" class="btn btn-primary" data-i18n="formacion.prog3Cta">Inscribirme — 4000 €</a>
           </div>
         </div>
       </div>
@@ -3496,29 +3491,28 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="section">
       <div class="container">
         <div class="program-card">
-          <!-- <h3>CONOCIMIENTO ASIMETRICO CON OPCIONES FINANCIERAS</h3> -->
-          <h3>Formación en Opciones Financieras — De Cero a Experto</h3>
-          <p class="subtitle">Programa técnico completo que te lleva desde los fundamentos hasta el dominio de la estructura moderna del mercado.</p>
+          <h3 data-i18n="formacion.prog4Title">Formación en Opciones Financieras — De Cero a Experto</h3>
+          <p class="subtitle" data-i18n="formacion.prog4Sub">Programa técnico completo que te lleva desde los fundamentos hasta el dominio de la estructura moderna del mercado.</p>
           <ul class="two-col-list">
-            <li>ADN de las opciones: qué mueven, respuesta al precio, tiempo y volatilidad.</li>
-            <li>Griegas (Delta, Gamma, Vega, Theta, Rho) e interacción práctica.</li>
-            <li>Formación y ajuste del precio de la opción, incluso sin fórmulas.</li>
-            <li>Posiciones direccionales, neutrales y de cobertura con precisión.</li>
-            <li>Sintéticos (replicar acciones o futuros con calls/puts).</li>
-            <li>Estructuras: Iron Condors, Butterflies, S traddles, Strangles, Back Ratios.</li>
-            <li>Selección de strikes y vencimientos según volatilidad y probabilidad implícita.</li>
-            <li>Gestión dinámica del riesgo conforme cambian las griegas.</li>
-            <li>Cuándo no operar: detectar entornos sin edge.</li>
-            <li>Metodología cuantitativa para convertir datos de opciones en contexto.</li>
-            <li>Visión estructural del riesgo.</li>
-            <li>Expectativa clara por posición y respuesta al cambio de volatilidad o tiempo.</li>
-            <li>Confianza real: sabrás por qué ganas, por qué pierdes y cómo ajustar.</li>
-            <li>Control del riesgo sin depender de la dirección del mercado.</li>
-            <li>Marco medible, replicable y cuantificable.</li>
-            <li>Operarás como un profesional, no como un groupie de los mercados.</li>
+            <li data-i18n="formacion.prog4Li1">ADN de las opciones: qué mueven, respuesta al precio, tiempo y volatilidad.</li>
+            <li data-i18n="formacion.prog4Li2">Griegas (Delta, Gamma, Vega, Theta, Rho) e interacción práctica.</li>
+            <li data-i18n="formacion.prog4Li3">Formación y ajuste del precio de la opción, incluso sin fórmulas.</li>
+            <li data-i18n="formacion.prog4Li4">Posiciones direccionales, neutrales y de cobertura con precisión.</li>
+            <li data-i18n="formacion.prog4Li5">Sintéticos (replicar acciones o futuros con calls/puts).</li>
+            <li data-i18n="formacion.prog4Li6">Estructuras: Iron Condors, Butterflies, Straddles, Strangles, Back Ratios.</li>
+            <li data-i18n="formacion.prog4Li7">Selección de strikes y vencimientos según volatilidad y probabilidad implícita.</li>
+            <li data-i18n="formacion.prog4Li8">Gestión dinámica del riesgo conforme cambian las griegas.</li>
+            <li data-i18n="formacion.prog4Li9">Cuándo no operar: detectar entornos sin edge.</li>
+            <li data-i18n="formacion.prog4Li10">Metodología cuantitativa para convertir datos de opciones en contexto.</li>
+            <li data-i18n="formacion.prog4Li11">Visión estructural del riesgo.</li>
+            <li data-i18n="formacion.prog4Li12">Expectativa clara por posición y respuesta al cambio de volatilidad o tiempo.</li>
+            <li data-i18n="formacion.prog4Li13">Confianza real: sabrás por qué ganas, por qué pierdes y cómo ajustar.</li>
+            <li data-i18n="formacion.prog4Li14">Control del riesgo sin depender de la dirección del mercado.</li>
+            <li data-i18n="formacion.prog4Li15">Marco medible, replicable y cuantificable.</li>
+            <li data-i18n="formacion.prog4Li16">Operarás como un profesional, no como un groupie de los mercados.</li>
           </ul>
           <div class="cta-wrap">
-            <a href="contacto.html" class="btn btn-primary">Inscribirme — 1500 €</a>
+            <a href="contacto.html" class="btn btn-primary" data-i18n="formacion.prog4Cta">Inscribirme — 1500 €</a>
           </div>
         </div>
       </div>
@@ -3527,7 +3521,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <!-- Convocatorias -->
     <section class="section convocatorias-section" style="background: var(--bg-secondary);">
       <div class="container">
-        <h3>Convocatorias</h3>
+        <h3 data-i18n="formacion.convocatoriasTitle">Convocatorias</h3>
         <p class="intro" data-i18n="convocatorias.intro">6 convocatorias anuales, con 2 meses de duración cada una y 3 sesiones semanales de 1 hora.</p>
         <div class="timeline-bar">
           <span class="timeline-dot"></span>
@@ -3538,14 +3532,14 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
           <span class="timeline-dot"></span>
         </div>
         <div class="timeline-labels">
-          <span>ENE</span>
-          <span>MAR</span>
-          <span>MAY</span>
-          <span>JUL</span>
-          <span>SEP</span>
-          <span>NOV</span>
+          <span data-i18n="convocatorias.ene">ENE</span>
+          <span data-i18n="convocatorias.mar">MAR</span>
+          <span data-i18n="convocatorias.may">MAY</span>
+          <span data-i18n="convocatorias.jul">JUL</span>
+          <span data-i18n="convocatorias.sep">SEP</span>
+          <span data-i18n="convocatorias.nov">NOV</span>
         </div>
-        <p class="text-center mt-2" style="color: var(--text-secondary); font-size: 0.95rem;">Elige la convocatoria que mejor se adapte a tu calendario. <a href="contacto.html" style="color: var(--accent-blue);">Solicitar plaza</a>.</p>
+        <p class="text-center mt-2" style="color: var(--text-secondary); font-size: 0.95rem;"><span data-i18n="formacion.convocatoriasHint">Elige la convocatoria que mejor se adapte a tu calendario.</span> <a href="contacto.html" style="color: var(--accent-blue);" data-i18n="formacion.requestLink">Solicitar plaza</a>.</p>
       </div>
     </section>
   </main>
@@ -3553,22 +3547,22 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   <footer class="site-footer">
     <div class="footer-grid">
       <div>
-        <a href="formacion.html">Formación</a>
-        <a href="trading-room.html">Trading Room</a>
-        <a href="recursos.html">Recursos</a>
+        <a href="formacion.html" data-i18n="footer.formacion">Formación</a>
+        <a href="trading-room.html" data-i18n="footer.tradingRoom">Trading Room</a>
+        <a href="recursos.html" data-i18n="footer.recursos">Recursos</a>
       </div>
       <div>
-        <a href="volatilidad.html">Volatilidad</a>
-        <a href="software-bots.html">Software / Bots</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="volatilidad.html" data-i18n="footer.volatilidad">Volatilidad</a>
+        <a href="software-bots.html" data-i18n="footer.software">Software / Bots</a>
+        <a href="contacto.html" data-i18n="footer.contacto">Contacto</a>
       </div>
       <div>
-        <a href="legal/terminos.html">Términos y condiciones</a>
-        <a href="legal/cookies.html">Política de cookies</a>
-        <a href="legal/aviso.html">Aviso legal / Financial advisor</a>
+        <a href="legal/terminos.html" data-i18n="footer.terms">Términos y condiciones</a>
+        <a href="legal/cookies.html" data-i18n="footer.cookies">Política de cookies</a>
+        <a href="legal/aviso.html" data-i18n="footer.advisor">Aviso legal / Financial advisor</a>
       </div>
     </div>
-    <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
+    <div class="footer-bottom" data-i18n="footer.copyright">© GEXZONE. Todos los derechos reservados.</div>
   </footer>
 
   <script>
@@ -3594,7 +3588,8 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     localStorage.setItem(STORAGE_THEME, theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-label', theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      var t = (i18n[getLang()] || i18n.es).aria;
+      btn.setAttribute('aria-label', theme === 'night' ? (t && t.themeToggle) || 'Cambiar a modo claro' : (t && t.themeToggleDark) || 'Cambiar a modo oscuro');
       var icon = btn.querySelector('.theme-toggle-icon');
       if (icon) icon.textContent = theme === 'night' ? '\u263C' : '\uD83C\uDF19';
     }
@@ -3616,22 +3611,26 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   const i18n = {
     es: {
       nav: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto' },
-      footer: { terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      footer: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto', terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      aria: { openMenu: 'Abrir menú', themeToggle: 'Cambiar a modo claro', themeToggleDark: 'Cambiar a modo oscuro' },
+      formacion: { pageTitle: 'Formación — GEXZONE', heroTitle: 'Formación', heroSub: 'Programas técnicos para leer el mercado con lógica institucional y ventaja estructural.', introTitle: 'Acompañamiento Profesional, no solo contenido.', introSub: 'Aquí, el contenido es el punto de partida, pero el valor real está en el mentor:', intro1: 'Mentoring Directo: Olvídate de hablar con un bot o esperar semanas a que alguien responda un ticket. Tienes a un profesional experto a tu lado para validar tus pasos.', intro2: 'Feedback en Tiempo Real: No se trata de ver cómo otros operan, sino de que tú lo hagas bien. Corregimos tus errores antes de que te cuesten dinero en el mercado.', intro3: 'Sin "Letra Pequeña" de Abandono: La mayoría de los cursos grabados tienen una tasa de abandono del 90%. Nosotros estamos encima de tu progreso porque nuestro objetivo es que domines el sistema, no que solo lo compres.', convocatoriasHint: 'Elige la convocatoria que mejor se adapte a tu calendario.', requestLink: 'Solicitar plaza', convocatoriasTitle: 'Convocatorias', prog1Title: 'BEYOND THE FLOW', prog1Sub: 'Formación gratuita para entender el mercado moderno desde sus flujos invisibles.', prog1Li1: 'Evolución del volumen de opciones y su impacto en el precio: por qué hoy la cola mueve al perro.', prog1Li2: 'ODTE y vencimientos semanales: cómo multiplican el efecto inmediato sobre el spot.', prog1Li3: 'Qué hacen realmente los Market Makers: provisión de liquidez, delta hedging y retroalimentaciones mecánicas.', prog1Li4: 'Fundamentos de Gamma Exposure (GEX).', prog1Li5: 'Pinning y niveles dominantes: regla 5/10, muros de gamma y lectura básica de rangos.', prog1Li6: 'Escenarios prácticos: un strike dominante vs. múltiples strikes y cómo se operan sus extremos.', prog1Li7: 'Dark Pools: qué son, por qué importan y cómo leer prints y MPIDs relevantes (SPY/QQQ).', prog1Li8: 'Prints tardíos: cuándo un rastro invisible anticipa intención institucional.', prog1Li9: 'Señales combinadas DIX + GEX para swing.', prog1Cta: 'Acceder gratis', prog2Title: 'Manual de Opciones — Glosario Esencial', prog2Sub: 'Conceptos base explicados con ejemplos y visualización en gráfico de riesgo: call, put, strike, vencimiento, OPEX, derecho, obligación y combinaciones básicas.', prog2Li1: 'Qué es una opción: derecho vs. obligación.', prog2Li2: 'Diferencia entre Call y Put.', prog2Li3: 'Cómo se define un strike y su relevancia en la estructura del mercado.', prog2Li4: 'Qué implica el vencimiento y cómo afecta el valor temporal (Theta).', prog2Li5: 'Cómo graficar una Call, una Put y combinaciones básicas en el gráfico de riesgo.', prog2Cta: 'Acceder gratis', prog3Title: 'Entrenamiento en Lectura Institucional y Dinámica del Flujo', prog3Sub1: 'Flow Dynamics: Market Mechanics & Exposure Protocol Program', prog3Sub2: 'Programa de 18 módulos para leer el mercado con lógica institucional y ventaja estructural.', prog3Li1: 'Comprenderás por qué las opciones dominan la estructura de precios actual ("la cola mueve al perro").', prog3Li2: 'Aprenderás cómo y cuándo los market makers cubren posiciones (no siempre delta-neutral).', prog3Li3: 'Identificarás cuándo el mercado está controlado por dealers o dominado por el flujo especulativo.', prog3Li4: 'Te alinearás con la fuerza que impulsa al mercado, no con la multitud que la persigue.', prog3Li5: 'Dimensionarás el tiempo como variable: sabrás cuándo operar, cuándo observar y cuándo dejar que el mercado respire.', prog3Li6: 'Aplicarás 7 setups nacidos del comportamiento institucional, cada uno calibrado para convertir los movimientos en oportunidades medibles con precisión matemática.', prog3Li7: 'Comprenderás el poder oculto de las exposures de segundo y tercer orden, ese lenguaje que sólo domina quien ve más allá del delta y la gamma.', prog3Li8: 'Dominarás la lógica de los flujos institucionales, anticipando rebalanceos y posicionándote por delante.', prog3Li9: 'Combinarás exposures para crear ventajas tácticas cuantificables.', prog3Li10: 'Podrás anticipar los movimientos leyendo la cobertura de los dealers, no el gráfico.', prog3Li11: 'Tendrás una metodología cuantitativa aplicable a cualquier activo, marco temporal o estilo operativo.', prog3Li12: 'Habrás desarrollado una mente estructurada, capaz de analizar sin sesgo y responder con precisión ante cualquier entorno de mercado.', prog3Li13: 'Dominarás la lógica interna del mercado moderno: sabrás identificar cuándo la estructura favorece la estabilidad y cuándo anticipa un cambio de régimen.', prog3Li14: 'Tu operativa será consistente y tranquila: sin impulsos, sin persecuciones, con una claridad que nace de comprender los flujos, no de adivinar el precio.', prog3Li15: 'Convertirás la incertidumbre en un dato más dentro de tu análisis, no en una fuente de ansiedad.', prog3Li16: 'Sabrás cuándo intervenir, cuándo esperar y cuándo dejar que el mercado haga su trabajo—porque operar también es saber no operar.', prog3Li17: 'Al final del proceso, no solo entenderás cómo se mueve el mercado: pensarás como quien realmente lo mueve.', prog3Cta: 'Inscribirme — 4000 €', prog4Title: 'Formación en Opciones Financieras — De Cero a Experto', prog4Sub: 'Programa técnico completo que te lleva desde los fundamentos hasta el dominio de la estructura moderna del mercado.', prog4Li1: 'ADN de las opciones: qué mueven, respuesta al precio, tiempo y volatilidad.', prog4Li2: 'Griegas (Delta, Gamma, Vega, Theta, Rho) e interacción práctica.', prog4Li3: 'Formación y ajuste del precio de la opción, incluso sin fórmulas.', prog4Li4: 'Posiciones direccionales, neutrales y de cobertura con precisión.', prog4Li5: 'Sintéticos (replicar acciones o futuros con calls/puts).', prog4Li6: 'Estructuras: Iron Condors, Butterflies, Straddles, Strangles, Back Ratios.', prog4Li7: 'Selección de strikes y vencimientos según volatilidad y probabilidad implícita.', prog4Li8: 'Gestión dinámica del riesgo conforme cambian las griegas.', prog4Li9: 'Cuándo no operar: detectar entornos sin edge.', prog4Li10: 'Metodología cuantitativa para convertir datos de opciones en contexto.', prog4Li11: 'Visión estructural del riesgo.', prog4Li12: 'Expectativa clara por posición y respuesta al cambio de volatilidad o tiempo.', prog4Li13: 'Confianza real: sabrás por qué ganas, por qué pierdes y cómo ajustar.', prog4Li14: 'Control del riesgo sin depender de la dirección del mercado.', prog4Li15: 'Marco medible, replicable y cuantificable.', prog4Li16: 'Operarás como un profesional, no como un groupie de los mercados.', prog4Cta: 'Inscribirme — 1500 €' },
+      convocatorias: { intro: '6 convocatorias anuales, con 2 meses de duración cada una y 3 sesiones semanales de 1 hora.', ene: 'ENE', mar: 'MAR', may: 'MAY', jul: 'JUL', sep: 'SEP', nov: 'NOV' },
       contact: { title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto institucional', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
       chatbot: { title: 'Chat GEXZONE', placeholder: 'Escribe tu mensaje...', send: 'Enviar', greeting: 'Hola. Soy el asistente de GEXZONE. Puedo responder preguntas frecuentes sobre formación y Trading Room. Para temas detallados, te recomendamos usar el formulario de contacto o agendar una llamada.' },
       testimonials: { title: 'Testimonios' },
       comingSoon: { badge: 'PRÓXIMAMENTE', title: 'Herramientas y bots en desarrollo', text: 'Estamos preparando soluciones que se integrarán con tu operativa. Muy pronto.' },
-      convocatorias: { intro: '6 convocatorias anuales, con 2 meses de duración cada una y 3 sesiones semanales de 1 hora.' },
       recursos: { placeholder: 'Próximamente más recursos gratuitos: enlaces, guías y herramientas.' }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
-      footer: { terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      footer: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل', terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      aria: { openMenu: 'فتح القائمة', themeToggle: 'التبديل إلى الوضع الفاتح', themeToggleDark: 'التبديل إلى الوضع الداكن' },
+      formacion: { pageTitle: 'التدريب — GEXZONE', heroTitle: 'التدريب', heroSub: 'برامج تقنية لقراءة السوق بمنطق مؤسسي وميزة هيكلية.', introTitle: 'مرافقة احترافية، وليس محتوى فقط.', introSub: 'هنا المحتوى هو نقطة الانطلاق، لكن القيمة الحقيقية في المرشد:', intro1: 'إرشاد مباشر: انس التحدث مع بوت أو انتظار أسابيع لرد أحدهم على تذكرة. لديك محترف خبير إلى جانبك للتحقق من خطواتك.', intro2: 'ملاحظات في الوقت الفعلي: لا يتعلق الأمر بمشاهدة كيف يتداول الآخرون، بل بأن تفعل أنت ذلك بشكل صحيح. نصحح أخطاءك قبل أن تكلفك مالاً في السوق.', intro3: 'بدون "حروف صغيرة" للتخلي: معظم الدورات المسجلة لها معدل تسرب 90%. نحن نتابع تقدمك لأن هدفنا أن تتقن النظام، وليس أن تشتريه فقط.', convocatoriasHint: 'اختر الدورة التي تناسب جدولك.', requestLink: 'طلب مقعد', convocatoriasTitle: 'الدورات', prog1Title: 'بيوند ذا فلو', prog1Sub: 'تدريب مجاني لفهم السوق الحديث من تدفقاته الخفية.', prog1Li1: 'تطور حجم الخيارات وتأثيره على السعر: لماذا الذيل يحرك الكلب اليوم.', prog1Li2: 'ODTE وخصومات أسبوعية: كيف تضاعف التأثير المباشر على السعر الفوري.', prog1Li3: 'ما يفعله صناع السوق حقاً: توفير السيولة، التحوط الدلتا والتغذية الميكانيكية.', prog1Li4: 'أساسيات التعرض للغاما (GEX).', prog1Li5: 'التثبيت والمستويات المهيمنة: قاعدة 5/10، جدران الغاما وقراءة أساسية للنطاقات.', prog1Li6: 'سيناريوهات عملية: سترايك مهيمن مقابل سترايكات متعددة وكيفية تداول النقاط الطرفية.', prog1Li7: 'الدارك بول: ما هي، لماذا مهمة وكيفية قراءة الطباعات وMPIDs (SPY/QQQ).', prog1Li8: 'الطباعات المتأخرة: متى يسبق أثر خفي النية المؤسسية.', prog1Li9: 'إشارات DIX + GEX مجمعة للسوينغ.', prog1Cta: 'الوصول مجاناً', prog2Title: 'دليل الخيارات — مسرد أساسي', prog2Sub: 'مفاهيم أساسية مع أمثلة وتمثيل بياني للمخاطر: call، put، strike، الاستحقاق، OPEX، الحق، الالتزام والتركيبات الأساسية.', prog2Li1: 'ما هي الخيار: الحق مقابل الالتزام.', prog2Li2: 'الفرق بين Call و Put.', prog2Li3: 'كيف يُحدد السترايك ودوره في بنية السوق.', prog2Li4: 'ما يعنيه الاستحقاق وتأثيره على القيمة الزمنية (ثيتا).', prog2Li5: 'كيفية رسم Call و Put وتركيبات أساسية على رسم المخاطر.', prog2Cta: 'الوصول مجاناً', prog3Title: 'تدريب قراءة المؤسسات وديناميكا التدفق', prog3Sub1: 'Flow Dynamics: برنامج ميكانيكا السوق وبروتوكول التعرض', prog3Sub2: 'برنامج 18 وحدة لقراءة السوق بمنطق مؤسسي وميزة هيكلية.', prog3Li1: 'ستفهم لماذا تهيمن الخيارات على بنية الأسعار الحالية («الذيل يحرك الكلب»).', prog3Li2: 'ستتعلم كيف ومتى يحوط صناع السوق (ليس دائماً محايد دلتا).', prog3Li3: 'ستحدد متى يكون السوق تحت سيطرة الـ dealers أو التدفق المضاربي.', prog3Li4: 'ستنسجم مع القوة التي تحرك السوق، وليس الحشود التي تلاحقها.', prog3Li5: 'ستعطي الزمن بُعداً كمتغير: ستعرف متى تتداول، متى تراقب ومتى تترك السوق يتنفس.', prog3Li6: 'ستطبق 7 setups نابعة من السلوك المؤسسي، كل منها معاير لتحويل الحركات إلى فرص قابلة للقياس بدقة رياضية.', prog3Li7: 'ستفهم القوة الخفية لتعرضات الرتبة الثانية والثالثة، تلك اللغة التي يتقنها فقط من يرى ما وراء الدلتا والغاما.', prog3Li8: 'ستتقن منطق التدفقات المؤسسية، متوقعاً إعادة التوازن ووضع نفسك في المقدمة.', prog3Li9: 'ستجمع التعرضات لإنشاء مزايا تكتيكية قابلة للقياس.', prog3Li10: 'ستستطيع توقع الحركات بقراءة تحوط الـ dealers، وليس الرسم البياني.', prog3Li11: 'ستحصل على منهجية كمية قابلة للتطبيق على أي أصل أو إطار زمني أو أسلوب تداول.', prog3Li12: 'ستكون قد طورت عقلاً منظماً، قادراً على التحليل بدون تحيز والاستجابة بدقة لأي بيئة سوق.', prog3Li13: 'ستتقن المنطق الداخلي للسوق الحديث: ستعرف متى تعزز البنية الاستقرار ومتى تتوقع تغيير النظام.', prog3Li14: 'ستكون عمليتك متسقة وهادئة: بدون اندفاع، بدون مطاردة، بوضوح نابع من فهم التدفقات وليس تخمين السعر.', prog3Li15: 'ستحول عدم اليقين إلى بيانات إضافية في تحليلك، وليس مصدر قلق.', prog3Li16: 'ستعرف متى تتدخل، متى تنتظر ومتى تترك السوق يعمل—لأن التداول أيضاً هو معرفة عدم التداول.', prog3Li17: 'في نهاية العملية، لن تفهم فقط كيف يتحرك السوق: ستفكر كمن يحركه حقاً.', prog3Cta: 'التسجيل — 4000 €', prog4Title: 'تدريب الخيارات المالية — من الصفر إلى الخبير', prog4Sub: 'برنامج تقني كامل من الأساسيات إلى إتقان بنية السوق الحديثة.', prog4Li1: 'الحمض النووي للخيارات: ما يحركها، الاستجابة للسعر، الزمن والتقلب.', prog4Li2: 'الإغريق (دلتا، غاما، فيغا، ثيتا، رو) والتفاعل العملي.', prog4Li3: 'تشكيل وسعر الخيار وتعديله، حتى بدون صيغ.', prog4Li4: 'مراكز اتجاهية ومحايدة وتحوطية بدقة.', prog4Li5: 'المركبات (محاكاة الأسهم أو العقود الآجلة بـ calls/puts).', prog4Li6: 'هياكل: Iron Condors، Butterflies، Straddles، Strangles، Back Ratios.', prog4Li7: 'اختيار السترايكات والاستحقاقات حسب التقلب والاحتمال الضمني.', prog4Li8: 'إدارة ديناميكية للمخاطر مع تغير الإغريق.', prog4Li9: 'متى لا تتداول: كشف بيئات بدون edge.', prog4Li10: 'منهجية كمية لتحويل بيانات الخيارات إلى سياق.', prog4Li11: 'رؤية هيكلية للمخاطر.', prog4Li12: 'توقع واضح لكل مركز والاستجابة لتغير التقلب أو الزمن.', prog4Li13: 'ثقة حقيقية: ستعرف لماذا تربح، لماذا تخسر وكيف تضبط.', prog4Li14: 'التحكم بالمخاطر دون الاعتماد على اتجاه السوق.', prog4Li15: 'إطار قابل للقياس والتكرار والكم.', prog4Li16: 'ستتداول كمحترف، وليس كـ groupie للسوق.', prog4Cta: 'التسجيل — 1500 €' },
+      convocatorias: { intro: '6 دورات سنوية، مدة كل منها شهران و3 جلسات أسبوعية ساعة واحدة.', ene: 'يناير', mar: 'مارس', may: 'مايو', jul: 'يوليو', sep: 'سبتمبر', nov: 'نوفمبر' },
       contact: { title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
       chatbot: { title: 'دردشة GEXZONE', placeholder: 'اكتب رسالتك...', send: 'إرسال', greeting: 'مرحباً. أنا مساعد GEXZONE. يمكنني الإجابة على الأسئلة الشائعة حول التدريب وغرفة التداول. للمواضيع المفصلة نوصي باستخدام نموذج الاتصال أو تحديد مكالمة.' },
       testimonials: { title: 'الشهادات' },
       comingSoon: { badge: 'قريباً', title: 'أدوات وبوتات قيد التطوير', text: 'نحن نعد حلولاً ستتكامل مع أسلوب عملك. قريباً.' },
-      convocatorias: { intro: '6 دورات سنوية، مدة كل منها شهران و3 جلسات أسبوعية ساعة واحدة.' },
       recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' }
     }
   };
@@ -3648,31 +3647,59 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     applyTranslations(lang);
   }
 
+  function getNested(obj, key) {
+    if (!obj || !key) return undefined;
+    const parts = key.split('.');
+    let v = obj;
+    for (let i = 0; i < parts.length; i++) v = v != null ? v[parts[i]] : undefined;
+    return v;
+  }
+
   function applyTranslations(lang) {
     const t = i18n[lang] || i18n.es;
-    function get(obj, key) {
-      const parts = key.split('.');
-      let v = obj;
-      for (let i = 0; i < parts.length; i++) v = v && v[parts[i]];
-      return v;
-    }
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n'));
+      const v = getNested(t, el.getAttribute('data-i18n'));
       if (v != null) el.textContent = v;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n-placeholder'));
+      const v = getNested(t, el.getAttribute('data-i18n-placeholder'));
       if (v != null) el.placeholder = v;
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      const v = getNested(t, el.getAttribute('data-i18n-aria'));
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+    const pageKey = document.body.getAttribute('data-i18n-page');
+    if (pageKey) {
+      const title = getNested(t, pageKey + '.pageTitle');
+      if (title) document.title = title;
+    }
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      const themeLabel = getTheme() === 'night' ? t.aria.themeToggle : t.aria.themeToggleDark;
+      if (themeLabel) themeBtn.setAttribute('aria-label', themeLabel);
+    }
   }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    const dropdownItems = document.querySelectorAll('.js_change_lang');
+    if (dropdownItems.length) {
+      dropdownItems.forEach(function (el) {
+        const code = el.getAttribute('data-url_code');
+        el.classList.toggle('active', code === getLang());
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = el.getAttribute('data-url_code');
+          setLang(lang);
+          document.querySelectorAll('.js_change_lang').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === lang);
+          });
+        });
       });
+    } else {
+      const btn = document.getElementById('lang-toggle');
+      if (btn) btn.addEventListener('click', function () { setLang(getLang() === 'es' ? 'ar' : 'es'); });
     }
   }
 

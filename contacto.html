@@ -339,34 +339,42 @@ h1, h2, h3, h4 {
 }
 
 /* Lang toggle: pill with ES / AR */
-#lang-toggle,
 .header-lang-toggle {
-  min-width: 4.5rem;
-  height: 2rem;
-  padding: 0 0.6rem;
+  display: inline-flex;
   border: 1px solid var(--border-subtle);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--bg-card);
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  cursor: pointer;
+  overflow: hidden;
+}
+
+.header-lang-toggle .dropdown-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 0.6rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-fast), background var(--transition-fast);
 }
 
-#lang-toggle:hover,
-.header-lang-toggle:hover {
+.header-lang-toggle .dropdown-item:hover {
   color: var(--text-primary);
   background: var(--accent-blue-dim);
-  border-color: var(--border-accent);
 }
 
-#lang-toggle:focus-visible,
-.header-lang-toggle:focus-visible {
+.header-lang-toggle .dropdown-item.active {
+  color: var(--accent-blue);
+  background: var(--accent-blue-dim);
+}
+
+.header-lang-toggle .dropdown-item:focus-visible {
   outline: 2px solid var(--accent-blue);
   outline-offset: 2px;
 }
@@ -3363,7 +3371,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
 </style>
 </head>
-<body>
+<body data-i18n-page="contact">
 
   <header class="site-header">
     <div class="container">
@@ -3379,7 +3387,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <span class="logo__bar"></span>
       </span>
     </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <button type="button" class="nav-toggle" id="nav-toggle" data-i18n-aria="aria.openMenu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul class="nav-main" id="nav-main">
         <li><a href="formacion.html" data-i18n="nav.formacion">Formación</a></li>
         <li><a href="trading-room.html" data-i18n="nav.tradingRoom">Trading Room</a></li>
@@ -3389,8 +3397,11 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <li><a href="contacto.html" class="active" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
-        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
+        <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
+          <a class="dropdown-item js_change_lang" role="menuitem" href="#" data-url_code="ar" title="الْعَرَبيّة"><span>الْعَرَبيّة</span></a>
+          <a class="dropdown-item js_change_lang active" role="menuitem" href="#" data-url_code="es" title="Español"><span>Español</span></a>
+        </div>
+        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" data-i18n-aria="aria.themeToggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
     </div>
   </header>
@@ -3442,14 +3453,14 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
   <footer class="site-footer">
     <div class="footer-grid">
-      <div><a href="formacion.html">Formación</a><a href="trading-room.html">Trading Room</a><a href="recursos.html">Recursos</a></div>
-      <div><a href="volatilidad.html">Volatilidad</a><a href="software-bots.html">Software / Bots</a><a href="contacto.html">Contacto</a></div>
-      <div><a href="legal/terminos.html">Términos y condiciones</a><a href="legal/cookies.html">Política de cookies</a><a href="legal/aviso.html">Aviso legal / Financial advisor</a></div>
+      <div><a href="formacion.html" data-i18n="footer.formacion">Formación</a><a href="trading-room.html" data-i18n="footer.tradingRoom">Trading Room</a><a href="recursos.html" data-i18n="footer.recursos">Recursos</a></div>
+      <div><a href="volatilidad.html" data-i18n="footer.volatilidad">Volatilidad</a><a href="software-bots.html" data-i18n="footer.software">Software / Bots</a><a href="contacto.html" data-i18n="footer.contacto">Contacto</a></div>
+      <div><a href="legal/terminos.html" data-i18n="footer.terms">Términos y condiciones</a><a href="legal/cookies.html" data-i18n="footer.cookies">Política de cookies</a><a href="legal/aviso.html" data-i18n="footer.advisor">Aviso legal / Financial advisor</a></div>
     </div>
-    <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
+    <div class="footer-bottom" data-i18n="footer.copyright">© GEXZONE. Todos los derechos reservados.</div>
   </footer>
 
-  <button type="button" class="chatbot-toggle" id="chatbot-toggle" aria-label="Abrir chat">💬</button>
+  <button type="button" class="chatbot-toggle" id="chatbot-toggle" data-i18n-aria="aria.chat" aria-label="Abrir chat">💬</button>
   <div class="chatbot-panel" id="chatbot-panel" role="dialog" aria-label="Chat">
     <div class="chatbot-header" data-i18n="chatbot.title">Chat GEXZONE</div>
     <div class="chatbot-messages" id="chatbot-messages"></div>
@@ -3482,7 +3493,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     localStorage.setItem(STORAGE_THEME, theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-label', theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      const t = i18n[getLang()] || i18n.es;
+      const label = theme === 'night' ? (t.aria && t.aria.themeToggle) : (t.aria && t.aria.themeToggleDark);
+      btn.setAttribute('aria-label', label || (theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'));
       var icon = btn.querySelector('.theme-toggle-icon');
       if (icon) icon.textContent = theme === 'night' ? '\u263C' : '\uD83C\uDF19';
     }
@@ -3504,8 +3517,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   const i18n = {
     es: {
       nav: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto' },
-      footer: { terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
-      contact: { title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
+      footer: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto', terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      aria: { openMenu: 'Abrir menú', themeToggle: 'Cambiar a modo claro', themeToggleDark: 'Cambiar a modo oscuro', lang: 'Idioma', chat: 'Abrir chat' },
+      contact: { pageTitle: 'Contacto - GEXZONE', title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
       chatbot: { title: 'Chat GEXZONE', placeholder: 'Escribe tu mensaje...', send: 'Enviar', greeting: 'Hola. Soy el asistente de GEXZONE. Puedo responder preguntas frecuentes sobre formación y Trading Room. Para temas detallados, te recomendamos usar el formulario de contacto o agendar una llamada.' },
       testimonials: { title: 'Testimonios' },
       comingSoon: { badge: 'PRÓXIMAMENTE', title: 'Herramientas y bots en desarrollo', text: 'Estamos preparando soluciones que se integrarán con tu operativa. Muy pronto.' },
@@ -3514,8 +3528,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
-      footer: { terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
-      contact: { title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
+      footer: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل', terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      aria: { openMenu: 'فتح القائمة', themeToggle: 'التبديل إلى الوضع الفاتح', themeToggleDark: 'التبديل إلى الوضع الداكن', lang: 'اللغة', chat: 'فتح الدردشة' },
+      contact: { pageTitle: 'اتصل بنا - GEXZONE', title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
       chatbot: { title: 'دردشة GEXZONE', placeholder: 'اكتب رسالتك...', send: 'إرسال', greeting: 'مرحباً. أنا مساعد GEXZONE. يمكنني الإجابة على الأسئلة الشائعة حول التدريب وغرفة التداول. للمواضيع المفصلة نوصي باستخدام نموذج الاتصال أو تحديد مكالمة.' },
       testimonials: { title: 'الشهادات' },
       comingSoon: { badge: 'قريباً', title: 'أدوات وبوتات قيد التطوير', text: 'نحن نعد حلولاً ستتكامل مع أسلوب عملك. قريباً.' },
@@ -3523,6 +3538,14 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' }
     }
   };
+
+  function getNested(obj, key) {
+    if (!obj || !key) return undefined;
+    const parts = key.split('.');
+    let v = obj;
+    for (let i = 0; i < parts.length; i++) v = v != null ? v[parts[i]] : undefined;
+    return v;
+  }
 
   function getLang() {
     return localStorage.getItem(STORAGE_LANG) || 'es';
@@ -3538,29 +3561,53 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
   function applyTranslations(lang) {
     const t = i18n[lang] || i18n.es;
-    function get(obj, key) {
-      const parts = key.split('.');
-      let v = obj;
-      for (let i = 0; i < parts.length; i++) v = v && v[parts[i]];
-      return v;
-    }
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n'));
+      const v = getNested(t, el.getAttribute('data-i18n'));
       if (v != null) el.textContent = v;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n-placeholder'));
+      const v = getNested(t, el.getAttribute('data-i18n-placeholder'));
       if (v != null) el.placeholder = v;
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      const v = getNested(t, el.getAttribute('data-i18n-aria'));
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+    const pageKey = document.body.getAttribute('data-i18n-page');
+    if (pageKey) {
+      const title = getNested(t, pageKey + '.pageTitle');
+      if (title) document.title = title;
+    }
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      const themeLabel = getTheme() === 'night' ? t.aria.themeToggle : t.aria.themeToggleDark;
+      if (themeLabel) themeBtn.setAttribute('aria-label', themeLabel);
+    }
   }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    const dropdownItems = document.querySelectorAll('.js_change_lang');
+    if (dropdownItems.length) {
+      dropdownItems.forEach(function (el) {
+        const code = el.getAttribute('data-url_code');
+        el.classList.toggle('active', code === getLang());
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = el.getAttribute('data-url_code');
+          setLang(lang);
+          document.querySelectorAll('.js_change_lang').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === lang);
+          });
+        });
       });
+    } else {
+      const btn = document.getElementById('lang-toggle');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          setLang(getLang() === 'es' ? 'ar' : 'es');
+        });
+      }
     }
   }
 

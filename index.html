@@ -339,34 +339,42 @@ h1, h2, h3, h4 {
 }
 
 /* Lang toggle: pill with ES / AR */
-#lang-toggle,
 .header-lang-toggle {
-  min-width: 4.5rem;
-  height: 2rem;
-  padding: 0 0.6rem;
+  display: inline-flex;
   border: 1px solid var(--border-subtle);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--bg-card);
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  cursor: pointer;
+  overflow: hidden;
+}
+
+.header-lang-toggle .dropdown-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 0.6rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-fast), background var(--transition-fast);
 }
 
-#lang-toggle:hover,
-.header-lang-toggle:hover {
+.header-lang-toggle .dropdown-item:hover {
   color: var(--text-primary);
   background: var(--accent-blue-dim);
-  border-color: var(--border-accent);
 }
 
-#lang-toggle:focus-visible,
-.header-lang-toggle:focus-visible {
+.header-lang-toggle .dropdown-item.active {
+  color: var(--accent-blue);
+  background: var(--accent-blue-dim);
+}
+
+.header-lang-toggle .dropdown-item:focus-visible {
   outline: 2px solid var(--accent-blue);
   outline-offset: 2px;
 }
@@ -3435,7 +3443,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
 </style>
 </head>
-<body>
+<body data-i18n-page="home">
   <!-- <a href="#main-content" class="skip-link">Ir al contenido principal</a> -->
 
   <header class="site-header">
@@ -3452,7 +3460,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
           <span class="logo__bar"></span>
         </span>
       </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+      <button type="button" class="nav-toggle" id="nav-toggle" data-i18n-aria="aria.openMenu" aria-label="Abrir menú">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-main" id="nav-main">
@@ -3464,8 +3472,11 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <li><a href="contacto.html" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
-        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
+        <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
+          <a class="dropdown-item js_change_lang" role="menuitem" href="#" data-url_code="ar" title="الْعَرَبيّة"><span>الْعَرَبيّة</span></a>
+          <a class="dropdown-item js_change_lang active" role="menuitem" href="#" data-url_code="es" title="Español"><span>Español</span></a>
+        </div>
+        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" data-i18n-aria="aria.themeToggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
     </div>
   </header>
@@ -3478,19 +3489,19 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </video>
       <div class="hero-video-bg__overlay" aria-hidden="true"></div>
       <div class="hero-content hero-video-bg__content">
-        <h1 class="hero-headline-gradient">En los mercados modernos, comprender las griegas no es opcional, es cuestión de supervivencia.</h1>
+        <h1 class="hero-headline-gradient" data-i18n="home.hero1">En los mercados modernos, comprender las griegas no es opcional, es cuestión de supervivencia.</h1>
         <div class="hero-underline"></div>
-        <p class="hero-body">Las matemáticas de las opciones dictan el precio, ni la probabilidad, ni el sentimiento lo hacen.</p>
+        <p class="hero-body" data-i18n="home.heroBody1">Las matemáticas de las opciones dictan el precio, ni la probabilidad, ni el sentimiento lo hacen.</p>
       </div>
     </section>
 
     <!-- HERO 2: Volmageddon 2018 -->
     <section class="hero hero-center section">
       <div class="hero-content">
-        <h2 class="hero-headline-gradient">Desde el Volmageddon de 2018, tu activo de confianza ya no se comporta igual.</h2>
+        <h2 class="hero-headline-gradient" data-i18n="home.hero2">Desde el Volmageddon de 2018, tu activo de confianza ya no se comporta igual.</h2>
         <div class="hero-underline"></div>
-        <p class="hero-body">Notas como si hubieran desencadenado una bestia: los niveles donde antes había reacción ya no responden, las estructuras que te daban seguridad ahora se rompen sin aviso, y lo que antes tenía sentido hoy parece una amalgama de movimientos erráticos.</p>
-        <p class="hero-body mt-1">Sabes lo que el gráfico muestra, pero no lo que esconde. El flujo institucional, las coberturas y el lenguaje de las opciones es ese mapa oculto. En GEXZONE, te enseñamos a leerlo.</p>
+        <p class="hero-body" data-i18n="home.heroBody2a">Notas como si hubieran desencadenado una bestia: los niveles donde antes había reacción ya no responden, las estructuras que te daban seguridad ahora se rompen sin aviso, y lo que antes tenía sentido hoy parece una amalgama de movimientos erráticos.</p>
+        <p class="hero-body mt-1" data-i18n="home.heroBody2b">Sabes lo que el gráfico muestra, pero no lo que esconde. El flujo institucional, las coberturas y el lenguaje de las opciones es ese mapa oculto. En GEXZONE, te enseñamos a leerlo.</p>
       </div>
     </section>
 
@@ -3498,120 +3509,120 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="analysis-inline" aria-labelledby="analysis-heading">
       <div class="container">
         <header class="analysis-hero">
-          <p class="analysis-badge">Análisis</p>
-          <h2 id="analysis-heading">¿Breakout Real o Fake Out?</h2>
-          <p>Claves para leer el flujo de opciones y distinguir movimiento real de trampas de liquidez.</p>
+          <p class="analysis-badge" data-i18n="home.analysisBadge">Análisis</p>
+          <h2 id="analysis-heading" data-i18n="home.analysisHeading">¿Breakout Real o Fake Out?</h2>
+          <p data-i18n="home.analysisSub">Claves para leer el flujo de opciones y distinguir movimiento real de trampas de liquidez.</p>
         </header>
 
         <article class="analysis-main">
-          <h3 class="analysis-section-title">Cómo interpretar el movimiento</h3>
+          <h3 class="analysis-section-title" data-i18n="home.analysisSection1">Cómo interpretar el movimiento</h3>
           <div class="analysis-steps">
             <div class="analysis-numbered-item">
               <div class="analysis-number-wrap"><span class="analysis-number">1</span></div>
               <div>
-                <div class="analysis-item-title">Flujo Agresivo de Prima de Call (Compra Front-Loaded)</div>
-                <p class="analysis-desc">Viste prima de call rápida y apilada a través de múltiples strikes <span class="analysis-highlight">mientras el precio se disparó hacia arriba</span>. Esto a menudo refleja:</p>
-                <p class="analysis-bullet">Un algoritmo persiguiendo momentum o reaccionando a noticias.</p>
-                <p class="analysis-bullet">Dealers o instituciones cubriendo deltas dinámicamente (comprando futuros/acciones mientras se compran calls).</p>
-                <p class="analysis-bullet">Traders front-running exposición gamma, especialmente si esos strikes estaban cerca de ATM o en niveles populares.</p>
+                <div class="analysis-item-title" data-i18n="home.analysisItem1Title">Flujo Agresivo de Prima de Call (Compra Front-Loaded)</div>
+                <p class="analysis-desc" data-i18n="home.analysisItem1Desc">Viste prima de call rápida y apilada a través de múltiples strikes mientras el precio se disparó hacia arriba. Esto a menudo refleja:</p>
+                <p class="analysis-bullet" data-i18n="home.analysisBullet1_1">Un algoritmo persiguiendo momentum o reaccionando a noticias.</p>
+                <p class="analysis-bullet" data-i18n="home.analysisBullet1_2">Dealers o instituciones cubriendo deltas dinámicamente (comprando futuros/acciones mientras se compran calls).</p>
+                <p class="analysis-bullet" data-i18n="home.analysisBullet1_3">Traders front-running exposición gamma, especialmente si esos strikes estaban cerca de ATM o en niveles populares.</p>
               </div>
             </div>
             <div class="analysis-numbered-item">
               <div class="analysis-number-wrap"><span class="analysis-number">2</span></div>
               <div>
-                <div class="analysis-item-title">Exposición Gamma del Dealer e Impacto de Cobertura</div>
-                <p class="analysis-desc">Si el mercado tenía gamma corta neta (los dealers habían vendido esos calls), los precios en alza los obligarían a <span class="analysis-highlight">comprar más para cubrir, acelerando el movimiento hacia arriba</span>. Eso crea el spike.</p>
+                <div class="analysis-item-title" data-i18n="home.analysisItem2Title">Exposición Gamma del Dealer e Impacto de Cobertura</div>
+                <p class="analysis-desc" data-i18n="home.analysisItem2Desc">Si el mercado tenía gamma corta neta (los dealers habían vendido esos calls), los precios en alza los obligarían a comprar más para cubrir, acelerando el movimiento hacia arriba. Eso crea el spike.</p>
               </div>
             </div>
             <div class="analysis-numbered-item">
               <div class="analysis-number-wrap"><span class="analysis-number">3</span></div>
               <div>
-                <div class="analysis-item-title">Sin Seguimiento = Barrido de Liquidez o Trampa</div>
-                <p class="analysis-desc">El hecho de que se contrajo de 5825 → 5811 significa:</p>
-                <p class="analysis-bullet">Los compradores no estaban tratando de mantener—estaban extrayendo liquidez.</p>
-                <p class="analysis-bullet">Podría haber sido una <span class="analysis-highlight">stop hunt, scalp gamma, o falso breakout</span>.</p>
-                <p class="analysis-bullet">El flujo de calls podría no haber sido convicción direccional—podría haber sido <span class="analysis-highlight">creadores de mercado o HFTs alimentando spikes de prima</span>.</p>
+                <div class="analysis-item-title" data-i18n="home.analysisItem3Title">Sin Seguimiento = Barrido de Liquidez o Trampa</div>
+                <p class="analysis-desc" data-i18n="home.analysisItem3Desc">El hecho de que se contrajo de 5825 → 5811 significa:</p>
+                <p class="analysis-bullet" data-i18n="home.analysisBullet3_1">Los compradores no estaban tratando de mantener—estaban extrayendo liquidez.</p>
+                <p class="analysis-bullet" data-i18n="home.analysisBullet3_2">Podría haber sido una stop hunt, scalp gamma, o falso breakout.</p>
+                <p class="analysis-bullet" data-i18n="home.analysisBullet3_3">El flujo de calls podría no haber sido convicción direccional—podría haber sido creadores de mercado o HFTs alimentando spikes de prima.</p>
               </div>
             </div>
           </div>
         </article>
 
         <div class="analysis-scenarios-box">
-          <h3 class="analysis-scenarios-title">Escenarios posibles</h3>
+          <h3 class="analysis-scenarios-title" data-i18n="home.analysisScenariosTitle">Escenarios posibles</h3>
           <div class="analysis-scenarios-grid">
-            <div class="analysis-scenario-item">Headline released, algos reaccionaron, pujaron el mercado.</div>
-            <div class="analysis-scenario-item">Cascada stop-loss (un barrido para activar stops y empujar hacia zonas ilíquidas).</div>
-            <div class="analysis-scenario-item">Cobertura gamma a corto plazo por dealers, luego el posicionamiento se reinició o revirtió.</div>
-            <div class="analysis-scenario-item">Longs atrapados que persiguieron calls tardíos en el spike, llevando a la reversión rápida.</div>
+            <div class="analysis-scenario-item" data-i18n="home.analysisScenario1">Headline released, algos reaccionaron, pujaron el mercado.</div>
+            <div class="analysis-scenario-item" data-i18n="home.analysisScenario2">Cascada stop-loss (un barrido para activar stops y empujar hacia zonas ilíquidas).</div>
+            <div class="analysis-scenario-item" data-i18n="home.analysisScenario3">Cobertura gamma a corto plazo por dealers, luego el posicionamiento se reinició o revirtió.</div>
+            <div class="analysis-scenario-item" data-i18n="home.analysisScenario4">Longs atrapados que persiguieron calls tardíos en el spike, llevando a la reversión rápida.</div>
           </div>
         </div>
 
         <div class="analysis-sections-grid">
           <div class="analysis-section">
-            <h3 class="analysis-section-title">Movimiento bajista y primas de put</h3>
-            <p class="analysis-desc">Probablemente estés viendo un barrido de liquidez a la baja o una liquidación impulsada por el pánico:</p>
+            <h3 class="analysis-section-title" data-i18n="home.analysisSection2Title">Movimiento bajista y primas de put</h3>
+            <p class="analysis-desc" data-i18n="home.analysisSection2Desc">Probablemente estés viendo un barrido de liquidez a la baja o una liquidación impulsada por el pánico:</p>
             <div class="analysis-scenario">
-              <div class="analysis-scenario-title">Escenario A: Gamma Larga (Dealers con Puts Largas Netas)</div>
-              <p class="analysis-bullet">Los dealers compran en la caída para cubrir (flujo de apoyo).</p>
-              <p class="analysis-bullet">Las compras masivas de puts no aceleran el movimiento hacia abajo - el mercado absorbe y <span class="analysis-highlight">puede incluso conducir a un rebote</span>.</p>
+              <div class="analysis-scenario-title" data-i18n="home.analysisScenarioA1">Escenario A: Gamma Larga (Dealers con Puts Largas Netas)</div>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletA1_1">Los dealers compran en la caída para cubrir (flujo de apoyo).</p>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletA1_2">Las compras masivas de puts no aceleran el movimiento hacia abajo - el mercado absorbe y puede incluso conducir a un rebote.</p>
             </div>
             <div class="analysis-scenario">
-              <div class="analysis-scenario-title">Escenario B: Gamma Corta (Dealers con Puts Cortas Netas)</div>
-              <p class="analysis-bullet">Los puts se compran agresivamente → los dealers <span class="analysis-highlight">deben vender futuros o acciones</span> para cubrir, empujando el precio hacia abajo más rápido.</p>
-              <p class="analysis-bullet">Primas de put grandes en strikes OTM o ATM con precio cayendo = <span class="analysis-highlight">cascada de venta forzada</span>.</p>
+              <div class="analysis-scenario-title" data-i18n="home.analysisScenarioB1">Escenario B: Gamma Corta (Dealers con Puts Cortas Netas)</div>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletB1_1">Los puts se compran agresivamente → los dealers deben vender futuros o acciones para cubrir, empujando el precio hacia abajo más rápido.</p>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletB1_2">Primas de put grandes en strikes OTM o ATM con precio cayendo = cascada de venta forzada.</p>
             </div>
             <div class="analysis-signs">
-              <div class="analysis-signs-title">Señales</div>
-              <p class="analysis-bullet">Puts near-the-money se iluminan con grandes $$.</p>
-              <p class="analysis-bullet">Precio cae rápido por strikes clave; a menudo se sobrepasa y rebota si la liquidez se agota.</p>
+              <div class="analysis-signs-title" data-i18n="home.analysisSignsTitle">Señales</div>
+              <p class="analysis-bullet" data-i18n="home.analysisSigns1">Puts near-the-money se iluminan con grandes $$.</p>
+              <p class="analysis-bullet" data-i18n="home.analysisSigns2">Precio cae rápido por strikes clave; a menudo se sobrepasa y rebota si la liquidez se agota.</p>
             </div>
           </div>
           <div class="analysis-section">
-            <h3 class="analysis-section-title">Calls y puts subiendo a la vez</h3>
-            <p class="analysis-desc">Suele <span class="analysis-highlight">no ser</span> convicción direccional, sino:</p>
+            <h3 class="analysis-section-title" data-i18n="home.analysisSection3Title">Calls y puts subiendo a la vez</h3>
+            <p class="analysis-desc" data-i18n="home.analysisSection3Desc">Suele no ser convicción direccional, sino:</p>
             <div class="analysis-scenario">
-              <div class="analysis-scenario-title">Escenario A: Cobertura o Straddle (Apuesta de volatilidad)</div>
-              <p class="analysis-bullet">Los traders juegan ambos lados—esperan un gran movimiento sin dirección definida.</p>
-              <p class="analysis-bullet">Algoritmos pujando calls y puts para capturar expansión de IV o escalado gamma.</p>
+              <div class="analysis-scenario-title" data-i18n="home.analysisScenarioA2">Escenario A: Cobertura o Straddle (Apuesta de volatilidad)</div>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletA2_1">Los traders juegan ambos lados—esperan un gran movimiento sin dirección definida.</p>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletA2_2">Algoritmos pujando calls y puts para capturar expansión de IV o escalado gamma.</p>
             </div>
             <div class="analysis-scenario">
-              <div class="analysis-scenario-title">Escenario B: Creadores de mercado / wings</div>
-              <p class="analysis-bullet">Calls y puts disparados por <span class="analysis-highlight">arbitraje de volatilidad</span> o flujos por noticias.</p>
-              <p class="analysis-bullet">Dealers ajustan deltas y gammas en ambos lados → <span class="analysis-highlight">fakeouts, whipsaws, formas en V</span>.</p>
+              <div class="analysis-scenario-title" data-i18n="home.analysisScenarioB2">Escenario B: Creadores de mercado / wings</div>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletB2_1">Calls y puts disparados por arbitraje de volatilidad o flujos por noticias.</p>
+              <p class="analysis-bullet" data-i18n="home.analysisBulletB2_2">Dealers ajustan deltas y gammas en ambos lados → fakeouts, whipsaws, formas en V.</p>
             </div>
             <div class="analysis-signs">
-              <div class="analysis-signs-title">Qué observar</div>
-              <p class="analysis-bullet">Ambos lados iluminados y <span class="analysis-highlight">precio quieto</span> → IV expandiéndose.</p>
-              <p class="analysis-bullet">Ambos iluminados y <span class="analysis-highlight">precio salta arriba/abajo</span> → flip o reset de squeeze gamma.</p>
+              <div class="analysis-signs-title" data-i18n="home.analysisObserveTitle">Qué observar</div>
+              <p class="analysis-bullet" data-i18n="home.analysisObserve1">Ambos lados iluminados y precio quieto → IV expandiéndose.</p>
+              <p class="analysis-bullet" data-i18n="home.analysisObserve2">Ambos iluminados y precio salta arriba/abajo → flip o reset de squeeze gamma.</p>
             </div>
           </div>
         </div>
 
         <div class="analysis-summary-wrap">
-          <h3 class="analysis-section-title">Resumen</h3>
+          <h3 class="analysis-section-title" data-i18n="home.analysisSummaryTitle">Resumen</h3>
           <table class="analysis-table">
             <thead>
               <tr>
-                <th>Tipo de movimiento</th>
-                <th>Flujo dominante</th>
-                <th>Resultado probable</th>
+                <th data-i18n="home.analysisTh1">Tipo de movimiento</th>
+                <th data-i18n="home.analysisTh2">Flujo dominante</th>
+                <th data-i18n="home.analysisTh3">Resultado probable</th>
               </tr>
             </thead>
             <tbody>
               <tr class="row-alcista">
-                <td>Spike alcista</td>
-                <td>Prima de Call</td>
-                <td>Persecución gamma, squeeze, trampa potencial</td>
+                <td data-i18n="home.analysisRow1Col1">Spike alcista</td>
+                <td data-i18n="home.analysisRow1Col2">Prima de Call</td>
+                <td data-i18n="home.analysisRow1Col3">Persecución gamma, squeeze, trampa potencial</td>
               </tr>
               <tr class="row-bajista">
-                <td>Spike bajista</td>
-                <td>Prima de Put</td>
-                <td>Liquidación gamma, pánico de venta, posible flush y rebote</td>
+                <td data-i18n="home.analysisRow2Col1">Spike bajista</td>
+                <td data-i18n="home.analysisRow2Col2">Prima de Put</td>
+                <td data-i18n="home.analysisRow2Col3">Liquidación gamma, pánico de venta, posible flush y rebote</td>
               </tr>
               <tr class="row-ambos">
-                <td>Ambos lados</td>
-                <td>Call + Put</td>
-                <td>Apuesta de volatilidad, whipsaws, recalibración del dealer</td>
+                <td data-i18n="home.analysisRow3Col1">Ambos lados</td>
+                <td data-i18n="home.analysisRow3Col2">Call + Put</td>
+                <td data-i18n="home.analysisRow3Col3">Apuesta de volatilidad, whipsaws, recalibración del dealer</td>
               </tr>
             </tbody>
           </table>
@@ -3622,9 +3633,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <!-- HERO 3: No reaccionamos, nos anticipamos -->
     <section class="hero hero-center section">
       <div class="hero-content">
-        <h2 class="hero-headline-gradient">En GEXZONE no reaccionamos, nos anticipamos.</h2>
+        <h2 class="hero-headline-gradient" data-i18n="home.hero3Title">En GEXZONE no reaccionamos, nos anticipamos.</h2>
         <div class="hero-underline"></div>
-        <p class="hero-body">Las griegas no mienten: cuando los niveles de las exposures alcanzan ciertos umbrales, el precio se vuelve determinista, no probabilístico. El trader que entiende esa transición deja de perseguir al mercado y empieza a operarlo con precisión. Deja de reaccionar al precio, anticípate.</p>
+        <p class="hero-body" data-i18n="home.hero3Body">Las griegas no mienten: cuando los niveles de las exposures alcanzan ciertos umbrales, el precio se vuelve determinista, no probabilístico. El trader que entiende esa transición deja de perseguir al mercado y empieza a operarlo con precisión. Deja de reaccionar al precio, anticípate.</p>
       </div>
     </section>
 
@@ -3632,137 +3643,133 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="guide-0dte" aria-labelledby="guide-0dte-heading">
       <div class="container">
         <header class="guide-hero">
-          <p class="guide-badge">Guía</p>
-          <h2 id="guide-0dte-heading">Guía definitiva para dominar las opciones 0DTE</h2>
-          <p>Convierte el aparente caos del trading intradía en oportunidades sistemáticas y rentables.</p>
+          <p class="guide-badge" data-i18n="home.guideBadge">Guía</p>
+          <h2 id="guide-0dte-heading" data-i18n="home.guideHeading">Guía definitiva para dominar las opciones 0DTE</h2>
+          <p data-i18n="home.guideSub">Convierte el aparente caos del trading intradía en oportunidades sistemáticas y rentables.</p>
         </header>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">¿Trading o casino? La verdad sobre las 0DTE</h3>
-          <p>Si alguna vez te has preguntado si operar con opciones que expiran el mismo día es equivalente a apostar en un casino, no eres el único. La naturaleza vertiginosa de estos instrumentos ha generado tanto entusiasmo como escepticismo.</p>
+          <h3 class="guide-section-title" data-i18n="home.guide1Title">¿Trading o casino? La verdad sobre las 0DTE</h3>
+          <p data-i18n="home.guide1P1">Si alguna vez te has preguntado si operar con opciones que expiran el mismo día es equivalente a apostar en un casino, no eres el único. La naturaleza vertiginosa de estos instrumentos ha generado tanto entusiasmo como escepticismo.</p>
           <div class="guide-highlight-box">
-            <p><span class="guide-key-point">Realidad fundamental:</span> Las opciones 0DTE no son intrínsecamente más arriesgadas. La diferencia radica en que magnifican exponencialmente los resultados de operar sin una metodología estructurada.</p>
+            <p data-i18n="home.guide1Highlight">Realidad fundamental: Las opciones 0DTE no son intrínsecamente más arriesgadas. La diferencia radica en que magnifican exponencialmente los resultados de operar sin una metodología estructurada.</p>
           </div>
-          <p>Piensa en un coche deportivo: no es peligroso por sí mismo, pero requiere un conductor experimentado. Lo mismo ocurre con las 0DTE.</p>
+          <p data-i18n="home.guide1P2">Piensa en un coche deportivo: no es peligroso por sí mismo, pero requiere un conductor experimentado. Lo mismo ocurre con las 0DTE.</p>
         </article>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">Entendiendo las opciones 0DTE</h3>
-          <p>Las opciones con vencimiento el mismo día (0 Days To Expiration) nacen y mueren en una sola sesión. Esta definición simple esconde una complejidad fascinante.</p>
+          <h3 class="guide-section-title" data-i18n="home.guide2Title">Entendiendo las opciones 0DTE</h3>
+          <p data-i18n="home.guide2P1">Las opciones con vencimiento el mismo día (0 Days To Expiration) nacen y mueren en una sola sesión. Esta definición simple esconde una complejidad fascinante.</p>
           <div class="guide-grid">
             <div class="guide-grid-item">
-              <h4>Horizonte temporal definido</h4>
-              <p>El desenlace se conoce al cierre del mercado, eliminando incertidumbre overnight y permitiendo una gestión del capital más precisa.</p>
+              <h4 data-i18n="home.guide2Item1Title">Horizonte temporal definido</h4>
+              <p data-i18n="home.guide2Item1P">El desenlace se conoce al cierre del mercado, eliminando incertidumbre overnight y permitiendo una gestión del capital más precisa.</p>
             </div>
             <div class="guide-grid-item">
-              <h4>Capital eficiente</h4>
-              <p>Las primas reducidas permiten controlar posiciones significativas con menor desembolso inicial.</p>
+              <h4 data-i18n="home.guide2Item2Title">Capital eficiente</h4>
+              <p data-i18n="home.guide2Item2P">Las primas reducidas permiten controlar posiciones significativas con menor desembolso inicial.</p>
             </div>
             <div class="guide-grid-item">
-              <h4>Precisión táctica</h4>
-              <p>Ideales para capitalizar eventos específicos, noticias económicas o rupturas técnicas durante la sesión.</p>
+              <h4 data-i18n="home.guide2Item3Title">Precisión táctica</h4>
+              <p data-i18n="home.guide2Item3P">Ideales para capitalizar eventos específicos, noticias económicas o rupturas técnicas durante la sesión.</p>
             </div>
           </div>
         </article>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">El SPX: el rey del trading 0DTE</h3>
-          <p>El índice S&P 500 (SPX) es el vehículo preferido por traders profesionales. Razones:</p>
+          <h3 class="guide-section-title" data-i18n="home.guide3Title">El SPX: el rey del trading 0DTE</h3>
+          <p data-i18n="home.guide3P">El índice S&P 500 (SPX) es el vehículo preferido por traders profesionales. Razones:</p>
           <ul class="guide-list">
-            <li><span class="guide-key-point">Liquidez excepcional:</span> Spreads ajustados incluso en strikes alejados.</li>
-            <li><span class="guide-key-point">Liquidación en efectivo:</span> Sin asignaciones o entregas de acciones; el beneficio se acredita directamente.</li>
-            <li><span class="guide-key-point">Ventajas fiscales:</span> En EE.UU. pueden calificar para el tratamiento 60/40.</li>
-            <li><span class="guide-key-point">Disponibilidad diaria:</span> Vencimientos todos los días hábiles.</li>
+            <li data-i18n="home.guide3Li1">Liquidez excepcional: Spreads ajustados incluso en strikes alejados.</li>
+            <li data-i18n="home.guide3Li2">Liquidación en efectivo: Sin asignaciones o entregas de acciones; el beneficio se acredita directamente.</li>
+            <li data-i18n="home.guide3Li3">Ventajas fiscales: En EE.UU. pueden calificar para el tratamiento 60/40.</li>
+            <li data-i18n="home.guide3Li4">Disponibilidad diaria: Vencimientos todos los días hábiles.</li>
           </ul>
-          <div class="guide-warning-box">
-            <strong>Importante:</strong> Las opciones sobre ETFs como SPY, QQQ e IWM son de estilo americano y pueden ejercerse anticipadamente, añadiendo complejidad.
+          <div class="guide-warning-box" data-i18n="home.guide3Warning">
+            Importante: Las opciones sobre ETFs como SPY, QQQ e IWM son de estilo americano y pueden ejercerse anticipadamente, añadiendo complejidad.
           </div>
         </article>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">Los retos únicos del trading 0DTE</h3>
-          <p>Operar con éxito en 0DTE requiere dominar desafíos que no encontrarás en otros tipos de trading:</p>
+          <h3 class="guide-section-title" data-i18n="home.guide4Title">Los retos únicos del trading 0DTE</h3>
+          <p data-i18n="home.guide4P">Operar con éxito en 0DTE requiere dominar desafíos que no encontrarás en otros tipos de trading:</p>
           <div class="guide-grid">
             <div class="guide-grid-item">
-              <h4>Gamma explosiva</h4>
-              <p>La sensibilidad al movimiento del subyacente alcanza niveles extremos; oscilaciones dramáticas en minutos.</p>
+              <h4 data-i18n="home.guide4Item1Title">Gamma explosiva</h4>
+              <p data-i18n="home.guide4Item1P">La sensibilidad al movimiento del subyacente alcanza niveles extremos; oscilaciones dramáticas en minutos.</p>
             </div>
             <div class="guide-grid-item">
-              <h4>Theta acelerada</h4>
-              <p>El valor temporal no decae linealmente; entender su comportamiento irregular es crucial para el timing.</p>
+              <h4 data-i18n="home.guide4Item2Title">Theta acelerada</h4>
+              <p data-i18n="home.guide4Item2P">El valor temporal no decae linealmente; entender su comportamiento irregular es crucial para el timing.</p>
             </div>
             <div class="guide-grid-item">
-              <h4>Cambios de régimen</h4>
-              <p>Distinguir entre días de rango y días tendenciales es fundamental; una lectura errónea puede ser devastadora.</p>
+              <h4 data-i18n="home.guide4Item3Title">Cambios de régimen</h4>
+              <p data-i18n="home.guide4Item3P">Distinguir entre días de rango y días tendenciales es fundamental; una lectura errónea puede ser devastadora.</p>
             </div>
             <div class="guide-grid-item">
-              <h4>Sentimiento volátil</h4>
-              <p>El posicionamiento del mercado crea bucles de retroalimentación que amplifican movimientos en ambas direcciones.</p>
+              <h4 data-i18n="home.guide4Item4Title">Sentimiento volátil</h4>
+              <p data-i18n="home.guide4Item4P">El posicionamiento del mercado crea bucles de retroalimentación que amplifican movimientos en ambas direcciones.</p>
             </div>
           </div>
         </article>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">Claves para el éxito en 0DTE</h3>
-          <p>Pilares fundamentales basados en la experiencia de traders exitosos y herramientas como GammaEdge:</p>
+          <h3 class="guide-section-title" data-i18n="home.guide5Title">Claves para el éxito en 0DTE</h3>
+          <p data-i18n="home.guide5P">Pilares fundamentales basados en la experiencia de traders exitosos y herramientas como GammaEdge:</p>
           <div class="guide-success-box">
-            <strong>1. Comprensión del flujo de opciones</strong>
-            <p>El posicionamiento crea niveles de soporte y resistencia dinámicos que el análisis técnico tradicional no detecta.</p>
+            <p data-i18n="home.guide5Box1">1. Comprensión del flujo de opciones. El posicionamiento crea niveles de soporte y resistencia dinámicos que el análisis técnico tradicional no detecta.</p>
           </div>
           <div class="guide-success-box">
-            <strong>2. Gestión de riesgo implacable</strong>
-            <p>Con movimientos tan rápidos, los stops mentales no funcionan. Define tu riesgo antes de entrar y usa órdenes automáticas.</p>
+            <p data-i18n="home.guide5Box2">2. Gestión de riesgo implacable. Con movimientos tan rápidos, los stops mentales no funcionan. Define tu riesgo antes de entrar y usa órdenes automáticas.</p>
           </div>
           <div class="guide-success-box">
-            <strong>3. Reconocimiento del carácter del mercado</strong>
-            <p>Identifica temprano si el día será de consolidación o tendencial; eso determina tu estrategia completa.</p>
+            <p data-i18n="home.guide5Box3">3. Reconocimiento del carácter del mercado. Identifica temprano si el día será de consolidación o tendencial; eso determina tu estrategia completa.</p>
           </div>
           <div class="guide-success-box">
-            <strong>4. Disciplina en el tamaño de posición</strong>
-            <p>La naturaleza todo-o-nada de las 0DTE requiere dimensionamiento conservador. Nunca arriesgues más del 1-2% por operación.</p>
+            <p data-i18n="home.guide5Box4">4. Disciplina en el tamaño de posición. La naturaleza todo-o-nada de las 0DTE requiere dimensionamiento conservador. Nunca arriesgues más del 1-2% por operación.</p>
           </div>
         </article>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">Estrategias probadas para 0DTE</h3>
+          <h3 class="guide-section-title" data-i18n="home.guide6Title">Estrategias probadas para 0DTE</h3>
           <div class="guide-highlight-box guide-pulse">
-            <p><strong>Estrategia #1: Venta de premium en rangos</strong><br>En días de baja volatilidad, vender spreads verticales fuera de los rangos esperados puede generar ingresos consistentes.</p>
+            <p data-i18n="home.guide6Str1">Estrategia #1: Venta de premium en rangos. En días de baja volatilidad, vender spreads verticales fuera de los rangos esperados puede generar ingresos consistentes.</p>
           </div>
           <div class="guide-highlight-box guide-pulse">
-            <p><strong>Estrategia #2: Momentum con protección</strong><br>Comprar opciones direccionales tras rupturas claras, siempre con spreads para limitar costo y riesgo máximo.</p>
+            <p data-i18n="home.guide6Str2">Estrategia #2: Momentum con protección. Comprar opciones direccionales tras rupturas claras, siempre con spreads para limitar costo y riesgo máximo.</p>
           </div>
           <div class="guide-highlight-box guide-pulse">
-            <p><strong>Estrategia #3: Reversión a la media</strong><br>Identificar extensiones extremas desde niveles clave y operar el retorno con estructuras de riesgo definido.</p>
+            <p data-i18n="home.guide6Str3">Estrategia #3: Reversión a la media. Identificar extensiones extremas desde niveles clave y operar el retorno con estructuras de riesgo definido.</p>
           </div>
         </article>
 
         <article class="guide-section">
-          <h3 class="guide-section-title">Herramientas esenciales para el trader 0DTE</h3>
-          <p>El éxito consistente requiere más que intuición. Los profesionales utilizan herramientas para:</p>
+          <h3 class="guide-section-title" data-i18n="home.guide7Title">Herramientas esenciales para el trader 0DTE</h3>
+          <p data-i18n="home.guide7P">El éxito consistente requiere más que intuición. Los profesionales utilizan herramientas para:</p>
           <ul class="guide-list">
-            <li>Monitorear el flujo de opciones en tiempo real</li>
-            <li>Identificar niveles clave basados en posicionamiento gamma</li>
-            <li>Detectar cambios en el sentimiento antes de que aparezcan en el precio</li>
-            <li>Calcular probabilidades ajustadas por el sesgo del mercado</li>
-            <li>Automatizar la gestión de riesgo con alertas personalizadas</li>
+            <li data-i18n="home.guide7Li1">Monitorear el flujo de opciones en tiempo real</li>
+            <li data-i18n="home.guide7Li2">Identificar niveles clave basados en posicionamiento gamma</li>
+            <li data-i18n="home.guide7Li3">Detectar cambios en el sentimiento antes de que aparezcan en el precio</li>
+            <li data-i18n="home.guide7Li4">Calcular probabilidades ajustadas por el sesgo del mercado</li>
+            <li data-i18n="home.guide7Li5">Automatizar la gestión de riesgo con alertas personalizadas</li>
           </ul>
         </article>
 
         <div class="guide-warnings-card">
-          <h3 class="guide-section-title">Advertencias críticas para nuevos traders</h3>
+          <h3 class="guide-section-title" data-i18n="home.guide8Title">Advertencias críticas para nuevos traders</h3>
           <ul class="guide-list">
-            <li>Nunca operes con dinero que no puedas permitirte perder completamente</li>
-            <li>Practica en simulador al menos 3 meses antes de usar capital real</li>
-            <li>No intentes recuperar pérdidas aumentando el tamaño; es el camino más rápido a la ruina</li>
-            <li>Mantén un diario detallado de cada operación para identificar patrones en tus errores</li>
-            <li>Si pierdes 3 operaciones consecutivas, detente y revisa tu enfoque</li>
+            <li data-i18n="home.guide8Li1">Nunca operes con dinero que no puedas permitirte perder completamente</li>
+            <li data-i18n="home.guide8Li2">Practica en simulador al menos 3 meses antes de usar capital real</li>
+            <li data-i18n="home.guide8Li3">No intentes recuperar pérdidas aumentando el tamaño; es el camino más rápido a la ruina</li>
+            <li data-i18n="home.guide8Li4">Mantén un diario detallado de cada operación para identificar patrones en tus errores</li>
+            <li data-i18n="home.guide8Li5">Si pierdes 3 operaciones consecutivas, detente y revisa tu enfoque</li>
           </ul>
         </div>
 
         <article class="guide-section guide-cta-card">
-          <h3 class="guide-section-title">Tu camino hacia el dominio de las 0DTE</h3>
-          <p>El trading 0DTE no es para todos, pero para quienes invierten tiempo en educación y práctica disciplinada puede ofrecer oportunidades únicas.</p>
-          <p><strong>Recuerda:</strong> La diferencia entre el juego y el trading profesional no está en el instrumento, sino en el enfoque. Con las herramientas adecuadas, educación continua y disciplina, las 0DTE pueden ser parte de una estrategia sofisticada y rentable.</p>
+          <h3 class="guide-section-title" data-i18n="home.guide9Title">Tu camino hacia el dominio de las 0DTE</h3>
+          <p data-i18n="home.guide9P1">El trading 0DTE no es para todos, pero para quienes invierten tiempo en educación y práctica disciplinada puede ofrecer oportunidades únicas.</p>
+          <p data-i18n="home.guide9P2">Recuerda: La diferencia entre el juego y el trading profesional no está en el instrumento, sino en el enfoque. Con las herramientas adecuadas, educación continua y disciplina, las 0DTE pueden ser parte de una estrategia sofisticada y rentable.</p>
         </article>
       </div>
     </section>
@@ -3770,9 +3777,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <!-- HERO 4: Flujos dominan -->
     <section class="hero hero-center section">
       <div class="hero-content">
-        <h2 class="hero-headline-gradient">En un entorno donde los flujos dominan y la volatilidad se retroalimenta...</h2>
+        <h2 class="hero-headline-gradient" data-i18n="home.hero4Title">En un entorno donde los flujos dominan y la volatilidad se retroalimenta...</h2>
         <div class="hero-underline"></div>
-        <p class="hero-body">Da igual si operas acciones, futuros, CFDs u opciones; si ejecutas scalping, intradía o swing. Lo único relevante es entender quién realmente mueve el precio, cuándo, cómo y por qué. Esa comprensión es lo que separa al trader moderno del operador obsoleto. Mientras los demás interpretan ruido, en GEXZONE leemos intención.</p>
+        <p class="hero-body" data-i18n="home.hero4Body">Da igual si operas acciones, futuros, CFDs u opciones; si ejecutas scalping, intradía o swing. Lo único relevante es entender quién realmente mueve el precio, cuándo, cómo y por qué. Esa comprensión es lo que separa al trader moderno del operador obsoleto. Mientras los demás interpretan ruido, en GEXZONE leemos intención.</p>
       </div>
     </section>
 
@@ -3790,18 +3797,18 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       <div class="testimonials-grid">
         <article class="testimonial-card">
           <img class="avatar" src="https://i.pravatar.cc/150?img=12" alt="" loading="lazy" />
-          <p class="quote">"La formación cambió completamente mi forma de entender el mercado."</p>
-          <p class="name">— Alumno, programa Flow Dynamics</p>
+          <p class="quote" data-i18n="home.testimonial1Quote">"La formación cambió completamente mi forma de entender el mercado."</p>
+          <p class="name" data-i18n="home.testimonial1Name">— Alumno, programa Flow Dynamics</p>
         </article>
         <article class="testimonial-card">
           <img class="avatar" src="https://i.pravatar.cc/150?img=32" alt="" loading="lazy" />
-          <p class="quote">"Nunca había visto el flujo institucional explicado así."</p>
-          <p class="name">— Alumno, De Cero a Experto</p>
+          <p class="quote" data-i18n="home.testimonial2Quote">"Nunca había visto el flujo institucional explicado así."</p>
+          <p class="name" data-i18n="home.testimonial2Name">— Alumno, De Cero a Experto</p>
         </article>
         <article class="testimonial-card">
           <img class="avatar" src="https://i.pravatar.cc/150?img=45" alt="" loading="lazy" />
-          <p class="quote">"Ahora opero con contexto, no con intuición."</p>
-          <p class="name">— Alumno, Trading Room</p>
+          <p class="quote" data-i18n="home.testimonial3Quote">"Ahora opero con contexto, no con intuición."</p>
+          <p class="name" data-i18n="home.testimonial3Name">— Alumno, Trading Room</p>
         </article>
       </div>
     </section>
@@ -3810,14 +3817,14 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   <footer class="site-footer">
     <div class="footer-grid">
       <div>
-        <a href="formacion.html">Formación</a>
-        <a href="trading-room.html">Trading Room</a>
-        <a href="recursos.html">Recursos</a>
+        <a href="formacion.html" data-i18n="footer.formacion">Formación</a>
+        <a href="trading-room.html" data-i18n="footer.tradingRoom">Trading Room</a>
+        <a href="recursos.html" data-i18n="footer.recursos">Recursos</a>
       </div>
       <div>
-        <a href="volatilidad.html">Volatilidad</a>
-        <a href="software-bots.html">Software / Bots</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="volatilidad.html" data-i18n="footer.volatilidad">Volatilidad</a>
+        <a href="software-bots.html" data-i18n="footer.software">Software / Bots</a>
+        <a href="contacto.html" data-i18n="footer.contacto">Contacto</a>
       </div>
       <div>
         <a href="legal/terminos.html" data-i18n="footer.terms">Términos y condiciones</a>
@@ -3830,7 +3837,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     </div>
   </footer>
 
-  <button type="button" class="chatbot-toggle" id="chatbot-toggle" aria-label="Abrir chat">💬</button>
+  <button type="button" class="chatbot-toggle" id="chatbot-toggle" data-i18n-aria="aria.chat" aria-label="Abrir chat">💬</button>
   <div class="chatbot-panel" id="chatbot-panel" role="dialog" aria-label="Chat">
     <div class="chatbot-header" data-i18n="chatbot.title">Chat GEXZONE</div>
     <div class="chatbot-messages" id="chatbot-messages"></div>
@@ -3863,7 +3870,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     localStorage.setItem(STORAGE_THEME, theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-label', theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      const t = i18n[getLang()] || i18n.es;
+      const label = theme === 'night' ? (t.aria && t.aria.themeToggle) : (t.aria && t.aria.themeToggleDark);
+      btn.setAttribute('aria-label', label || (theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'));
       var icon = btn.querySelector('.theme-toggle-icon');
       if (icon) icon.textContent = theme === 'night' ? '\u263C' : '\uD83C\uDF19';
     }
@@ -3885,8 +3894,10 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   const i18n = {
     es: {
       nav: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto' },
-      footer: { terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
-      contact: { title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto institucional', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
+      footer: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto', terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      aria: { openMenu: 'Abrir menú', themeToggle: 'Cambiar a modo claro', themeToggleDark: 'Cambiar a modo oscuro', lang: 'Idioma', chat: 'Abrir chat' },
+      home: { pageTitle: 'GEXZONE - Formación en opciones y lectura institucional', hero1: 'En los mercados modernos, comprender las griegas no es opcional, es cuestión de supervivencia.', heroBody1: 'Las matemáticas de las opciones dictan el precio, ni la probabilidad, ni el sentimiento lo hacen.', hero2: 'Desde el Volmageddon de 2018, tu activo de confianza ya no se comporta igual.', heroBody2a: 'Notas como si hubieran desencadenado una bestia: los niveles donde antes había reacción ya no responden, las estructuras que te daban seguridad ahora se rompen sin aviso, y lo que antes tenía sentido hoy parece una amalgama de movimientos erráticos.', heroBody2b: 'Sabes lo que el gráfico muestra, pero no lo que esconde. El flujo institucional, las coberturas y el lenguaje de las opciones es ese mapa oculto. En GEXZONE, te enseñamos a leerlo.', hero3Title: 'En GEXZONE no reaccionamos, nos anticipamos.', hero3Body: 'Las griegas no mienten: cuando los niveles de las exposures alcanzan ciertos umbrales, el precio se vuelve determinista, no probabilístico. El trader que entiende esa transición deja de perseguir al mercado y empieza a operarlo con precisión. Deja de reaccionar al precio, anticípate.', hero4Title: 'En un entorno donde los flujos dominan y la volatilidad se retroalimenta...', hero4Body: 'Da igual si operas acciones, futuros, CFDs u opciones; si ejecutas scalping, intradía o swing. Lo único relevante es entender quién realmente mueve el precio, cuándo, cómo y por qué. Esa comprensión es lo que separa al trader moderno del operador obsoleto. Mientras los demás interpretan ruido, en GEXZONE leemos intención.', analysisBadge: 'Análisis', analysisHeading: '¿Breakout Real o Fake Out?', analysisSub: 'Claves para leer el flujo de opciones y distinguir movimiento real de trampas de liquidez.', analysisSection1: 'Cómo interpretar el movimiento', analysisItem1Title: 'Flujo Agresivo de Prima de Call (Compra Front-Loaded)', analysisItem1Desc: 'Viste prima de call rápida y apilada a través de múltiples strikes mientras el precio se disparó hacia arriba. Esto a menudo refleja:', analysisBullet1_1: 'Un algoritmo persiguiendo momentum o reaccionando a noticias.', analysisBullet1_2: 'Dealers o instituciones cubriendo deltas dinámicamente (comprando futuros/acciones mientras se compran calls).', analysisBullet1_3: 'Traders front-running exposición gamma, especialmente si esos strikes estaban cerca de ATM o en niveles populares.', analysisItem2Title: 'Exposición Gamma del Dealer e Impacto de Cobertura', analysisItem2Desc: 'Si el mercado tenía gamma corta neta (los dealers habían vendido esos calls), los precios en alza los obligarían a comprar más para cubrir, acelerando el movimiento hacia arriba. Eso crea el spike.', analysisItem3Title: 'Sin Seguimiento = Barrido de Liquidez o Trampa', analysisItem3Desc: 'El hecho de que se contrajo de 5825 → 5811 significa:', analysisBullet3_1: 'Los compradores no estaban tratando de mantener—estaban extrayendo liquidez.', analysisBullet3_2: 'Podría haber sido una stop hunt, scalp gamma, o falso breakout.', analysisBullet3_3: 'El flujo de calls podría no haber sido convicción direccional—podría haber sido creadores de mercado o HFTs alimentando spikes de prima.', analysisScenariosTitle: 'Escenarios posibles', analysisScenario1: 'Headline released, algos reaccionaron, pujaron el mercado.', analysisScenario2: 'Cascada stop-loss (un barrido para activar stops y empujar hacia zonas ilíquidas).', analysisScenario3: 'Cobertura gamma a corto plazo por dealers, luego el posicionamiento se reinició o revirtió.', analysisScenario4: 'Longs atrapados que persiguieron calls tardíos en el spike, llevando a la reversión rápida.', analysisSection2Title: 'Movimiento bajista y primas de put', analysisSection2Desc: 'Probablemente estés viendo un barrido de liquidez a la baja o una liquidación impulsada por el pánico:', analysisScenarioA1: 'Escenario A: Gamma Larga (Dealers con Puts Largas Netas)', analysisBulletA1_1: 'Los dealers compran en la caída para cubrir (flujo de apoyo).', analysisBulletA1_2: 'Las compras masivas de puts no aceleran el movimiento hacia abajo - el mercado absorbe y puede incluso conducir a un rebote.', analysisScenarioB1: 'Escenario B: Gamma Corta (Dealers con Puts Cortas Netas)', analysisBulletB1_1: 'Los puts se compran agresivamente → los dealers deben vender futuros o acciones para cubrir, empujando el precio hacia abajo más rápido.', analysisBulletB1_2: 'Primas de put grandes en strikes OTM o ATM con precio cayendo = cascada de venta forzada.', analysisSignsTitle: 'Señales', analysisSigns1: 'Puts near-the-money se iluminan con grandes $$.', analysisSigns2: 'Precio cae rápido por strikes clave; a menudo se sobrepasa y rebota si la liquidez se agota.', analysisSection3Title: 'Calls y puts subiendo a la vez', analysisSection3Desc: 'Suele no ser convicción direccional, sino:', analysisScenarioA2: 'Escenario A: Cobertura o Straddle (Apuesta de volatilidad)', analysisBulletA2_1: 'Los traders juegan ambos lados—esperan un gran movimiento sin dirección definida.', analysisBulletA2_2: 'Algoritmos pujando calls y puts para capturar expansión de IV o escalado gamma.', analysisScenarioB2: 'Escenario B: Creadores de mercado / wings', analysisBulletB2_1: 'Calls y puts disparados por arbitraje de volatilidad o flujos por noticias.', analysisBulletB2_2: 'Dealers ajustan deltas y gammas en ambos lados → fakeouts, whipsaws, formas en V.', analysisObserveTitle: 'Qué observar', analysisObserve1: 'Ambos lados iluminados y precio quieto → IV expandiéndose.', analysisObserve2: 'Ambos iluminados y precio salta arriba/abajo → flip o reset de squeeze gamma.', analysisSummaryTitle: 'Resumen', analysisTh1: 'Tipo de movimiento', analysisTh2: 'Flujo dominante', analysisTh3: 'Resultado probable', analysisRow1Col1: 'Spike alcista', analysisRow1Col2: 'Prima de Call', analysisRow1Col3: 'Persecución gamma, squeeze, trampa potencial', analysisRow2Col1: 'Spike bajista', analysisRow2Col2: 'Prima de Put', analysisRow2Col3: 'Liquidación gamma, pánico de venta, posible flush y rebote', analysisRow3Col1: 'Ambos lados', analysisRow3Col2: 'Call + Put', analysisRow3Col3: 'Apuesta de volatilidad, whipsaws, recalibración del dealer', testimonial1Quote: '"La formación cambió completamente mi forma de entender el mercado."', testimonial1Name: '— Alumno, programa Flow Dynamics', testimonial2Quote: '"Nunca había visto el flujo institucional explicado así."', testimonial2Name: '— Alumno, De Cero a Experto', testimonial3Quote: '"Ahora opero con contexto, no con intuición."', testimonial3Name: '— Alumno, Trading Room', guideBadge: 'Guía', guideHeading: 'Guía definitiva para dominar las opciones 0DTE', guideSub: 'Convierte el aparente caos del trading intradía en oportunidades sistemáticas y rentables.', guide1Title: '¿Trading o casino? La verdad sobre las 0DTE', guide1P1: 'Si alguna vez te has preguntado si operar con opciones que expiran el mismo día es equivalente a apostar en un casino, no eres el único. La naturaleza vertiginosa de estos instrumentos ha generado tanto entusiasmo como escepticismo.', guide1Highlight: 'Realidad fundamental: Las opciones 0DTE no son intrínsecamente más arriesgadas. La diferencia radica en que magnifican exponencialmente los resultados de operar sin una metodología estructurada.', guide1P2: 'Piensa en un coche deportivo: no es peligroso por sí mismo, pero requiere un conductor experimentado. Lo mismo ocurre con las 0DTE.', guide2Title: 'Entendiendo las opciones 0DTE', guide2P1: 'Las opciones con vencimiento el mismo día (0 Days To Expiration) nacen y mueren en una sola sesión. Esta definición simple esconde una complejidad fascinante.', guide2Item1Title: 'Horizonte temporal definido', guide2Item1P: 'El desenlace se conoce al cierre del mercado, eliminando incertidumbre overnight y permitiendo una gestión del capital más precisa.', guide2Item2Title: 'Capital eficiente', guide2Item2P: 'Las primas reducidas permiten controlar posiciones significativas con menor desembolso inicial.', guide2Item3Title: 'Precisión táctica', guide2Item3P: 'Ideales para capitalizar eventos específicos, noticias económicas o rupturas técnicas durante la sesión.', guide3Title: 'El SPX: el rey del trading 0DTE', guide3P: 'El índice S&P 500 (SPX) es el vehículo preferido por traders profesionales. Razones:', guide3Li1: 'Liquidez excepcional: Spreads ajustados incluso en strikes alejados.', guide3Li2: 'Liquidación en efectivo: Sin asignaciones o entregas de acciones; el beneficio se acredita directamente.', guide3Li3: 'Ventajas fiscales: En EE.UU. pueden calificar para el tratamiento 60/40.', guide3Li4: 'Disponibilidad diaria: Vencimientos todos los días hábiles.', guide3Warning: 'Importante: Las opciones sobre ETFs como SPY, QQQ e IWM son de estilo americano y pueden ejercerse anticipadamente, añadiendo complejidad.', guide4Title: 'Los retos únicos del trading 0DTE', guide4P: 'Operar con éxito en 0DTE requiere dominar desafíos que no encontrarás en otros tipos de trading:', guide4Item1Title: 'Gamma explosiva', guide4Item1P: 'La sensibilidad al movimiento del subyacente alcanza niveles extremos; oscilaciones dramáticas en minutos.', guide4Item2Title: 'Theta acelerada', guide4Item2P: 'El valor temporal no decae linealmente; entender su comportamiento irregular es crucial para el timing.', guide4Item3Title: 'Cambios de régimen', guide4Item3P: 'Distinguir entre días de rango y días tendenciales es fundamental; una lectura errónea puede ser devastadora.', guide4Item4Title: 'Sentimiento volátil', guide4Item4P: 'El posicionamiento del mercado crea bucles de retroalimentación que amplifican movimientos en ambas direcciones.', guide5Title: 'Claves para el éxito en 0DTE', guide5P: 'Pilares fundamentales basados en la experiencia de traders exitosos y herramientas como GammaEdge:', guide5Box1: '1. Comprensión del flujo de opciones. El posicionamiento crea niveles de soporte y resistencia dinámicos que el análisis técnico tradicional no detecta.', guide5Box2: '2. Gestión de riesgo implacable. Con movimientos tan rápidos, los stops mentales no funcionan. Define tu riesgo antes de entrar y usa órdenes automáticas.', guide5Box3: '3. Reconocimiento del carácter del mercado. Identifica temprano si el día será de consolidación o tendencial; eso determina tu estrategia completa.', guide5Box4: '4. Disciplina en el tamaño de posición. La naturaleza todo-o-nada de las 0DTE requiere dimensionamiento conservador. Nunca arriesgues más del 1-2% por operación.', guide6Title: 'Estrategias probadas para 0DTE', guide6Str1: 'Estrategia #1: Venta de premium en rangos. En días de baja volatilidad, vender spreads verticales fuera de los rangos esperados puede generar ingresos consistentes.', guide6Str2: 'Estrategia #2: Momentum con protección. Comprar opciones direccionales tras rupturas claras, siempre con spreads para limitar costo y riesgo máximo.', guide6Str3: 'Estrategia #3: Reversión a la media. Identificar extensiones extremas desde niveles clave y operar el retorno con estructuras de riesgo definido.', guide7Title: 'Herramientas esenciales para el trader 0DTE', guide7P: 'El éxito consistente requiere más que intuición. Los profesionales utilizan herramientas para:', guide7Li1: 'Monitorear el flujo de opciones en tiempo real', guide7Li2: 'Identificar niveles clave basados en posicionamiento gamma', guide7Li3: 'Detectar cambios en el sentimiento antes de que aparezcan en el precio', guide7Li4: 'Calcular probabilidades ajustadas por el sesgo del mercado', guide7Li5: 'Automatizar la gestión de riesgo con alertas personalizadas', guide8Title: 'Advertencias críticas para nuevos traders', guide8Li1: 'Nunca operes con dinero que no puedas permitirte perder completamente', guide8Li2: 'Practica en simulador al menos 3 meses antes de usar capital real', guide8Li3: 'No intentes recuperar pérdidas aumentando el tamaño; es el camino más rápido a la ruina', guide8Li4: 'Mantén un diario detallado de cada operación para identificar patrones en tus errores', guide8Li5: 'Si pierdes 3 operaciones consecutivas, detente y revisa tu enfoque', guide9Title: 'Tu camino hacia el dominio de las 0DTE', guide9P1: 'El trading 0DTE no es para todos, pero para quienes invierten tiempo en educación y práctica disciplinada puede ofrecer oportunidades únicas.', guide9P2: 'Recuerda: La diferencia entre el juego y el trading profesional no está en el instrumento, sino en el enfoque. Con las herramientas adecuadas, educación continua y disciplina, las 0DTE pueden ser parte de una estrategia sofisticada y rentable.' },
+      contact: { pageTitle: 'Contacto - GEXZONE', title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto institucional', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
       chatbot: { title: 'Chat GEXZONE', placeholder: 'Escribe tu mensaje...', send: 'Enviar', greeting: 'Hola. Soy el asistente de GEXZONE. Puedo responder preguntas frecuentes sobre formación y Trading Room. Para temas detallados, te recomendamos usar el formulario de contacto o agendar una llamada.' },
       testimonials: { title: 'Testimonios' },
       comingSoon: { badge: 'PRÓXIMAMENTE', title: 'Herramientas y bots en desarrollo', text: 'Estamos preparando soluciones que se integrarán con tu operativa. Muy pronto.' },
@@ -3895,8 +3906,10 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
-      footer: { terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
-      contact: { title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
+      footer: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل', terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      aria: { openMenu: 'فتح القائمة', themeToggle: 'التبديل إلى الوضع الفاتح', themeToggleDark: 'التبديل إلى الوضع الداكن', lang: 'اللغة', chat: 'فتح الدردشة' },
+      home: { pageTitle: 'GEXZONE - تدريب الخيارات والقراءة المؤسسية', hero1: 'في الأسواق الحديثة، فهم الإغريقيات ليس اختياريًا، بل مسألة بقاء.', heroBody1: 'رياضيات الخيارات تحدد السعر، لا الاحتمال ولا المشاعر.', hero2: 'من انهيار التقلب عام 2018، أصل ثقتك لم يعد يتصرف كما كان.', heroBody2a: 'تلاحظ كأنهم أطلقوا وحشًا: المستويات التي كانت تستجيب لم تعد تستجيب، والهياكل التي كانت تعطيك الأمان تنكسر الآن دون سابق إنذار، وما كان منطقيًا أصبح يبدو خليطًا من حركات عشوائية.', heroBody2b: 'تعرف ما يظهره الرسم البياني، لكن ليس ما يخفيه. التدفق المؤسسي والتحوطات ولغة الخيارات هي تلك الخريطة المخفية. في GEXZONE نعلمك قراءتها.', hero3Title: 'في GEXZONE لا نتفاعل، نستبق.', hero3Body: 'الإغريقيات لا تكذب: عندما تصل التعرضات إلى عتبات معينة، يصبح السعر حتميًا لا احتماليًا. المتداول الذي يفهم هذا الانتقال يتوقف عن مطاردة السوق ويبدأ بتشغيله بدقة. توقف عن التفاعل مع السعر، استبق.', hero4Title: 'في بيئة يهيمن فيها التدفق ويتغذى التقلب على نفسه...', hero4Body: 'لا يهم إن كنت تتداول أسهمًا أو عقودًا آجلة أو CFDs أو خيارات؛ إن كنت تقوم بالـ scalping أو التداول اليومي أو swing. المهم هو فهم من يحرك السعر فعليًا ومتى وكيف ولماذا. هذا الفهم هو ما يفصل المتداول الحديث عن المتداول العتيق. بينما يفسر الباقون الضجيج، في GEXZONE نقرأ النية.', analysisBadge: 'تحليل', analysisHeading: 'انفراج حقيقي أم انفراج وهمي؟', analysisSub: 'مفاتيح لقراءة تدفق الخيارات والتمييز بين الحركة الحقيقية ومصائد السيولة.', analysisSection1: 'كيفية تفسير الحركة', analysisItem1Title: 'تدفق عدواني لعلاوة الـ Call (شراء مسبق)', analysisItem1Desc: 'رأيت علاوة call سريعة ومتراكمة عبر strikes متعددة بينما قفز السعر للأعلى. هذا غالبًا يعكس:', analysisBullet1_1: 'خوارزمية تطارد الزخم أو تتفاعل مع الأخبار.', analysisBullet1_2: 'متعاملون أو مؤسسات يغطون الدلتا ديناميكيًا (يشترون عقودًا/أسهمًا بينما يشترون calls).', analysisBullet1_3: 'متداولون يسبقون التعرض للغاما، خاصة إن كانت تلك الـ strikes قريبة من ATM أو مستويات شائعة.', analysisItem2Title: 'تعرض غاما المتعامل وتأثير التحوط', analysisItem2Desc: 'إن كان السوق غاما قصيرة صافية (المتعاملون باعوا تلك الـ calls)، ارتفاع الأسعار يلزمهم بشراء المزيد للتحوط، مما يسرع الحركة للأعلى. هذا يخلق الذروة.', analysisItem3Title: 'بدون متابعة = مسح سيولة أو مصيدة', analysisItem3Desc: 'انكماش السعر من 5825 → 5811 يعني:', analysisBullet3_1: 'المشترون لم يكونوا يحاولون الإبقاء—كانوا يستخرجون السيولة.', analysisBullet3_2: 'ربما كان صيد وقف خسارة، أو scalp غاما، أو انفراج وهمي.', analysisBullet3_3: 'تدفق الـ calls ربما لم يكن قناعة اتجاهية—ربما كان صناع سوق أو HFTs يغذون ذروات العلاوة.', analysisScenariosTitle: 'سيناريوهات محتملة', analysisScenario1: 'صدور خبر، تفاعلت الخوارزميات ودفعت السوق.', analysisScenario2: 'شلال وقف خسارة (مسح لتفعيل الوقفات ودفع نحو مناطق غير سائلة).', analysisScenario3: 'تحوط غاما قصير الأجل من المتعاملين، ثم أعيد ضبط المراكز أو انعكست.', analysisScenario4: 'مراكز شراء محاصرة طاردت calls متأخرة في الذروة، مما أدى للانعكاس السريع.', analysisSection2Title: 'الحركة الهابطة وعلاوات البوت', analysisSection2Desc: 'الأرجح أنك ترى مسح سيولة هبوطيًا أو تصفية مدفوعة بالذعر:', analysisScenarioA1: 'السيناريو أ: غاما طويلة (متعاملون ببوتات طويلة صافية)', analysisBulletA1_1: 'المتعاملون يشترون في الهبوط للتحوط (تدفق داعم).', analysisBulletA1_2: 'شراء البوتات بكثافة لا يسرع الحركة للأسفل - السوق يمتص وقد يؤدي حتى لارتداد.', analysisScenarioB1: 'السيناريو ب: غاما قصيرة (متعاملون ببوتات قصيرة صافية)', analysisBulletB1_1: 'يُشترى البوت بعنف → المتعاملون يجب أن يبيعوا عقودًا أو أسهمًا للتحوط، دافعين السعر للأسفل أسرع.', analysisBulletB1_2: 'علاوات بوت كبيرة في strikes OTM أو ATM مع هبوط السعر = شلال بيع forzado.', analysisSignsTitle: 'إشارات', analysisSigns1: 'بوتات near-the-money تضيء بأحجام كبيرة $$.', analysisSigns2: 'السعر يهبط بسرعة عبر strikes رئيسية؛ غالبًا يتجاوز ويرتد إن نضبت السيولة.', analysisSection3Title: 'Calls وبوتات ترتفع معًا', analysisSection3Desc: 'عادة ليست قناعة اتجاهية، بل:', analysisScenarioA2: 'السيناريو أ: تحوط أو Straddle (رهان تقلب)', analysisBulletA2_1: 'المتداولون يلعبون الجانبين—يتوقعون حركة كبيرة بلا اتجاه محدد.', analysisBulletA2_2: 'خوارزميات تدفع calls وبوتات لالتقاط توسع IV أو تصعيد غاما.', analysisScenarioB2: 'السيناريو ب: صناع سوق / أجنحة', analysisBulletB2_1: 'Calls وبوتات مدفوعة بمراجحة تقلب أو تدفقات أخبار.', analysisBulletB2_2: 'المتعاملون يعدلون الدلتا والغاما على الجانبين → fakeouts، whipsaws، أشكال V.', analysisObserveTitle: 'ما يجب مراقبته', analysisObserve1: 'الجانبان مضيئان والسعر هادئ → IV يتوسع.', analysisObserve2: 'كلاهما مضيء والسعر يقفز لأعلى/أسفل → انعكاس أو إعادة ضبط squeeze غاما.', analysisSummaryTitle: 'ملخص', analysisTh1: 'نوع الحركة', analysisTh2: 'التدفق المهيمن', analysisTh3: 'النتيجة المحتملة', analysisRow1Col1: 'ذروة صاعدة', analysisRow1Col2: 'علاوة Call', analysisRow1Col3: 'مطاردة غاما، squeeze، مصيدة محتملة', analysisRow2Col1: 'ذروة هابطة', analysisRow2Col2: 'علاوة Put', analysisRow2Col3: 'تصفية غاما، ذعر بيع، flush وارتداد محتمل', analysisRow3Col1: 'الجانبان', analysisRow3Col2: 'Call + Put', analysisRow3Col3: 'رهان تقلب، whipsaws، إعادة معايرة المتعامل', testimonial1Quote: '"غيّر التدريب تمامًا طريقة فهمي للسوق."', testimonial1Name: '— طالب، برنامج Flow Dynamics', testimonial2Quote: '"لم أرى التدفق المؤسسي يُشرح هكذا من قبل."', testimonial2Name: '— طالب، من الصفر إلى الخبير', testimonial3Quote: '"أنا الآن أتداول بسياق، لا بحدس."', testimonial3Name: '— طالب، غرفة التداول', guideBadge: 'دليل', guideHeading: 'الدليل النهائي لإتقان خيارات 0DTE', guideSub: 'حول فوضى التداول اليومي الظاهرة إلى فرص منهجية ومربحة.', guide1Title: 'تداول أم كازينو؟ الحقيقة عن 0DTE', guide1P1: 'إن تساءلت يومًا إن كان التداول بخيارات تنتهي في نفس اليوم مساويًا للرهان في كازينو، فأنت لست وحدك. طبيعة هذه الأدوات السريعة ولّدت حماسًا وشكًا على حد سواء.', guide1Highlight: 'واقع أساسي: خيارات 0DTE ليست أكثر خطورة بحد ذاتها. الفرق أنها تضخم النتائج بشكل أسي عند التداول دون منهجية منظمة.', guide1P2: 'فكر في سيارة رياضية: ليست خطيرة بذاتها، لكنها تحتاج سائقًا خبيرًا. نفس الأمر مع 0DTE.', guide2Title: 'فهم خيارات 0DTE', guide2P1: 'الخيارات التي تنتهي في نفس اليوم (0 Days To Expiration) تولد وتموت في جلسة واحدة. هذا التعريف البسيط يخفي تعقيدًا مدهشًا.', guide2Item1Title: 'أفق زمني محدد', guide2Item1P: 'النهاية معروفة عند إغلاق السوق، مما يزيل عدم اليقين overnight ويسمح بإدارة رأس مال أدق.', guide2Item2Title: 'رأس مال فعّال', guide2Item2P: 'العلاوات المنخفضة تتيح التحكم بمراكز كبيرة بمبلغ مبدئي أقل.', guide2Item3Title: 'دقة تكتيكية', guide2Item3P: 'مثالية لاستغلال أحداث محددة أو أخبار اقتصادية أو كسور فنية خلال الجلسة.', guide3Title: 'SPX: ملك تداول 0DTE', guide3P: 'مؤشر S&P 500 (SPX) هو الوسيلة المفضلة للمتداولين المحترفين. الأسباب:', guide3Li1: 'سيولة استثنائية: فروق ضيقة حتى في strikes بعيدة.', guide3Li2: 'تسوية نقدية: بدون تعيين أو تسليم أسهم؛ يُ credited الربح مباشرة.', guide3Li3: 'مزايا ضريبية: في الولايات المتحدة قد تؤهل للمعاملة 60/40.', guide3Li4: 'توفر يومي: انتهاء صلاحية كل يوم عمل.', guide3Warning: 'مهم: خيارات صناديق مثل SPY و QQQ و IWM أمريكية النمط ويمكن ممارستها مبكرًا، مما يضيف تعقيدًا.', guide4Title: 'تحديات تداول 0DTE الفريدة', guide4P: 'التداول بنجاح في 0DTE يتطلب إتقان تحديات لن تجدها في أنواع تداول أخرى:', guide4Item1Title: 'غاما انفجارية', guide4Item1P: 'الحساسية لحركة الأصل الأساسي تصل لمستويات قصوى؛ تذبذبات درامية في دقائق.', guide4Item2Title: 'ثيتا متسارعة', guide4Item2P: 'القيمة الزمنية لا تتحلل خطيًا؛ فهم سلوكها غير المنتظم crucial للتوقيت.', guide4Item3Title: 'تغيرات النظام', guide4Item3P: 'التمييز بين أيام النطاق وأيام الاتجاه أساسي؛ قراءة خاطئة قد تكون مدمرة.', guide4Item4Title: 'مشاعر متقلبة', guide4Item4P: 'مراكز السوق تخلق حلقات تغذية راجعة تضخم الحركات في الاتجاهين.', guide5Title: 'مفاتيح النجاح في 0DTE', guide5P: 'أعمدة أساسية من تجربة متداولين ناجحين وأدوات مثل GammaEdge:', guide5Box1: '1. فهم تدفق الخيارات. المراكز تخلق مستويات دعم ومقاومة ديناميكية لا يكتشفها التحليل الفني التقليدي.', guide5Box2: '2. إدارة مخاطر صارمة. مع حركات سريعة كهذه، وقف الخسارة الذهني لا يعمل. حدد مخاطرك قبل الدخول واستخدم أوامر تلقائية.', guide5Box3: '3. التعرف على طابع السوق. حدد مبكرًا إن كان اليوم سيكون consolidación أم اتجاهيًا؛ ذلك يحدد استراتيجيتك كاملة.', guide5Box4: '4. انضباط حجم المركز. طبيعة 0DTE كل شيء أو لا شيء تتطلب تحديد حجم محافظ. لا تخاطر بأكثر من 1-2% لكل صفقة.', guide6Title: 'استراتيجيات مجربة لـ 0DTE', guide6Str1: 'استراتيجية #1: بيع العلاوة في النطاقات. في أيام التقلب المنخفض، بيع spreads رأسية خارج النطاقات المتوقعة قد يولد دخلًا ثابتًا.', guide6Str2: 'استراتيجية #2: زخم مع حماية. شراء خيارات اتجاهية بعد كسور واضحة، دائمًا مع spreads للحد من التكلفة والحد الأقصى للمخاطر.', guide6Str3: 'استراتيجية #3: العودة للمتوسط. تحديد امتدادات قصوى من مستويات رئيسية والتداول على العودة بهياكل مخاطر محددة.', guide7Title: 'أدوات أساسية لمتداول 0DTE', guide7P: 'النجاح المتسق يتطلب أكثر من الحدس. المحترفون يستخدمون أدوات لـ:', guide7Li1: 'مراقبة تدفق الخيارات في الوقت الفعلي', guide7Li2: 'تحديد مستويات رئيسية بناءً على مراكز الغاما', guide7Li3: 'اكتشاف تغيرات المشاعر قبل ظهورها في السعر', guide7Li4: 'حساب احتمالات معدلة حسب انحياز السوق', guide7Li5: 'أتمتة إدارة المخاطر بتنبيهات مخصصة', guide8Title: 'تحذيرات حرجة للمتداولين الجدد', guide8Li1: 'لا تتداول أبدًا بأموال لا تستطيع خسارتها بالكامل', guide8Li2: 'تدرب على المحاكي 3 أشهر على الأقل قبل استخدام رأس مال حقيقي', guide8Li3: 'لا تحاول استرداد الخسائر بزيادة الحجم؛ إنه أسرع طريق للخراب', guide8Li4: 'احتفظ بمذكرات مفصلة لكل صفقة لرصد أنماط أخطائك', guide8Li5: 'إن خسرت 3 صفقات متتالية، توقف وراجع منهجك', guide9Title: 'طريقك لإتقان 0DTE', guide9P1: 'تداول 0DTE ليس للجميع، لكن لمن يستثمر وقتًا في التعليم والتدريب المنضبط يمكن أن يقدم فرصًا فريدة.', guide9P2: 'تذكر: الفرق بين القمار والتداول الاحترافي ليس في الأداة بل في النهج. بالأدوات المناسبة والتعليم المستمر والانضباط، يمكن لـ 0DTE أن تكون جزءًا من استراتيجية متطورة ومربحة.' },
+      contact: { pageTitle: 'اتصل بنا - GEXZONE', title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
       chatbot: { title: 'دردشة GEXZONE', placeholder: 'اكتب رسالتك...', send: 'إرسال', greeting: 'مرحباً. أنا مساعد GEXZONE. يمكنني الإجابة على الأسئلة الشائعة حول التدريب وغرفة التداول. للمواضيع المفصلة نوصي باستخدام نموذج الاتصال أو تحديد مكالمة.' },
       testimonials: { title: 'الشهادات' },
       comingSoon: { badge: 'قريباً', title: 'أدوات وبوتات قيد التطوير', text: 'نحن نعد حلولاً ستتكامل مع أسلوب عملك. قريباً.' },
@@ -3904,6 +3917,14 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' }
     }
   };
+
+  function getNested(obj, key) {
+    if (!obj || !key) return undefined;
+    const parts = key.split('.');
+    let v = obj;
+    for (let i = 0; i < parts.length; i++) v = v != null ? v[parts[i]] : undefined;
+    return v;
+  }
 
   function getLang() {
     return localStorage.getItem(STORAGE_LANG) || 'es';
@@ -3919,29 +3940,53 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
   function applyTranslations(lang) {
     const t = i18n[lang] || i18n.es;
-    function get(obj, key) {
-      const parts = key.split('.');
-      let v = obj;
-      for (let i = 0; i < parts.length; i++) v = v && v[parts[i]];
-      return v;
-    }
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n'));
+      const v = getNested(t, el.getAttribute('data-i18n'));
       if (v != null) el.textContent = v;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n-placeholder'));
+      const v = getNested(t, el.getAttribute('data-i18n-placeholder'));
       if (v != null) el.placeholder = v;
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      const v = getNested(t, el.getAttribute('data-i18n-aria'));
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+    const pageKey = document.body.getAttribute('data-i18n-page');
+    if (pageKey) {
+      const title = getNested(t, pageKey + '.pageTitle');
+      if (title) document.title = title;
+    }
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      const themeLabel = getTheme() === 'night' ? t.aria.themeToggle : t.aria.themeToggleDark;
+      if (themeLabel) themeBtn.setAttribute('aria-label', themeLabel);
+    }
   }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    const dropdownItems = document.querySelectorAll('.js_change_lang');
+    if (dropdownItems.length) {
+      dropdownItems.forEach(function (el) {
+        const code = el.getAttribute('data-url_code');
+        el.classList.toggle('active', code === getLang());
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = el.getAttribute('data-url_code');
+          setLang(lang);
+          document.querySelectorAll('.js_change_lang').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === lang);
+          });
+        });
       });
+    } else {
+      const btn = document.getElementById('lang-toggle');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          setLang(getLang() === 'es' ? 'ar' : 'es');
+        });
+      }
     }
   }
 

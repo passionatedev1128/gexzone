@@ -338,38 +338,30 @@ h1, h2, h3, h4 {
   gap: 0.5rem;
 }
 
-/* Lang toggle: pill with ES / AR */
-#lang-toggle,
+/* Lang toggle: Ar / Sp dropdown-style buttons */
 .header-lang-toggle {
-  min-width: 4.5rem;
-  height: 2rem;
-  padding: 0 0.6rem;
+  display: inline-flex;
   border: 1px solid var(--border-subtle);
-  border-radius: 999px;
+  border-radius: 8px;
+  overflow: hidden;
   background: var(--bg-card);
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  cursor: pointer;
+}
+.header-lang-toggle .dropdown-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast), background var(--transition-fast);
 }
-
-#lang-toggle:hover,
-.header-lang-toggle:hover {
-  color: var(--text-primary);
-  background: var(--accent-blue-dim);
-  border-color: var(--border-accent);
-}
-
-#lang-toggle:focus-visible,
-.header-lang-toggle:focus-visible {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 2px;
-}
+.header-lang-toggle .dropdown-item:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
+.header-lang-toggle .dropdown-item.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
+.header-lang-toggle .dropdown-item:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
 /* Theme toggle: icon button */
 #theme-toggle,
@@ -3412,7 +3404,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
 </style>
 </head>
-<body>                                                                                                                                                            
+<body data-i18n-page="volatilidad">
 
   <header class="site-header">
     <div class="container">
@@ -3428,7 +3420,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <span class="logo__bar"></span>
       </span>
     </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <button type="button" class="nav-toggle" id="nav-toggle" data-i18n-aria="aria.openMenu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul class="nav-main" id="nav-main">
         <li><a href="formacion.html" data-i18n="nav.formacion">Formación</a></li>
         <li><a href="trading-room.html" data-i18n="nav.tradingRoom">Trading Room</a></li>
@@ -3438,8 +3430,11 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
         <li><a href="contacto.html" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
-        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
+        <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
+          <a class="dropdown-item js_change_lang" role="menuitem" href="#" data-url_code="ar" title="الْعَرَبيّة"><span>الْعَرَبيّة</span></a>
+          <a class="dropdown-item js_change_lang active" role="menuitem" href="#" data-url_code="es" title="Español"><span>Español</span></a>
+        </div>
+        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" data-i18n-aria="aria.themeToggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
     </div>
   </header>
@@ -3449,21 +3444,21 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="volatilidad-section" aria-labelledby="spreads-heading">
       <div class="container">
         <header class="volatilidad-hero">
-          <p class="volatilidad-badge">Estrategias</p>
-          <h2 id="spreads-heading" style = "text-align: center !important;">Trading de Spreads VIX basado en estructura temporal</h2>
-          <p style="text-align: center !important;">Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
+          <p class="volatilidad-badge" data-i18n="volatilidad.badge">Estrategias</p>
+          <h2 id="spreads-heading" style="text-align: center !important;" data-i18n="volatilidad.heroTitle">Trading de Spreads VIX basado en estructura temporal</h2>
+          <p style="text-align: center !important;" data-i18n="volatilidad.heroSub">Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
         </header>
 
         <div class="vol-charts-subsection">
           <div class="vol-charts-grid">
             <div class="vol-chart-card">
-              <div class="vol-chart-title">Estructura Temporal VIX</div>
-              <div class="vol-chart-subtitle">Contango vs Backwardation</div>
+              <div class="vol-chart-title" data-i18n="volatilidad.chart1Title">Estructura Temporal VIX</div>
+              <div class="vol-chart-subtitle" data-i18n="volatilidad.chart1Sub">Contango vs Backwardation</div>
               <canvas id="termStructureChart" class="vol-chart-canvas"></canvas>
             </div>
             <div class="vol-chart-card">
-              <div class="vol-chart-title">Ratio VIX / VIX3M</div>
-              <div class="vol-chart-subtitle">Señales históricas de entrada/salida</div>
+              <div class="vol-chart-title" data-i18n="volatilidad.chart2Title">Ratio VIX / VIX3M</div>
+              <div class="vol-chart-subtitle" data-i18n="volatilidad.chart2Sub">Señales históricas de entrada/salida</div>
               <canvas id="ratioChart" class="vol-chart-canvas"></canvas>
             </div>
           </div>
@@ -3473,80 +3468,80 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
           <article class="volatilidad-strategy vol-strategy-card">
             <span class="volatilidad-strategy-num">01</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Contango — Short corto plazo, Long largo plazo</h3>
+              <h3 class="volatilidad-strategy-title" data-i18n="volatilidad.s1Title">Contango — Short corto plazo, Long largo plazo</h3>
               <div class="vol-strategy-badges"><span class="vol-badge vol-badge-short">SHORT</span><span class="vol-badge vol-badge-long">LONG</span><span class="vol-badge vol-badge-normal">NORMAL</span></div>
-              <p class="volatilidad-strategy-desc">Capitaliza el <em>roll yield</em> positivo mientras los futuros de corto plazo convergen (caen) hacia el VIX spot. Estructura ideal cuando el mercado está en calma.</p>
+              <p class="volatilidad-strategy-desc" data-i18n="volatilidad.s1Desc">Capitaliza el roll yield positivo mientras los futuros de corto plazo convergen (caen) hacia el VIX spot. Estructura ideal cuando el mercado está en calma.</p>
             </div>
           </article>
 
           <article class="volatilidad-strategy vol-strategy-card">
             <span class="volatilidad-strategy-num">02</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Backwardation — Long corto plazo, Short largo plazo</h3>
+              <h3 class="volatilidad-strategy-title" data-i18n="volatilidad.s2Title">Backwardation — Long corto plazo, Short largo plazo</h3>
               <div class="vol-strategy-badges"><span class="vol-badge vol-badge-long">LONG</span><span class="vol-badge vol-badge-short">SHORT</span><span class="vol-badge vol-badge-rare">RARO</span></div>
-              <p class="volatilidad-strategy-desc">Aparece en eventos de estrés agudo. La prima de riesgo inmediata supera la expectativa futura, generando un diferencial negativo explotable.</p>
+              <p class="volatilidad-strategy-desc" data-i18n="volatilidad.s2Desc">Aparece en eventos de estrés agudo. La prima de riesgo inmediata supera la expectativa futura, generando un diferencial negativo explotable.</p>
             </div>
           </article>
 
           <article class="volatilidad-strategy vol-strategy-card">
             <span class="volatilidad-strategy-num">03</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Contango pronunciado — Ampliar spread</h3>
+              <h3 class="volatilidad-strategy-title" data-i18n="volatilidad.s3Title">Contango pronunciado — Ampliar spread</h3>
               <div class="vol-strategy-badges"><span class="vol-badge vol-badge-short">SHORT</span><span class="vol-badge vol-badge-long">LONG</span></div>
-              <p class="volatilidad-strategy-desc">Cuando la pendiente de la curva es especialmente empinada, se incrementa el tamaño relativo del spread para amplificar el <em>roll yield</em> capturado.</p>
+              <p class="volatilidad-strategy-desc" data-i18n="volatilidad.s3Desc">Cuando la pendiente de la curva es especialmente empinada, se incrementa el tamaño relativo del spread para amplificar el roll yield capturado.</p>
             </div>
           </article>
 
           <article class="volatilidad-strategy vol-strategy-card">
             <span class="volatilidad-strategy-num">04</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Curva plana — Reducir o mantenerse fuera</h3>
+              <h3 class="volatilidad-strategy-title" data-i18n="volatilidad.s4Title">Curva plana — Reducir o mantenerse fuera</h3>
               <div class="vol-strategy-badges"><span class="vol-badge vol-badge-normal">NEUTRAL</span></div>
-              <p class="volatilidad-strategy-desc">Una estructura temporal plana reduce el diferencial entre vencimientos. El potencial de beneficio del spread trading disminuye significativamente.</p>
+              <p class="volatilidad-strategy-desc" data-i18n="volatilidad.s4Desc">Una estructura temporal plana reduce el diferencial entre vencimientos. El potencial de beneficio del spread trading disminuye significativamente.</p>
             </div>
           </article>
 
           <article class="volatilidad-strategy vol-strategy-card vol-strategy-highlight">
             <span class="volatilidad-strategy-num">05</span>
             <div class="volatilidad-strategy-body">
-              <h3 class="volatilidad-strategy-title">Indicador clave — Ratio VIX / VIX3M</h3>
+              <h3 class="volatilidad-strategy-title" data-i18n="volatilidad.s5Title">Indicador clave — Ratio VIX / VIX3M</h3>
               <div class="vol-strategy-badges"><span class="vol-badge vol-badge-ratio">VIX/VIX3M</span></div>
-              <p class="volatilidad-strategy-desc">Ratio &lt;1 sugiere contango; &gt;1 indica backwardation. Señal de entrada/salida fundamental para los spread trades.</p>
+              <p class="volatilidad-strategy-desc" data-i18n="volatilidad.s5Desc">Ratio &lt;1 sugiere contango; &gt;1 indica backwardation. Señal de entrada/salida fundamental para los spread trades.</p>
               <div class="vol-ratio-band">
-                <span class="vol-ratio-contango">Ratio &lt; 1 → Contango</span>
+                <span class="vol-ratio-contango" data-i18n="volatilidad.s5RatioC">Ratio &lt; 1 → Contango</span>
                 <span class="vol-ratio-mid"></span>
-                <span class="vol-ratio-backwardation">Ratio &gt; 1 → Backwardation</span>
+                <span class="vol-ratio-backwardation" data-i18n="volatilidad.s5RatioB">Ratio &gt; 1 → Backwardation</span>
               </div>
             </div>
           </article>
         </div>
 
         <div class="vol-glossary-section">
-          <h3 class="vol-glossary-title">📖 Glosario de Conceptos Técnicos</h3>
+          <h3 class="vol-glossary-title" data-i18n="volatilidad.glossaryTitle">📖 Glosario de Conceptos Técnicos</h3>
           <div class="vol-glossary-grid">
             <div class="vol-glossary-item">
-              <div class="vol-glossary-term">Contango</div>
-              <div class="vol-glossary-def">Condición en que los futuros de mayor vencimiento cotizan más alto que los de menor vencimiento. Es la estructura habitual del VIX; indica mercado en calma con expectativa de volatilidad futura.</div>
+              <div class="vol-glossary-term" data-i18n="volatilidad.g1Term">Contango</div>
+              <div class="vol-glossary-def" data-i18n="volatilidad.g1Def">Condición en que los futuros de mayor vencimiento cotizan más alto que los de menor vencimiento. Es la estructura habitual del VIX; indica mercado en calma con expectativa de volatilidad futura.</div>
             </div>
             <div class="vol-glossary-item">
-              <div class="vol-glossary-term">Backwardation</div>
-              <div class="vol-glossary-def">Condición inversa al contango: los futuros cercanos cotizan más caro que los lejanos. Señal de estrés inminente o miedo extremo en el mercado a corto plazo.</div>
+              <div class="vol-glossary-term" data-i18n="volatilidad.g2Term">Backwardation</div>
+              <div class="vol-glossary-def" data-i18n="volatilidad.g2Def">Condición inversa al contango: los futuros cercanos cotizan más caro que los lejanos. Señal de estrés inminente o miedo extremo en el mercado a corto plazo.</div>
             </div>
             <div class="vol-glossary-item">
-              <div class="vol-glossary-term">Roll Yield</div>
-              <div class="vol-glossary-def">Ganancia (o pérdida) resultante de renovar un contrato de futuro cercano a su vencimiento. En contango, «rollar» futuros cortos genera rendimiento positivo sistemático.</div>
+              <div class="vol-glossary-term" data-i18n="volatilidad.g3Term">Roll Yield</div>
+              <div class="vol-glossary-def" data-i18n="volatilidad.g3Def">Ganancia (o pérdida) resultante de renovar un contrato de futuro cercano a su vencimiento. En contango, «rollar» futuros cortos genera rendimiento positivo sistemático.</div>
             </div>
             <div class="vol-glossary-item">
-              <div class="vol-glossary-term">VIX Spot</div>
-              <div class="vol-glossary-def">Índice de volatilidad implícita del S&amp;P 500 a 30 días, calculado en tiempo real por CBOE. Mide la expectativa del mercado sobre movimientos futuros, no volatilidad pasada.</div>
+              <div class="vol-glossary-term" data-i18n="volatilidad.g4Term">VIX Spot</div>
+              <div class="vol-glossary-def" data-i18n="volatilidad.g4Def">Índice de volatilidad implícita del S&amp;P 500 a 30 días, calculado en tiempo real por CBOE. Mide la expectativa del mercado sobre movimientos futuros, no volatilidad pasada.</div>
             </div>
             <div class="vol-glossary-item">
-              <div class="vol-glossary-term">VIX3M</div>
-              <div class="vol-glossary-def">Volatilidad implícita del S&amp;P 500 a 3 meses. Junto al VIX spot, permite construir el ratio que define la estructura temporal y guía las señales de entrada/salida.</div>
+              <div class="vol-glossary-term" data-i18n="volatilidad.g5Term">VIX3M</div>
+              <div class="vol-glossary-def" data-i18n="volatilidad.g5Def">Volatilidad implícita del S&amp;P 500 a 3 meses. Junto al VIX spot, permite construir el ratio que define la estructura temporal y guía las señales de entrada/salida.</div>
             </div>
             <div class="vol-glossary-item">
-              <div class="vol-glossary-term">Spread Trade (VIX)</div>
-              <div class="vol-glossary-def">Estrategia que toma posiciones opuestas en dos vencimientos distintos de futuros VIX. Busca explotar la diferencia de precios entre contratos, reduciendo la exposición direccional al mercado.</div>
+              <div class="vol-glossary-term" data-i18n="volatilidad.g6Term">Spread Trade (VIX)</div>
+              <div class="vol-glossary-def" data-i18n="volatilidad.g6Def">Estrategia que toma posiciones opuestas en dos vencimientos distintos de futuros VIX. Busca explotar la diferencia de precios entre contratos, reduciendo la exposición direccional al mercado.</div>
             </div>
           </div>
         </div>
@@ -4356,11 +4351,11 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
   <footer class="site-footer">
     <div class="footer-grid">
-      <div><a href="formacion.html">Formación</a><a href="trading-room.html">Trading Room</a><a href="recursos.html">Recursos</a></div>
-      <div><a href="volatilidad.html">Volatilidad</a><a href="software-bots.html">Software / Bots</a><a href="contacto.html">Contacto</a></div>
-      <div><a href="legal/terminos.html">Términos y condiciones</a><a href="legal/cookies.html">Política de cookies</a><a href="legal/aviso.html">Aviso legal / Financial advisor</a></div>
+      <div><a href="formacion.html" data-i18n="footer.formacion">Formación</a><a href="trading-room.html" data-i18n="footer.tradingRoom">Trading Room</a><a href="recursos.html" data-i18n="footer.recursos">Recursos</a></div>
+      <div><a href="volatilidad.html" data-i18n="footer.volatilidad">Volatilidad</a><a href="software-bots.html" data-i18n="footer.software">Software / Bots</a><a href="contacto.html" data-i18n="footer.contacto">Contacto</a></div>
+      <div><a href="legal/terminos.html" data-i18n="footer.terms">Términos y condiciones</a><a href="legal/cookies.html" data-i18n="footer.cookies">Política de cookies</a><a href="legal/aviso.html" data-i18n="footer.advisor">Aviso legal / Financial advisor</a></div>
     </div>
-    <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
+    <div class="footer-bottom" data-i18n="footer.copyright">© GEXZONE. Todos los derechos reservados.</div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -4387,7 +4382,8 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     localStorage.setItem(STORAGE_THEME, theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-label', theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      var t = (i18n[getLang()] || i18n.es).aria;
+      btn.setAttribute('aria-label', theme === 'night' ? (t && t.themeToggle) || 'Cambiar a modo claro' : (t && t.themeToggleDark) || 'Cambiar a modo oscuro');
       var icon = btn.querySelector('.theme-toggle-icon');
       if (icon) icon.textContent = theme === 'night' ? '\u263C' : '\uD83C\uDF19';
     }
@@ -4409,7 +4405,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   const i18n = {
     es: {
       nav: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto' },
-      footer: { terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      footer: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto', terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      aria: { openMenu: 'Abrir menú', themeToggle: 'Cambiar a modo claro', themeToggleDark: 'Cambiar a modo oscuro' },
+      volatilidad: { pageTitle: 'Volatilidad — GEXZONE', badge: 'Estrategias', heroTitle: 'Trading de Spreads VIX basado en estructura temporal', heroSub: 'Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.', chart1Title: 'Estructura Temporal VIX', chart1Sub: 'Contango vs Backwardation', chart2Title: 'Ratio VIX / VIX3M', chart2Sub: 'Señales históricas de entrada/salida', s1Title: 'Contango — Short corto plazo, Long largo plazo', s1Desc: 'Capitaliza el roll yield positivo mientras los futuros de corto plazo convergen (caen) hacia el VIX spot. Estructura ideal cuando el mercado está en calma.', s2Title: 'Backwardation — Long corto plazo, Short largo plazo', s2Desc: 'Aparece en eventos de estrés agudo. La prima de riesgo inmediata supera la expectativa futura, generando un diferencial negativo explotable.', s3Title: 'Contango pronunciado — Ampliar spread', s3Desc: 'Cuando la pendiente de la curva es especialmente empinada, se incrementa el tamaño relativo del spread para amplificar el roll yield capturado.', s4Title: 'Curva plana — Reducir o mantenerse fuera', s4Desc: 'Una estructura temporal plana reduce el diferencial entre vencimientos. El potencial de beneficio del spread trading disminuye significativamente.', s5Title: 'Indicador clave — Ratio VIX / VIX3M', s5Desc: 'Ratio <1 sugiere contango; >1 indica backwardation. Señal de entrada/salida fundamental para los spread trades.', s5RatioC: 'Ratio < 1 → Contango', s5RatioB: 'Ratio > 1 → Backwardation', glossaryTitle: '📖 Glosario de Conceptos Técnicos', g1Term: 'Contango', g1Def: 'Condición en que los futuros de mayor vencimiento cotizan más alto que los de menor vencimiento. Es la estructura habitual del VIX; indica mercado en calma con expectativa de volatilidad futura.', g2Term: 'Backwardation', g2Def: 'Condición inversa al contango: los futuros cercanos cotizan más caro que los lejanos. Señal de estrés inminente o miedo extremo en el mercado a corto plazo.', g3Term: 'Roll Yield', g3Def: 'Ganancia (o pérdida) resultante de renovar un contrato de futuro cercano a su vencimiento. En contango, «rollar» futuros cortos genera rendimiento positivo sistemático.', g4Term: 'VIX Spot', g4Def: 'Índice de volatilidad implícita del S&P 500 a 30 días, calculado en tiempo real por CBOE. Mide la expectativa del mercado sobre movimientos futuros, no volatilidad pasada.', g5Term: 'VIX3M', g5Def: 'Volatilidad implícita del S&P 500 a 3 meses. Junto al VIX spot, permite construir el ratio que define la estructura temporal y guía las señales de entrada/salida.', g6Term: 'Spread Trade (VIX)', g6Def: 'Estrategia que toma posiciones opuestas en dos vencimientos distintos de futuros VIX. Busca explotar la diferencia de precios entre contratos, reduciendo la exposición direccional al mercado.' },
       contact: { title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto institucional', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
       chatbot: { title: 'Chat GEXZONE', placeholder: 'Escribe tu mensaje...', send: 'Enviar', greeting: 'Hola. Soy el asistente de GEXZONE. Puedo responder preguntas frecuentes sobre formación y Trading Room. Para temas detallados, te recomendamos usar el formulario de contacto o agendar una llamada.' },
       testimonials: { title: 'Testimonios' },
@@ -4419,7 +4417,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
-      footer: { terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      footer: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل', terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      aria: { openMenu: 'فتح القائمة', themeToggle: 'التبديل إلى الوضع الفاتح', themeToggleDark: 'التبديل إلى الوضع الداكن' },
+      volatilidad: { pageTitle: 'التقلب — GEXZONE', badge: 'استراتيجيات', heroTitle: 'تداول سبريدات VIX بناءً على البنية الزمنية', heroSub: 'اضبط مركزك وفق منحنى عقود VIX الآجلة: كونتانغو، باكورديشن والبنية المسطحة.', chart1Title: 'البنية الزمنية لـ VIX', chart1Sub: 'كونتانغو مقابل باكورديشن', chart2Title: 'نسبة VIX / VIX3M', chart2Sub: 'إشارات دخول/خروج تاريخية', s1Title: 'كونتانغو — Short قصير الأجل، Long طويل الأجل', s1Desc: 'استفد من عائد الـ roll الإيجابي بينما تتقارب عقود الأجل القصير (تهبط) نحو VIX الفوري. بنية مثالية عندما يكون السوق هادئاً.', s2Title: 'باكورديشن — Long قصير الأجل، Short طويل الأجل', s2Desc: 'يظهر في أحداث الإجهاد الحاد. علاوة المخاطر الفورية تتجاوز التوقع المستقبلي، مولدة فرقاً سلبياً قابلاً للاستغلال.', s3Title: 'كونتانغو حاد — توسيع السبريد', s3Desc: 'عندما يكون منحنى المنحنى حاداً جداً، تزداد الحجم النسبي للسبريد لتضخيم عائد الـ roll المحصود.', s4Title: 'منحنى مسطح — تقليل أو البقاء خارج السوق', s4Desc: 'البنية الزمنية المسطحة تقلل الفرق بين آجال الاستحقاق. إمكانية الربح من تداول السبريد تنخفض بشكل كبير.', s5Title: 'المؤشر الرئيسي — نسبة VIX / VIX3M', s5Desc: 'نسبة <1 تشير إلى كونتانغو؛ >1 تشير إلى باكورديشن. إشارة دخول/خروج أساسية لصفقات السبريد.', s5RatioC: 'نسبة < 1 → كونتانغو', s5RatioB: 'نسبة > 1 → باكورديشن', glossaryTitle: '📖 مسرد المفاهيم التقنية', g1Term: 'كونتانغو', g1Def: 'حالة تكون فيها عقود الأجل الأبعد تتداول أعلى من عقود الأجل الأقرب. هي البنية المعتادة لـ VIX؛ تشير إلى سوق هادئ مع توقع تقلب مستقبلي.', g2Term: 'باكورديشن', g2Def: 'الحالة المعاكسة للكونتانغو: العقود القريبة تتداول أغلى من البعيدة. إشارة إجهاد وشيك أو خوف شديد في السوق قصير الأجل.', g3Term: 'عائد الـ Roll', g3Def: 'الربح (أو الخسارة) الناتج عن تجديد عقد آجل قريب من استحقاقه. في الكونتانغو، «roll» العقود القصيرة يولد عائداً إيجابياً منتظماً.', g4Term: 'VIX الفوري', g4Def: 'مؤشر التقلب الضمني لـ S&P 500 لـ 30 يوماً، محسوب في الوقت الفعلي من CBOE. يقيس توقع السوق للحركات المستقبلية، وليس التقلب الماضي.', g5Term: 'VIX3M', g5Def: 'التقلب الضمني لـ S&P 500 لـ 3 أشهر. مع VIX الفوري، يسمح ببناء النسبة التي تحدد البنية الزمنية وتوجه إشارات الدخول/الخروج.', g6Term: 'صفقة السبريد (VIX)', g6Def: 'استراتيجية تأخذ مراكز معاكسة في استحقاقين مختلفين لعقود VIX. تسعى لاستغلال فرق الأسعار بين العقود، مع تقليل التعرض الاتجاهي للسوق.' },
       contact: { title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
       chatbot: { title: 'دردشة GEXZONE', placeholder: 'اكتب رسالتك...', send: 'إرسال', greeting: 'مرحباً. أنا مساعد GEXZONE. يمكنني الإجابة على الأسئلة الشائعة حول التدريب وغرفة التداول. للمواضيع المفصلة نوصي باستخدام نموذج الاتصال أو تحديد مكالمة.' },
       testimonials: { title: 'الشهادات' },
@@ -4441,31 +4441,59 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     applyTranslations(lang);
   }
 
+  function getNested(obj, key) {
+    if (!obj || !key) return undefined;
+    const parts = key.split('.');
+    let v = obj;
+    for (let i = 0; i < parts.length; i++) v = v != null ? v[parts[i]] : undefined;
+    return v;
+  }
+
   function applyTranslations(lang) {
     const t = i18n[lang] || i18n.es;
-    function get(obj, key) {
-      const parts = key.split('.');
-      let v = obj;
-      for (let i = 0; i < parts.length; i++) v = v && v[parts[i]];
-      return v;
-    }
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n'));
+      const v = getNested(t, el.getAttribute('data-i18n'));
       if (v != null) el.textContent = v;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n-placeholder'));
+      const v = getNested(t, el.getAttribute('data-i18n-placeholder'));
       if (v != null) el.placeholder = v;
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      const v = getNested(t, el.getAttribute('data-i18n-aria'));
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+    const pageKey = document.body.getAttribute('data-i18n-page');
+    if (pageKey) {
+      const title = getNested(t, pageKey + '.pageTitle');
+      if (title) document.title = title;
+    }
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      const themeLabel = getTheme() === 'night' ? t.aria.themeToggle : t.aria.themeToggleDark;
+      if (themeLabel) themeBtn.setAttribute('aria-label', themeLabel);
+    }
   }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    const dropdownItems = document.querySelectorAll('.js_change_lang');
+    if (dropdownItems.length) {
+      dropdownItems.forEach(function (el) {
+        const code = el.getAttribute('data-url_code');
+        el.classList.toggle('active', code === getLang());
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = el.getAttribute('data-url_code');
+          setLang(lang);
+          document.querySelectorAll('.js_change_lang').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === lang);
+          });
+        });
       });
+    } else {
+      const btn = document.getElementById('lang-toggle');
+      if (btn) btn.addEventListener('click', function () { setLang(getLang() === 'es' ? 'ar' : 'es'); });
     }
   }
 

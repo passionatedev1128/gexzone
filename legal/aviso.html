@@ -343,38 +343,30 @@ h1, h2, h3, h4 {
   gap: 0.5rem;
 }
 
-/* Lang toggle: pill with ES / AR */
-#lang-toggle,
+/* Lang toggle: Ar / Sp dropdown-style buttons */
 .header-lang-toggle {
-  min-width: 4.5rem;
-  height: 2rem;
-  padding: 0 0.6rem;
+  display: inline-flex;
   border: 1px solid var(--border-subtle);
-  border-radius: 999px;
+  border-radius: 8px;
+  overflow: hidden;
   background: var(--bg-card);
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  cursor: pointer;
+}
+.header-lang-toggle .dropdown-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  min-width: 2.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast), background var(--transition-fast);
 }
-
-#lang-toggle:hover,
-.header-lang-toggle:hover {
-  color: var(--text-primary);
-  background: var(--accent-blue-dim);
-  border-color: var(--border-accent);
-}
-
-#lang-toggle:focus-visible,
-.header-lang-toggle:focus-visible {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 2px;
-}
+.header-lang-toggle .dropdown-item:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
+.header-lang-toggle .dropdown-item.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
+.header-lang-toggle .dropdown-item:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
 /* Theme toggle: icon button */
 #theme-toggle,
@@ -3368,7 +3360,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
 </style>
 </head>
-<body>
+<body data-i18n-page="aviso">
   <header class="site-header">
     <div class="container">
       <a href="../index.html" class="logo">
@@ -3384,24 +3376,27 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       </span>
     </a>
       <ul class="nav-main" id="nav-main">
-        <li><a href="../formacion.html">Formación</a></li>
-        <li><a href="../contacto.html">Contacto</a></li>
+        <li><a href="../formacion.html" data-i18n="nav.formacion">Formación</a></li>
+        <li><a href="../contacto.html" data-i18n="nav.contacto">Contacto</a></li>
       </ul>
       <div class="header-actions">
-        <button type="button" class="btn-icon header-lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">ES/AR</button>
-        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
+        <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
+          <a class="dropdown-item js_change_lang" role="menuitem" href="#" data-url_code="ar" title="الْعَرَبيّة"><span>الْعَرَبيّة</span></a>
+          <a class="dropdown-item js_change_lang active" role="menuitem" href="#" data-url_code="es" title="Español"><span>Español</span></a>
+        </div>
+        <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" data-i18n-aria="aria.themeToggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
     </div>
   </header>
   <main class="section">
     <div class="container" style="max-width: 720px;">
-      <h1 class="font-serif">Aviso legal / Financial advisor</h1>
-      <p style="color: var(--text-secondary); margin-top: 1rem;">Placeholder para el aviso legal y el disclaimer de asesoramiento financiero. Incluya identificación del responsable, datos de registro (si aplica), y la aclaración de que la formación y el contenido no constituyen asesoramiento financiero ni recomendación de inversión. Debe ser revisado por un profesional legal.</p>
-      <p><a href="../index.html">Volver al inicio</a></p>
+      <h1 class="font-serif" data-i18n="aviso.title">Aviso legal / Financial advisor</h1>
+      <p style="color: var(--text-secondary); margin-top: 1rem;" data-i18n="aviso.intro">Placeholder para el aviso legal y el disclaimer de asesoramiento financiero. Incluya identificación del responsable, datos de registro (si aplica), y la aclaración de que la formación y el contenido no constituyen asesoramiento financiero ni recomendación de inversión. Debe ser revisado por un profesional legal.</p>
+      <p><a href="../index.html" data-i18n="aviso.backLink">Volver al inicio</a></p>
     </div>
   </main>
   <footer class="site-footer">
-    <div class="footer-bottom">© GEXZONE. Todos los derechos reservados.</div>
+    <div class="footer-bottom" data-i18n="footer.copyright">© GEXZONE. Todos los derechos reservados.</div>
   </footer>
   <script>
 /* GEXZONE — app.js (inline for Odoo) */
@@ -3426,7 +3421,8 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     localStorage.setItem(STORAGE_THEME, theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-label', theme === 'night' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      var t = (i18n[getLang()] || i18n.es).aria;
+      btn.setAttribute('aria-label', theme === 'night' ? (t && t.themeToggle) || 'Cambiar a modo claro' : (t && t.themeToggleDark) || 'Cambiar a modo oscuro');
       var icon = btn.querySelector('.theme-toggle-icon');
       if (icon) icon.textContent = theme === 'night' ? '\u263C' : '\uD83C\uDF19';
     }
@@ -3448,7 +3444,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   const i18n = {
     es: {
       nav: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto' },
-      footer: { terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      footer: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto', terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      aria: { openMenu: 'Abrir menú', themeToggle: 'Cambiar a modo claro', themeToggleDark: 'Cambiar a modo oscuro' },
+      aviso: { pageTitle: 'Aviso legal — GEXZONE', title: 'Aviso legal / Financial advisor', intro: 'Placeholder para el aviso legal y el disclaimer de asesoramiento financiero. Incluya identificación del responsable, datos de registro (si aplica), y la aclaración de que la formación y el contenido no constituyen asesoramiento financiero ni recomendación de inversión. Debe ser revisado por un profesional legal.', backLink: 'Volver al inicio' },
       contact: { title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto institucional', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
       chatbot: { title: 'Chat GEXZONE', placeholder: 'Escribe tu mensaje...', send: 'Enviar', greeting: 'Hola. Soy el asistente de GEXZONE. Puedo responder preguntas frecuentes sobre formación y Trading Room. Para temas detallados, te recomendamos usar el formulario de contacto o agendar una llamada.' },
       testimonials: { title: 'Testimonios' },
@@ -3458,7 +3456,9 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
-      footer: { terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      footer: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل', terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      aria: { openMenu: 'فتح القائمة', themeToggle: 'التبديل إلى الوضع الفاتح', themeToggleDark: 'التبديل إلى الوضع الداكن' },
+      aviso: { pageTitle: 'الإشعار القانوني — GEXZONE', title: 'الإشعار القانوني / مستشار مالي', intro: 'نص مؤقت للإشعار القانوني و disclaimer الاستشارة المالية. يتضمن تحديد المسؤول وبيانات التسجيل (إن وجدت) وتوضيح أن التدريب والمحتوى لا يشكلان استشارة مالية ولا توصية استثمارية. يجب مراجعته من قبل مختص قانوني.', backLink: 'العودة للبداية' },
       contact: { title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
       chatbot: { title: 'دردشة GEXZONE', placeholder: 'اكتب رسالتك...', send: 'إرسال', greeting: 'مرحباً. أنا مساعد GEXZONE. يمكنني الإجابة على الأسئلة الشائعة حول التدريب وغرفة التداول. للمواضيع المفصلة نوصي باستخدام نموذج الاتصال أو تحديد مكالمة.' },
       testimonials: { title: 'الشهادات' },
@@ -3480,31 +3480,59 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     applyTranslations(lang);
   }
 
+  function getNested(obj, key) {
+    if (!obj || !key) return undefined;
+    const parts = key.split('.');
+    let v = obj;
+    for (let i = 0; i < parts.length; i++) v = v != null ? v[parts[i]] : undefined;
+    return v;
+  }
+
   function applyTranslations(lang) {
     const t = i18n[lang] || i18n.es;
-    function get(obj, key) {
-      const parts = key.split('.');
-      let v = obj;
-      for (let i = 0; i < parts.length; i++) v = v && v[parts[i]];
-      return v;
-    }
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n'));
+      const v = getNested(t, el.getAttribute('data-i18n'));
       if (v != null) el.textContent = v;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      const v = get(t, el.getAttribute('data-i18n-placeholder'));
+      const v = getNested(t, el.getAttribute('data-i18n-placeholder'));
       if (v != null) el.placeholder = v;
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      const v = getNested(t, el.getAttribute('data-i18n-aria'));
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+    const pageKey = document.body.getAttribute('data-i18n-page');
+    if (pageKey) {
+      const title = getNested(t, pageKey + '.pageTitle');
+      if (title) document.title = title;
+    }
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      const themeLabel = getTheme() === 'night' ? t.aria.themeToggle : t.aria.themeToggleDark;
+      if (themeLabel) themeBtn.setAttribute('aria-label', themeLabel);
+    }
   }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    const dropdownItems = document.querySelectorAll('.js_change_lang');
+    if (dropdownItems.length) {
+      dropdownItems.forEach(function (el) {
+        const code = el.getAttribute('data-url_code');
+        el.classList.toggle('active', code === getLang());
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          const lang = el.getAttribute('data-url_code');
+          setLang(lang);
+          document.querySelectorAll('.js_change_lang').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === lang);
+          });
+        });
       });
+    } else {
+      const btn = document.getElementById('lang-toggle');
+      if (btn) btn.addEventListener('click', function () { setLang(getLang() === 'es' ? 'ar' : 'es'); });
     }
   }
 
