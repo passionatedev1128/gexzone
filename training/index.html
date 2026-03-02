@@ -140,25 +140,28 @@
     .header-lang-toggle {
       display: inline-flex;
       border: 1px solid var(--border-subtle);
-      border-radius: 999px;
+      border-radius: var(--radius-sm);
       background: var(--bg-card);
       overflow: hidden;
     }
-    .header-lang-toggle button {
-      min-width: 2.25rem;
+    .header-lang-toggle .dropdown-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.5rem;
       height: 2rem;
-      padding: 0 0.5rem;
+      padding: 0 0.6rem;
       border: none;
       background: transparent;
       color: var(--text-secondary);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
       cursor: pointer;
+      text-decoration: none;
       transition: color var(--transition-fast), background var(--transition-fast);
     }
-    .header-lang-toggle button:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
-    .header-lang-toggle button.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
+    .header-lang-toggle .dropdown-item:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
+    .header-lang-toggle .dropdown-item.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
     .header-theme-toggle {
       width: 2.5rem;
       height: 2.5rem;
@@ -344,8 +347,8 @@
       </ul>
       <div class="header-actions">
         <div class="header-lang-toggle" id="lang-toggle" role="group" aria-label="Idioma">
-          <button type="button" data-lang="ar" aria-label="العربية">Ar</button>
-          <button type="button" data-lang="es" aria-label="Español">Sp</button>
+          <a class="dropdown-item js_change_lang" role="menuitem" href="#" data-url_code="ar" title="الْعَرَبيّة"><span>الْعَرَبيّة</span></a>
+          <a class="dropdown-item js_change_lang active" role="menuitem" href="#" data-url_code="es" title="Español"><span>Español</span></a>
         </div>
         <button type="button" class="btn-icon header-theme-toggle" id="theme-toggle" aria-label="Cambiar a modo claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span></button>
       </div>
@@ -429,15 +432,15 @@
   }
   function initLang() {
     setLang(getLang());
-    var group = document.getElementById('lang-toggle');
-    if (!group) return;
-    group.querySelectorAll('button[data-lang]').forEach(function (btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === getLang());
-      btn.addEventListener('click', function () {
-        var lang = btn.getAttribute('data-lang');
+    document.querySelectorAll('.js_change_lang').forEach(function (el) {
+      var code = el.getAttribute('data-url_code');
+      el.classList.toggle('active', code === getLang());
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var lang = el.getAttribute('data-url_code');
         setLang(lang);
-        group.querySelectorAll('button[data-lang]').forEach(function (b) {
-          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        document.querySelectorAll('.js_change_lang').forEach(function (item) {
+          item.classList.toggle('active', item.getAttribute('data-url_code') === lang);
         });
       });
     });
