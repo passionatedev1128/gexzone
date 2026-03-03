@@ -1,0 +1,76 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        const container = document.querySelector('.o_wslides_home_main');
+        if (!container) return;
+    
+        /* ----------------------------------------
+           Helper: hide all course cards
+        ---------------------------------------- */
+        container.querySelectorAll('.d-flex').forEach(div => {
+            div.style.setProperty('display', 'none', 'important');
+        });
+    
+        /* ----------------------------------------
+           Helper: show course by href
+        ---------------------------------------- */
+        function showCourseByHref(href) {
+            const link = container.querySelector(`a[href="${href}"]`);
+            if (!link) return;
+    
+            const parent = link.closest('div');
+            if (!parent) return;
+    
+            // Check if the parent contains <a class="send_validation_email">
+            if (document.querySelector('a.send_validation_email')  !== null) {
+                // If yes, do NOT show the course
+                return;
+            }
+    
+            // Show the course card
+            parent.style.removeProperty('display');
+    
+            parent.querySelectorAll('.d-flex').forEach(div => {
+                div.style.removeProperty('display');
+            });
+        }
+    
+        /* ----------------------------------------
+           Read URL params
+        ---------------------------------------- */
+        const params = new URLSearchParams(window.location.search);
+        const courseType = params.get('course_type');
+        const coursePayment = params.get('course_payment');
+    
+        if (!courseType || !coursePayment) return;
+    
+        /* ----------------------------------------
+           Routing logic
+        ---------------------------------------- */
+    
+        // bajo-demanda + free
+        if (courseType === 'bajo-demanda' && coursePayment === 'free') {
+            showCourseByHref('/slides/manual-de-opciones-glosario-esencial-bajo-demanda-7');
+            showCourseByHref('/slides/beyond-the-flow-bajo-demanda-8');
+        }
+    
+        // bajo-demanda + paid
+        if (courseType === 'bajo-demanda' && coursePayment === 'paid') {
+            showCourseByHref('/slides/conocimiento-asimetrico-con-opciones-financieras-bajo-demanda-12');
+            showCourseByHref('/slides/flow-dynamics-market-mechanics-exposure-protocol-program-bajo-demanda-13');
+        }
+    
+        // evento-en-vivo + paid
+        if (courseType === 'evento-en-vivo' && coursePayment === 'paid') {
+            showCourseByHref('/slides/conocimiento-asimetrico-con-opciones-financieras-evento-en-vivo-14');
+            showCourseByHref('/slides/flow-dynamics-market-mechanics-exposure-protocol-program-evento-en-vivo-15');
+        }
+    
+        // evento-en-vivo + free
+        if (courseType === 'evento-en-vivo' && coursePayment === 'free') {
+            showCourseByHref('/slides/manual-de-opciones-glosario-esencial-evento-en-vivo-17');
+            showCourseByHref('/slides/beyond-the-flow-evento-en-vivo-10');
+        }
+    
+    });
+</script>
