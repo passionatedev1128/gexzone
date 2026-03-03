@@ -130,7 +130,9 @@ html {
 
 body {
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-  background: var(--bg-primary);
+  background: var(--bg-primary) url('assets/software-bots-bg.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--text-primary);
   font-size: 1rem;
   line-height: 1.7;
@@ -141,6 +143,27 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+/* Overlay sobre todo el body: legibilidad y tapar marca de agua abajo a la derecha */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, rgba(10, 14, 20, 0.72) 0%, rgba(10, 14, 20, 0.58) 50%, rgba(10, 14, 20, 0.82) 100%),
+    linear-gradient(to top right, transparent 55%, rgba(10, 14, 20, 0.9) 80%);
+  pointer-events: none;
+}
+[data-theme="day"] body::before {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.78) 0%, rgba(248, 250, 252, 0.68) 50%, rgba(248, 250, 252, 0.86) 100%),
+    linear-gradient(to top right, transparent 55%, rgba(248, 250, 252, 0.94) 80%);
+}
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 body.rtl {
@@ -2010,6 +2033,15 @@ h1, h2, h3, h4 {
 .coming-soon-section {
   text-align: center;
   padding: clamp(2.5rem, 6vw, 4rem) clamp(0.75rem, 3%, 4%);
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coming-soon-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .coming-soon-section .badge {
