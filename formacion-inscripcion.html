@@ -234,8 +234,8 @@
   'use strict';
   var STORAGE_THEME = 'gexzone_theme';
   var STORAGE_LANG = 'gexzone_lang';
-  // Sustituir por tu URL de Stripe Checkout cuando esté lista (ej. https://checkout.stripe.com/... o tu backend que redirige a Stripe)
-  var CHECKOUT_BASE_URL = 'contacto.html';
+  // Base URL del sitio (ej. https://www.gexzone.com). Para desarrollo local usar '' o window.location.origin.
+  var SITE_BASE_URL = 'https://www.gexzone.com';
 
   function getTheme() { return localStorage.getItem(STORAGE_THEME) || 'night'; }
   function setTheme(theme) {
@@ -313,8 +313,9 @@
     var btn = document.getElementById('btn-continuar');
     if (!btn) return;
     if (selectedProgram && selectedConvocatoria) {
-      var params = new URLSearchParams({ program: selectedProgram, convocatoria: selectedConvocatoria });
-      btn.href = CHECKOUT_BASE_URL.indexOf('?') !== -1 ? CHECKOUT_BASE_URL + '&' + params.toString() : CHECKOUT_BASE_URL + '?' + params.toString();
+      var base = SITE_BASE_URL || window.location.origin;
+      var path = '/training/' + selectedProgram + '?time=' + encodeURIComponent(selectedConvocatoria);
+      btn.href = base.replace(/\/$/, '') + path;
       btn.style.pointerEvents = '';
       btn.style.opacity = '1';
     } else {
