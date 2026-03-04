@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sala de operaciones - GEXZONE</title>
-  <meta name="description" content="Operativa estructural en vivo. Flujo institucional, exposures y datos en tiempo real.">
+  <title>Formación — GEXZONE</title>
+  <meta name="description" content="Formación en opciones financieras, Flow Dynamics, Beyond the Flow y Trading Room. De cero a experto.">
   <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');
@@ -1342,12 +1342,12 @@ h1, h2, h3, h4 {
   border-radius: 16px;
   padding: 2rem;
   margin-bottom: 2rem;
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .program-card:hover {
-  
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card);
 }
 
 .program-card h3 {
@@ -1461,7 +1461,7 @@ h1, h2, h3, h4 {
 /* ---- Trading Room ---- */
 .trading-room-section .feature-list {
   list-style: none;
-  /* max-width: 680px; */
+  max-width: 680px;
 }
 
 .trading-room-section .feature-list li {
@@ -3358,92 +3358,6 @@ body.rtl .nav-main a.active { border-left-color: var(--accent-blue); }
 body.rtl .two-col-list li { padding-left: 0; padding-right: 1.25rem; }
 body.rtl .two-col-list li::before { left: auto; right: 0; }
 
-/* ---- Trading Room: texto blanco intenso y tamaños mayores (títulos + cuerpo) ---- */
-.trading-room-section .container {
-  color: #f8fafc;
-  font-size: 1.2rem;
-  line-height: 1.75;
-}
-.trading-room-section .container h1 {
-  color: #ffffff;
-  font-size: clamp(2.1rem, 4vw, 2.85rem) !important;
-  margin-bottom: 0.5rem;
-}
-.trading-room-section .hero-sub {
-  color: #f1f5f9 !important;
-  font-size: 1.25rem !important;
-  margin-bottom: 2rem;
-}
-.trading-room-section .program-card h3 {
-  color: #ffffff;
-  font-size: clamp(1.5rem, 2.5vw, 1.9rem) !important;
-  margin-bottom: 0.75rem;
-}
-.trading-room-section .program-card .subtitle,
-.trading-room-section .feature-list li,
-.trading-room-section .access-info {
-  color: #f1f5f9 !important;
-  font-size: 1.15rem !important;
-}
-.trading-room-section .feature-list li {
-  font-size: 1.15rem !important;
-  margin-bottom: 0.75rem;
-}
-[data-theme="day"] .trading-room-section .container { color: #0f172a; }
-[data-theme="day"] .trading-room-section .container h1,
-[data-theme="day"] .trading-room-section .program-card h3 { color: #0f172a; }
-[data-theme="day"] .trading-room-section .hero-sub,
-[data-theme="day"] .trading-room-section .program-card .subtitle,
-[data-theme="day"] .trading-room-section .feature-list li,
-[data-theme="day"] .trading-room-section .access-info { color: #1e293b !important; }
-
-/* Overlay sobre la imagen de fondo para que el texto se lea con nitidez */
-.trading-room-section {
-  position: relative;
-  isolation: isolate;
-}
-.trading-room-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(7,10,15,0.35) 0%, rgba(7,10,15,0.5) 50%, rgba(7,10,15,0.65) 100%);
-}
-[data-theme="day"] .trading-room-section::after {
-  background: linear-gradient(180deg, rgba(248,250,252,0.4) 0%, rgba(248,250,252,0.55) 50%, rgba(248,250,252,0.7) 100%);
-}
-.trading-room-section .container {
-  position: relative;
-  z-index: 2;
-}
-/* Panel con fondo semitransparente: imagen visible y texto legible */
-.trading-room-section .program-card {
-  background: rgba(10, 14, 20, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-[data-theme="day"] .trading-room-section .program-card {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-/* Refuerzo de legibilidad: sombra en el texto (sin tapar la imagen) */
-.trading-room-section .container h1,
-.trading-room-section .hero-sub,
-.trading-room-section .program-card h3,
-.trading-room-section .program-card .subtitle,
-.trading-room-section .feature-list li,
-.trading-room-section .access-info {
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7), 0 0 1px rgba(0,0,0,0.5);
-}
-[data-theme="day"] .trading-room-section .container h1,
-[data-theme="day"] .trading-room-section .hero-sub,
-[data-theme="day"] .trading-room-section .program-card h3,
-[data-theme="day"] .trading-room-section .program-card .subtitle,
-[data-theme="day"] .trading-room-section .feature-list li,
-[data-theme="day"] .trading-room-section .access-info {
-  text-shadow: 0 1px 3px rgba(255,255,255,0.8), 0 0 1px rgba(255,255,255,0.5);
-}
-
 </style>
 
 
@@ -3478,42 +3392,83 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   
   
 
-  <main style="margin-bottom: 30px;">
-    <section class="section trading-room-section" style="background: var(--bg-secondary);">
-      <div style="background: var(--bg-primary) url('/web/image/1966-b3481b05/resource.jpg') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed; position: absolute;
-      inset: 0; transform: scale(0.99);"></div>
-      <div class="container" style="position: relative; top: 40%;">
-        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Trading Room — Operativa Estructural en Vivo</h1>
-        <p class="hero-sub" style="margin-bottom: 2rem;">La Trading Room es el punto donde la teoría se convierte en ejecución real. Un entorno de operativa en vivo donde los alumnos del programa principal y de la <strong>Formación de Opciones</strong> aplican los conceptos aprendidos frente al mercado abierto.</p>
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Formación</h1>
+        <p class="hero-sub" style="max-width: 720px;">Programas técnicos para leer el mercado con lógica institucional y ventaja estructural.</p>
+
+        <div class="formacion-intro" style="margin-top: 2rem;">
+          <p class="font-serif" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">Acompañamiento Profesional, no solo contenido.</p>
+          <p class="subtitle" style="margin-bottom: 1rem;">Aquí, el contenido es el punto de partida, pero el valor real está en el mentor:</p>
+          <ul class="formacion-intro-cols" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0; padding: 0; list-style: none;">
+            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Mentoring Directo:</span> Olvídate de hablar con un bot o esperar semanas a que alguien responda un ticket. Tienes a un profesional experto a tu lado para validar tus pasos.</li>
+            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Feedback en Tiempo Real:</span> No se trata de ver cómo otros operan, sino de que tú lo hagas bien. Corregimos tus errores antes de que te cuesten dinero en el mercado.</li>
+            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Sin "Letra Pequeña" de Abandono:</span> La mayoría de los cursos grabados tienen una tasa de abandono del 90%. Nosotros estamos encima de tu progreso porque nuestro objetivo es que domines el sistema, no que solo lo compres.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section" style="background: var(--bg-secondary);">
+      <div class="container">
         <div class="program-card">
-          <h3>Pensar como un Market Maker</h3>
-          <p class="subtitle" style="color: honeydew;">Te revelamos cómo los flujos institucionales, las exposiciones de las opciones y la microestructura del mercado definen el movimiento real del precio. Exploraremos la lectura de griegas ocultas para la mayoría de traders, ponderaremos la tipología de flujos institucionales, y te enseñaremos a estudiar las exposures realmente útiles, para formar una mente analítica capaz de interpretar el mercado desde los datos, no desde la intuición.</p>
-          <p class="subtitle" style="color: honeydew;">A través de una metodología rigurosa, los alumnos aprenden a pensar y operar como los market makers, comprendiendo las verdaderas fuerzas detrás del spot: gamma, vanna, charm, delta, speed, color, vomma, zomma y más.</p>
-          <a href="/training" class="btn btn-primary mt-2">Acceder a la formación</a>
+          <h3>BEYOND THE FLOW</h3>
+          <p class="subtitle">Formación gratuita para entender el mercado moderno desde sus flujos invisibles.</p>
+          <div class="two-col-list-wrap">
+            <ul class="two-col-list">
+              <li>Evolución del volumen de opciones y su impacto en el precio: por qué hoy la cola mueve al perro.</li>
+              <li>ODTE y vencimientos semanales: cómo multiplican el efecto inmediato sobre el spot.</li>
+              <li>Qué hacen realmente los Market Makers: provisión de liquidez, delta hedging y retroalimentaciones mecánicas.</li>
+              <li>Fundamentos de Gamma Exposure (GEX).</li>
+              <li>Pinning y niveles dominantes: regla 5/10, muros de gamma y lectura básica de rangos.</li>
+              <li>Escenarios prácticos: un strike dominante vs. múltiples strikes y cómo se operan sus extremos.</li>
+              <li>Dark Pools: qué son, por qué importan y cómo leer prints y MPIDs relevantes (SPY/QQQ).</li>
+              <li>Prints tardíos: cuándo un rastro invisible anticipa intención institucional.</li>
+              <li>Señales combinadas DIX + GEX para swing.</li>
+            </ul>
+          </div>
+          <div class="cta-wrap">
+            <a href="https://www.gexzone.com/web/login?redirect=training/options-manual" class="btn btn-primary">Acceder gratis</a>
+          </div>
         </div>
-        <ul class="feature-list">
-          <li style="color: honeydew;">Analizamos el flujo institucional, las exposures y los datos en tiempo real.</li>
-          <li style="color: honeydew;">Escenarios, hipótesis, estrategias y validaciones en directo.</li>
-          <li style="color: honeydew;">Laboratorio práctico donde griegas, volatilidad y flujos cobran vida.</li>
-          <li style="color: honeydew;">Ecosistema que piensa en conjunto y mejora el edge colectivo.</li>
-          <li style="color: honeydew;">Sin software de pago adicional: compartimos la <strong>data profesional</strong> en vivo para que analices sin costes extra.</li>
-        </ul>
+      </div>
+    </section>
 
-        <div class="access-info">
-          <span style="color: honeydew;">Alumnos del programa principal: <strong>2 meses</strong> de acceso incluido.</span>
-          
-        </div>
-
-        <div class="mt-2">
-          <a href="/training" class="btn btn-primary">Ver programas de formación</a>
-          <a href="/contact" class="btn btn-outline" style="margin-left: 0.75rem;">Contactar</a>
+    
+    <section class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="program-card">
+          <h3>Manual de Opciones — Glosario Esencial</h3>
+          <p class="subtitle">Conceptos base explicados con ejemplos y visualización en gráfico de riesgo: call, put, strike, vencimiento, OPEX, derecho, obligación y combinaciones básicas.</p>
+          <ul class="two-col-list">
+            <li>Qué es una opción: derecho vs. obligación.</li>
+            <li>Diferencia entre Call y Put.</li>
+            <li>Cómo se define un strike y su relevancia en la estructura del mercado.</li>
+            <li>Qué implica el vencimiento y cómo afecta el valor temporal (Theta).</li>
+            <li>Cómo graficar una Call, una Put y combinaciones básicas en el gráfico de riesgo.</li>
+          </ul>
+          <div class="cta-wrap">
+            <a href="https://www.gexzone.com/web/login?redirect=training/beyond-the-flow" class="btn btn-primary">Acceder gratis</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
