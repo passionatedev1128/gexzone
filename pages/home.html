@@ -143,6 +143,7 @@ body {
 body.rtl {
   direction: rtl;
   text-align: right;
+  font-family: 'DM Sans', 'Segoe UI', Tahoma, 'Traditional Arabic', sans-serif;
 }
 
 a {
@@ -534,9 +535,27 @@ h1, h2, h3, h4 {
   margin-right: auto;
 }
 
-/* Hero con imagen de fondo: blur solo detrás del contenido, mismo tamaño que la sección de texto */
+/* Hero con imagen de fondo: same subtle dark blur as Trading Room (section overlay + frosted content) */
+.hero.hero-bg-image {
+  position: relative;
+  isolation: isolate;
+}
+.hero.hero-bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,10,15,0.35) 0%, rgba(7,10,15,0.5) 50%, rgba(7,10,15,0.65) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+[data-theme="day"] .hero.hero-bg-image::after {
+  background: linear-gradient(180deg, rgba(248,250,252,0.4) 0%, rgba(248,250,252,0.55) 50%, rgba(248,250,252,0.7) 100%);
+}
 .hero.hero-bg-image .hero-content {
   position: relative;
+  z-index: 2;
   padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4%, 2.5rem);
   border-radius: 16px;
 }
@@ -546,13 +565,13 @@ h1, h2, h3, h4 {
   inset: 0;
   z-index: -1;
   border-radius: inherit;
-  background: rgba(58, 86, 128, 0.65);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: rgba(10, 14, 20, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   pointer-events: none;
 }
 [data-theme="day"] .hero.hero-bg-image .hero-content::before {
-  background: rgba(248, 250, 252, 0.78);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .hero-headline-gradient {
