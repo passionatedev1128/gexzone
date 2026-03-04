@@ -1,0 +1,322 @@
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de espera — Software y Bots | GEXZONE</title>
+  <meta name="description" content="Déjanos tus datos para avisarte cuando estén disponibles las herramientas y bots.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=DM+Sans:wght@400;500;600;700&display=swap');
+    :root {
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition-fast: 0.15s ease;
+      --transition-base: 0.25s ease;
+    }
+    :root, [data-theme="night"] {
+      --bg-primary: #0a0e14;
+      --bg-secondary: #111820;
+      --bg-soft: #161d28;
+      --bg-card: rgba(255, 255, 255, 0.035);
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-blue: #60a5fa;
+      --accent-blue-dim: rgba(96, 165, 250, 0.15);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-accent: rgba(96, 165, 250, 0.4);
+      --nav-bg: rgba(10, 14, 20, 0.88);
+      --btn-primary-bg: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      --btn-primary-hover: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+    [data-theme="day"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-soft: #e2e8f0;
+      --bg-card: rgba(0, 0, 0, 0.03);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent-blue: #2563eb;
+      --accent-blue-dim: rgba(37, 99, 235, 0.12);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-accent: rgba(37, 99, 235, 0.4);
+      --nav-bg: rgba(248, 250, 252, 0.92);
+      --btn-primary-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      --btn-primary-hover: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; height: 100%; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100%; display: flex; flex-direction: column; }
+    body.rtl { direction: rtl; text-align: right; }
+    a { text-decoration: none; color: inherit; transition: color var(--transition-fast), opacity var(--transition-fast); }
+    a:hover { opacity: 0.92; }
+    main { flex: 1 0 auto; padding-top: 4rem; padding-bottom: 3rem; }
+    .container { /*max-width: 640px; */ margin: 0 auto; padding: 0 clamp(1.25rem, 4%, 5%); }
+    .section { padding: clamp(2rem, 5vw, 3rem) 0; }
+    .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    .back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 0.75rem; }
+    .back-link { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 0.35rem; }
+    .back-link:hover { color: var(--accent-blue); }
+    .header-lang-toggle { display: inline-flex; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); background: var(--bg-card); overflow: hidden; }
+    .header-lang-toggle .dropdown-item { display: inline-flex; align-items: center; justify-content: center; min-width: 2.5rem; height: 2rem; padding: 0 0.6rem; border: none; background: transparent; color: var(--text-secondary); font-size: 0.75rem; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .header-lang-toggle .dropdown-item:hover { color: var(--text-primary); background: var(--accent-blue-dim); }
+    .header-lang-toggle .dropdown-item.active { color: var(--accent-blue); background: var(--accent-blue-dim); }
+
+    .notify-hero { text-align: center; margin-bottom: 2rem; }
+    .notify-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem; }
+    .notify-hero p { color: var(--text-secondary); font-size: 1rem; }
+
+    .notify-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-card);
+    }
+    .notify-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .notify-form label { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); display: block; margin-bottom: 0.35rem; }
+    .notify-form input[type="text"],
+    .notify-form input[type="email"],
+    .notify-form input[type="tel"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s;
+    }
+    .notify-form input:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
+    .contact-method-label { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; display: block; }
+    .contact-method-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .contact-method-option {
+      flex: 1;
+      min-width: 140px;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--border-subtle);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+      text-align: center;
+    }
+    .contact-method-option:hover { border-color: var(--border-accent); color: var(--text-primary); }
+    .contact-method-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .contact-method-option.selected { border-color: var(--accent-blue); background: var(--accent-blue-dim); color: var(--accent-blue); }
+    .phone-wrap { margin-top: 0.5rem; }
+    .phone-wrap.is-hidden { display: none; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.95rem 1.85rem; font-size: 0.9375rem; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; background: var(--btn-primary-bg); color: #fff; transition: transform var(--transition-fast), box-shadow var(--transition-base); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(96, 165, 250, 0.35); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .notify-form .btn { align-self: flex-start; margin-top: 0.5rem; }
+    .form-success { display: none; text-align: center; padding: 2rem; }
+    .form-success.is-visible { display: block; }
+    .form-success h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--accent-blue); }
+    .form-success p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .form-fields { transition: opacity 0.2s; }
+    .form-fields.is-hidden { display: none; }
+  </style>
+
+  <main>
+    <div class="container">
+
+      <section class="section">
+        <div class="notify-hero">
+          <h1 class="font-serif" data-i18n="notify.title">Por favor, rellene la siguiente información</h1>
+        </div>
+
+        <div class="notify-card">
+          <div id="form-success" class="form-success">
+            <h2 class="font-serif" data-i18n="notify.thanksTitle">Gracias</h2>
+            <p data-i18n="notify.thanksText">Hemos recibido tus datos. Te avisaremos por el canal que elegiste cuando estén disponibles.</p>
+            <a href="bot.html" class="btn" data-i18n="notify.backToBots">Volver a Software / Bots</a>
+          </div>
+
+          <form id="notify-form" class="notify-form form-fields" action="#" method="post">
+            <div>
+              <label for="notify-name" data-i18n="notify.name">Nombre</label>
+              <input type="text" id="notify-name" name="name" required placeholder="Tu nombre" data-i18n-placeholder="notify.namePlaceholder" autocomplete="name">
+            </div>
+            <div>
+              <label for="notify-email" data-i18n="notify.email">Correo electrónico</label>
+              <input type="email" id="notify-email" name="email" required placeholder="tu@email.com" data-i18n-placeholder="notify.emailPlaceholder" autocomplete="email">
+            </div>
+            <div>
+              <span class="contact-method-label" data-i18n="notify.contactMethod">¿Cómo quieres que te contactemos?</span>
+              <div class="contact-method-options" role="group" aria-label="Contact method">
+                <label class="contact-method-option selected" data-value="email">
+                  <input type="radio" name="contact_method" value="email" checked>
+                  <span data-i18n="notify.methodEmail">Email</span>
+                </label>
+                <label class="contact-method-option" data-value="whatsapp">
+                  <input type="radio" name="contact_method" value="whatsapp">
+                  <span data-i18n="notify.methodWhatsApp">WhatsApp</span>
+                </label>
+              </div>
+            </div>
+            <div id="phone-wrap" class="phone-wrap is-hidden">
+              <label for="notify-phone" data-i18n="notify.phone">Número de teléfono (WhatsApp)</label>
+              <input type="tel" id="notify-phone" name="phone" placeholder="+34 600 000 000" autocomplete="tel">
+            </div>
+            <button type="submit" class="btn" data-i18n="notify.submit">Enviar</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+(function () {
+  'use strict';
+  var STORAGE_THEME = 'gexzone_theme';
+  var STORAGE_LANG = 'gexzone_lang';
+
+  var i18n = {
+    es: {
+      notify: {
+        back: '← Volver a Software / Bots',
+        title: 'Avísame cuando estén disponibles',
+        sub: 'Deja tus datos y elige cómo quieres que te contactemos. Te avisaremos cuando tengamos listas las herramientas y bots.',
+        name: 'Nombre',
+        namePlaceholder: 'Tu nombre',
+        email: 'Correo electrónico',
+        emailPlaceholder: 'tu@email.com',
+        contactMethod: '¿Cómo quieres que te contactemos?',
+        methodEmail: 'Email',
+        methodWhatsApp: 'WhatsApp',
+        phone: 'Número de teléfono (WhatsApp)',
+        submit: 'Enviar',
+        thanksTitle: 'Gracias',
+        thanksText: 'Hemos recibido tus datos. Te avisaremos por el canal que elegiste cuando estén disponibles.',
+        backToBots: 'Volver a Software / Bots'
+      }
+    },
+    ar: {
+      notify: {
+        back: '← العودة إلى البرمجيات / البوتات',
+        title: 'أخبرني عندما تكون متاحة',
+        sub: 'اترك بياناتك واختر كيف تريد أن نتواصل معك. سنخبرك عندما تكون الأدوات والبوتات جاهزة.',
+        name: 'الاسم',
+        namePlaceholder: 'اسمك',
+        email: 'البريد الإلكتروني',
+        emailPlaceholder: 'you@email.com',
+        contactMethod: 'كيف تريد أن نتواصل معك؟',
+        methodEmail: 'البريد الإلكتروني',
+        methodWhatsApp: 'واتساب',
+        phone: 'رقم الهاتف (واتساب)',
+        submit: 'إرسال',
+        thanksTitle: 'شكراً',
+        thanksText: 'لقد استلمنا بياناتك. سنخبرك عبر القناة التي اخترتها عندما تكون متاحة.',
+        backToBots: 'العودة إلى البرمجيات / البوتات'
+      }
+    }
+  };
+
+  function getTheme() { return localStorage.getItem(STORAGE_THEME) || 'night'; }
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(STORAGE_THEME, theme);
+  }
+  function getLang() { return localStorage.getItem(STORAGE_LANG) || 'es'; }
+  function setLang(lang) {
+    localStorage.setItem(STORAGE_LANG, lang);
+    document.documentElement.lang = lang === 'ar' ? 'ar' : 'es_ES';
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.classList.toggle('rtl', lang === 'ar');
+    var t = i18n[lang] || i18n.es;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      var val = key.split('.').reduce(function (o, k) { return (o && o[k]); }, t);
+      if (val != null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      var val = key.split('.').reduce(function (o, k) { return (o && o[k]); }, t);
+      if (val != null) el.placeholder = val;
+    });
+  }
+
+  function initTheme() {
+    setTheme(getTheme());
+  }
+  function initLang() {
+    setLang(getLang());
+    document.querySelectorAll('.js_change_lang').forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-url_code') === getLang());
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var code = el.getAttribute('data-url_code');
+        if (code === 'ar' || code === 'es') {
+          setLang(code);
+          document.querySelectorAll('.header-lang-toggle .dropdown-item').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === code);
+          });
+        }
+      });
+    });
+  }
+
+  function initContactMethod() {
+    var options = document.querySelectorAll('.contact-method-option');
+    var phoneWrap = document.getElementById('phone-wrap');
+    var phoneInput = document.getElementById('notify-phone');
+    options.forEach(function (label) {
+      label.addEventListener('click', function () {
+        options.forEach(function (o) { o.classList.remove('selected'); });
+        label.classList.add('selected');
+        var radio = label.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+        var isWhatsApp = label.getAttribute('data-value') === 'whatsapp';
+        if (phoneWrap) phoneWrap.classList.toggle('is-hidden', !isWhatsApp);
+        if (phoneInput) phoneInput.required = isWhatsApp;
+      });
+    });
+  }
+
+  function initForm() {
+    var form = document.getElementById('notify-form');
+    var formSuccess = document.getElementById('form-success');
+    var formFields = form && form.closest('.notify-card') && form.closest('.notify-card').querySelector('.form-fields');
+    if (!form || !formSuccess) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var method = (form.querySelector('input[name="contact_method"]:checked') || {}).value;
+      var name = (form.querySelector('#notify-name') || {}).value;
+      var email = (form.querySelector('#notify-email') || {}).value;
+      var phone = (form.querySelector('#notify-phone') || {}).value;
+      if (method === 'whatsapp' && !phone) {
+        var phoneEl = form.querySelector('#notify-phone');
+        if (phoneEl) { phoneEl.focus(); phoneEl.reportValidity(); }
+        return;
+      }
+      if (formFields) formFields.classList.add('is-hidden');
+      formSuccess.classList.add('is-visible');
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  function init() {
+    initTheme();
+    initLang();
+    initContactMethod();
+    initForm();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+  </script>

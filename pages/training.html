@@ -213,6 +213,19 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
+.formacion-hero .formacion-hero-img {
+  transition: box-shadow var(--transition-base);
+}
+.formacion-hero .formacion-hero-img:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+@media (max-width: 640px) {
+  .formacion-hero > div:last-child {
+    margin-top: 0.5rem;
+    max-width: 100%;
+  }
+}
+
 /* ---- Header / Nav ---- */
 .site-header {
   position: fixed;
@@ -3395,17 +3408,24 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   <main>
     <section class="section">
       <div class="container">
-        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Formación</h1>
-        <p class="hero-sub" style="max-width: 720px;">Programas técnicos para leer el mercado con lógica institucional y ventaja estructural.</p>
+        <div class="formacion-hero" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap;">
+          <div style="flex: 1 1 min(100%, 520px); min-width: 0;">
+            <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Formación</h1>
+            <p class="hero-sub" style="max-width: 100%; margin-bottom: 0;">Programas técnicos para leer el mercado con lógica institucional y ventaja estructural.</p>
 
-        <div class="formacion-intro" style="margin-top: 2rem;">
-          <p class="font-serif" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">Acompañamiento Profesional, no solo contenido.</p>
-          <p class="subtitle" style="margin-bottom: 1rem;">Aquí, el contenido es el punto de partida, pero el valor real está en el mentor:</p>
-          <ul class="formacion-intro-cols" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0; padding: 0; list-style: none;">
-            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Mentoring Directo:</span> Olvídate de hablar con un bot o esperar semanas a que alguien responda un ticket. Tienes a un profesional experto a tu lado para validar tus pasos.</li>
-            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Feedback en Tiempo Real:</span> No se trata de ver cómo otros operan, sino de que tú lo hagas bien. Corregimos tus errores antes de que te cuesten dinero en el mercado.</li>
-            <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Sin "Letra Pequeña" de Abandono:</span> La mayoría de los cursos grabados tienen una tasa de abandono del 90%. Nosotros estamos encima de tu progreso porque nuestro objetivo es que domines el sistema, no que solo lo compres.</li>
-          </ul>
+            <div class="formacion-intro" style="margin-top: 2rem;">
+              <p class="font-serif" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">Acompañamiento Profesional, no solo contenido.</p>
+              <p class="subtitle" style="margin-bottom: 1rem;">Aquí, el contenido es el punto de partida, pero el valor real está en el mentor:</p>
+              <ul class="formacion-intro-cols" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0; padding: 0; list-style: none;">
+                <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Mentoring Directo:</span> Olvídate de hablar con un bot o esperar semanas a que alguien responda un ticket. Tienes a un profesional experto a tu lado para validar tus pasos.</li>
+                <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Feedback en Tiempo Real:</span> No se trata de ver cómo otros operan, sino de que tú lo hagas bien. Corregimos tus errores antes de que te cuesten dinero en el mercado.</li>
+                <li><span style="display: inline-block; background: var(--accent-blue-dim); color: var(--accent-blue); font-weight: 700; padding: 0.2em 0.5em; border-radius: 4px; margin-bottom: 0.35em;">Sin "Letra Pequeña" de Abandono:</span> La mayoría de los cursos grabados tienen una tasa de abandono del 90%. Nosotros estamos encima de tu progreso porque nuestro objetivo es que domines el sistema, no que solo lo compres.</li>
+              </ul>
+            </div>
+          </div>
+          <div style="flex: 0 0 auto; max-width: min(720px, 100%);">
+            <img src="/web/image/1978-2e87f3ae/buildings.jpg?height=256" alt="Formación profesional" class="formacion-hero-img" style="width: 100%; height: 377px; object-fit: cover; border-radius: 0 var(--radius-md) var(--radius-md) 0; border: 1px solid var(--border-subtle); border-left: none; box-shadow: var(--shadow-card); display: block;">
+          </div>
         </div>
       </div>
     </section>
@@ -3483,7 +3503,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
             <li>Al final del proceso, no solo entenderás cómo se mueve el mercado: pensarás como quien realmente lo mueve.</li>
           </ul>
           <div class="cta-wrap">
-            <a href="https://www.gexzone.com/training/flow-dynamics" class="btn btn-primary">Inscribirme — 4000 €</a>
+            <a href="https://www.gexzone.com/web/login?redirect=/shop/flow-dynamics-market-mechanics-exposure-protocol-program-27" class="btn btn-primary">Inscribirme — 4000 €</a>
           </div>
         </div>
       </div>
@@ -3515,7 +3535,7 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
             <li>Operarás como un profesional, no como un groupie de los mercados.</li>
           </ul>
           <div class="cta-wrap">
-            <a href="https://www.gexzone.com/training/financial-options" class="btn btn-primary">Inscribirme — 2000 €</a>
+            <a href="https://www.gexzone.com/web/login?redirect=/shop/asymmetric-knowledge-with-financial-options-22" class="btn btn-primary">Inscribirme — 2000 €</a>
           </div>
         </div>
       </div>
