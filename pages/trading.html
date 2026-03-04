@@ -3480,36 +3480,39 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   
 
   <main style="margin-bottom: 30px;">
+    <div class="header-lang-toggle" style="position:fixed;top:1rem;right:1rem;z-index:1001;display:inline-flex;border:1px solid var(--border-subtle);border-radius:8px;background:var(--bg-card);overflow:hidden;">
+      <a class="dropdown-item js_change_lang" href="#" data-url_code="es" style="min-width:2.5rem;height:2rem;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:.75rem;font-weight:600;text-decoration:none;">ES</a>
+      <a class="dropdown-item js_change_lang" href="#" data-url_code="ar" style="min-width:2.5rem;height:2rem;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:.75rem;font-weight:600;text-decoration:none;">AR</a>
+    </div>
     <section class="section trading-room-section" style="background: var(--bg-secondary);">
       <div style="background: var(--bg-primary) url('/web/image/1966-b3481b05/resource.jpg') no-repeat center center;
       background-size: cover;
       background-attachment: fixed; position: absolute;
       inset: 0; transform: scale(0.99);"></div>
       <div class="container" style="position: relative; top: 40%;">
-        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;">Trading Room — Operativa Estructural en Vivo</h1>
-        <p class="hero-sub" style="margin-bottom: 2rem;">La Trading Room es el punto donde la teoría se convierte en ejecución real. Un entorno de operativa en vivo donde los alumnos del programa principal y de la <strong>Formación de Opciones</strong> aplican los conceptos aprendidos frente al mercado abierto.</p>
+        <h1 class="font-serif" style="font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: 0.5rem;" data-i18n="tr.title">Trading Room — Operativa Estructural en Vivo</h1>
+        <p class="hero-sub" style="margin-bottom: 2rem;" data-i18n="tr.intro">La Trading Room es el punto donde la teoría se convierte en ejecución real. Un entorno de operativa en vivo donde los alumnos del programa principal y de la Formación de Opciones aplican los conceptos aprendidos frente al mercado abierto.</p>
         <div class="program-card">
-          <h3>Pensar como un Market Maker</h3>
-          <p class="subtitle" style="color: honeydew;">Te revelamos cómo los flujos institucionales, las exposiciones de las opciones y la microestructura del mercado definen el movimiento real del precio. Exploraremos la lectura de griegas ocultas para la mayoría de traders, ponderaremos la tipología de flujos institucionales, y te enseñaremos a estudiar las exposures realmente útiles, para formar una mente analítica capaz de interpretar el mercado desde los datos, no desde la intuición.</p>
-          <p class="subtitle" style="color: honeydew;">A través de una metodología rigurosa, los alumnos aprenden a pensar y operar como los market makers, comprendiendo las verdaderas fuerzas detrás del spot: gamma, vanna, charm, delta, speed, color, vomma, zomma y más.</p>
-          <a href="/training" class="btn btn-primary mt-2">Acceder a la formación</a>
+          <h3 data-i18n="tr.cardTitle">Pensar como un Market Maker</h3>
+          <p class="subtitle" style="color: honeydew;" data-i18n="tr.cardDesc1">Te revelamos cómo los flujos institucionales, las exposiciones de las opciones y la microestructura del mercado definen el movimiento real del precio. Exploraremos la lectura de griegas ocultas para la mayoría de traders, ponderaremos la tipología de flujos institucionales, y te enseñaremos a estudiar las exposures realmente útiles, para formar una mente analítica capaz de interpretar el mercado desde los datos, no desde la intuición.</p>
+          <p class="subtitle" style="color: honeydew;" data-i18n="tr.cardDesc2">A través de una metodología rigurosa, los alumnos aprenden a pensar y operar como los market makers, comprendiendo las verdaderas fuerzas detrás del spot: gamma, vanna, charm, delta, speed, color, vomma, zomma y más.</p>
+          <a href="/training" class="btn btn-primary mt-2" data-i18n="tr.acceder">Acceder a la formación</a>
         </div>
         <ul class="feature-list">
-          <li style="color: honeydew;">Analizamos el flujo institucional, las exposures y los datos en tiempo real.</li>
-          <li style="color: honeydew;">Escenarios, hipótesis, estrategias y validaciones en directo.</li>
-          <li style="color: honeydew;">Laboratorio práctico donde griegas, volatilidad y flujos cobran vida.</li>
-          <li style="color: honeydew;">Ecosistema que piensa en conjunto y mejora el edge colectivo.</li>
-          <li style="color: honeydew;">Sin software de pago adicional: compartimos la <strong>data profesional</strong> en vivo para que analices sin costes extra.</li>
+          <li style="color: honeydew;" data-i18n="tr.f1">Analizamos el flujo institucional, las exposures y los datos en tiempo real.</li>
+          <li style="color: honeydew;" data-i18n="tr.f2">Escenarios, hipótesis, estrategias y validaciones en directo.</li>
+          <li style="color: honeydew;" data-i18n="tr.f3">Laboratorio práctico donde griegas, volatilidad y flujos cobran vida.</li>
+          <li style="color: honeydew;" data-i18n="tr.f4">Ecosistema que piensa en conjunto y mejora el edge colectivo.</li>
+          <li style="color: honeydew;" data-i18n="tr.f5">Sin software de pago adicional: compartimos la data profesional en vivo para que analices sin costes extra.</li>
         </ul>
 
         <div class="access-info">
-          <span style="color: honeydew;">Alumnos del programa principal: <strong>2 meses</strong> de acceso incluido.</span>
-          
+          <span style="color: honeydew;" data-i18n="tr.alumnos">Alumnos del programa principal: 2 meses de acceso incluido.</span>
         </div>
 
         <div class="mt-2">
-          <a href="/training" class="btn btn-primary">Ver programas de formación</a>
-          <a href="/contact" class="btn btn-outline" style="margin-left: 0.75rem;">Contactar</a>
+          <a href="/training" class="btn btn-primary" data-i18n="tr.verProgramas">Ver programas de formación</a>
+          <a href="/contact" class="btn btn-outline" style="margin-left: 0.75rem;" data-i18n="tr.contactar">Contactar</a>
         </div>
       </div>
     </section>
@@ -3575,7 +3578,8 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       testimonials: { title: 'Testimonios' },
       comingSoon: { badge: 'PRÓXIMAMENTE', title: 'Herramientas y bots en desarrollo', text: 'Estamos preparando soluciones que se integrarán con tu operativa. Muy pronto.' },
       convocatorias: { intro: '6 convocatorias anuales, con 2 meses de duración cada una y 3 sesiones semanales de 1 hora.' },
-      recursos: { placeholder: 'Próximamente más recursos gratuitos: enlaces, guías y herramientas.' }
+      recursos: { placeholder: 'Próximamente más recursos gratuitos: enlaces, guías y herramientas.' },
+      tr: { title: 'Trading Room — Operativa Estructural en Vivo', intro: 'La Trading Room es el punto donde la teoría se convierte en ejecución real. Un entorno de operativa en vivo donde los alumnos del programa principal y de la Formación de Opciones aplican los conceptos aprendidos frente al mercado abierto.', cardTitle: 'Pensar como un Market Maker', cardDesc1: 'Te revelamos cómo los flujos institucionales, las exposiciones de las opciones y la microestructura del mercado definen el movimiento real del precio. Exploraremos la lectura de griegas ocultas para la mayoría de traders, ponderaremos la tipología de flujos institucionales, y te enseñaremos a estudiar las exposures realmente útiles, para formar una mente analítica capaz de interpretar el mercado desde los datos, no desde la intuición.', cardDesc2: 'A través de una metodología rigurosa, los alumnos aprenden a pensar y operar como los market makers, comprendiendo las verdaderas fuerzas detrás del spot: gamma, vanna, charm, delta, speed, color, vomma, zomma y más.', acceder: 'Acceder a la formación', verProgramas: 'Ver programas de formación', contactar: 'Contactar', alumnos: 'Alumnos del programa principal: 2 meses de acceso incluido.', f1: 'Analizamos el flujo institucional, las exposures y los datos en tiempo real.', f2: 'Escenarios, hipótesis, estrategias y validaciones en directo.', f3: 'Laboratorio práctico donde griegas, volatilidad y flujos cobran vida.', f4: 'Ecosistema que piensa en conjunto y mejora el edge colectivo.', f5: 'Sin software de pago adicional: compartimos la data profesional en vivo para que analices sin costes extra.' }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
@@ -3585,7 +3589,8 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       testimonials: { title: 'الشهادات' },
       comingSoon: { badge: 'قريباً', title: 'أدوات وبوتات قيد التطوير', text: 'نحن نعد حلولاً ستتكامل مع أسلوب عملك. قريباً.' },
       convocatorias: { intro: '6 دورات سنوية، مدة كل منها شهران و3 جلسات أسبوعية ساعة واحدة.' },
-      recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' }
+      recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' },
+      tr: { title: 'غرفة التداول — عمليات هيكلية مباشرة', intro: 'غرفة التداول هي النقطة التي تتحول فيها النظرية إلى تنفيذ حقيقي. بيئة عمليات مباشرة يطبق فيها طلاب البرنامج الرئيسي وتدريب الخيارات المفاهيم المتعلمة أمام السوق المفتوح.', cardTitle: 'التفكير مثل صانع السوق', cardDesc1: 'نكشف كيف تحدد التدفقات المؤسسية وتعرض الخيارات وبنية السوق الدقيقة الحركة الفعلية للسعر. نستكشف قراءة الإغريقيات المخفية عن معظم المتداولين، ونقيّم أنواع التدفقات المؤسسية، ونعلّمك دراسة التعرضات المفيدة فعلاً لتكوين عقلية تحليلية قادرة على تفسير السوق من البيانات لا من الحدس.', cardDesc2: 'من خلال منهجية صارمة، يتعلم الطلاب التفكير والتداول مثل صناع السوق، وفهم القوى الحقيقية وراء السعر: غاما، فانا، تشارم، دلتا، سبيد، كولور، فومما، زوما وأكثر.', acceder: 'الوصول إلى التدريب', verProgramas: 'عرض برامج التدريب', contactar: 'اتصل', alumnos: 'طلاب البرنامج الرئيسي: شهران من الوصول مشمولان.', f1: 'نحلل التدفق المؤسسي والتعرضات والبيانات في الوقت الفعلي.', f2: 'سيناريوهات وفرضيات واستراتيجيات وتحققات مباشرة.', f3: 'مختبر عملي حيث الإغريقيات والتقلب والتدفقات تأخذ حيزاً.', f4: 'نظام يفكر معاً ويحسّن الميزة الجماعية.', f5: 'بدون برمجيات مدفوعة إضافية: نشارك البيانات الاحترافية مباشرة لتحلل دون تكاليف إضافية.' }
     }
   };
 
@@ -3621,12 +3626,19 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    document.querySelectorAll('[data-url_code="ar"], [data-url_code="es"]').forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-url_code') === getLang());
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var code = el.getAttribute('data-url_code');
+        if (code === 'ar' || code === 'es') {
+          setLang(code);
+          document.querySelectorAll('[data-url_code="ar"], [data-url_code="es"]').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === code);
+          });
+        }
       });
-    }
+    });
   }
 
   // ---- Mobile nav ----

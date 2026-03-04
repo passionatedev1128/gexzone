@@ -3470,6 +3470,10 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
   
 
   <main>
+    <div class="header-lang-toggle" style="position:fixed;top:1rem;right:1rem;z-index:1001;display:inline-flex;border:1px solid var(--border-subtle);border-radius:8px;background:var(--bg-card);overflow:hidden;">
+      <a class="dropdown-item js_change_lang" href="#" data-url_code="es" style="min-width:2.5rem;height:2rem;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:.75rem;font-weight:600;text-decoration:none;">ES</a>
+      <a class="dropdown-item js_change_lang" href="#" data-url_code="ar" style="min-width:2.5rem;height:2rem;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:.75rem;font-weight:600;text-decoration:none;">AR</a>
+    </div>
     <!-- Video at the very top: /assets/drop.mp4 -->
     <section class="video-section" aria-label="Video intro" style="margin-top: 0;">
       <video autoplay muted loop playsinline class="hero-video-bg__video" aria-label="Vista aérea de ciudad, skyline">
@@ -3481,20 +3485,20 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     <section class="volatilidad-section" aria-labelledby="spreads-heading">
       <div class="container">
         <header class="volatilidad-hero">
-          <p class="volatilidad-badge">Estrategias</p>
-          <h2 id="spreads-heading" style="text-align: center !important;">Trading de Spreads VIX basado en estructura temporal</h2>
-          <p style="text-align: center !important;">Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
+          <p class="volatilidad-badge" data-i18n="vol.badge">Estrategias</p>
+          <h2 id="spreads-heading" style="text-align: center !important;" data-i18n="vol.title">Trading de Spreads VIX basado en estructura temporal</h2>
+          <p style="text-align: center !important;" data-i18n="vol.sub">Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.</p>
         </header>
 
         <div class="vol-charts-subsection">
           <div class="vol-charts-grid">
             <div class="vol-chart-card">
-              <div class="vol-chart-title">Estructura Temporal VIX</div>
-              <div class="vol-chart-subtitle">Contango vs Backwardation</div>
+              <div class="vol-chart-title" data-i18n="vol.chartTitle">Estructura Temporal VIX</div>
+              <div class="vol-chart-subtitle" data-i18n="vol.chartSub">Contango vs Backwardation</div>
               <canvas id="termStructureChart" class="vol-chart-canvas"></canvas>
             </div>
             <div class="vol-chart-card">
-              <div class="vol-chart-title">Ratio VIX / VIX3M</div>
+              <div class="vol-chart-title" data-i18n="vol.ratioTitle">Ratio VIX / VIX3M</div>
               <div class="vol-chart-subtitle">Señales históricas de entrada/salida</div>
               <canvas id="ratioChart" class="vol-chart-canvas"></canvas>
             </div>
@@ -4437,22 +4441,26 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
     es: {
       nav: { formacion: 'Formación', tradingRoom: 'Trading Room', recursos: 'Recursos', volatilidad: 'Volatilidad', software: 'Software / Bots', contacto: 'Contacto' },
       footer: { terms: 'Términos y condiciones', cookies: 'Política de cookies', advisor: 'Aviso legal / Financial advisor', copyright: '© GEXZONE. Todos los derechos reservados.' },
+      aria: { themeToggle: 'Cambiar a modo claro', themeToggleDark: 'Cambiar a modo oscuro', lang: 'Idioma' },
       contact: { title: 'Contacto', intro: '¿Quieres saber si esta formación es para ti? Agenda una llamada con nuestro equipo para evaluar tu perfil y tus objetivos operativos o envíanos un mensaje directo.', bookCallTitle: 'Agendar una llamada', bookCallDesc: 'Elige el día y la hora que mejor te venga. Videollamada con un miembro del equipo para resolver dudas o evaluar tu perfil.', bookCallBtn: 'Elegir fecha y hora', bookCallHint: 'Tipo Calendly — sustituye el enlace por tu URL de Calendly, Cal.com o similar.', cta: 'Evalúa tu perfil con un experto institucional', ctaDesc: 'Una sesión con nuestro equipo para valorar tus objetivos y si la formación encaja contigo.', ctaBtn: 'Evalúa mi perfil', orMessage: 'O envíanos un mensaje', chatHint: 'Para preguntas rápidas usa el chat de la esquina; para temas extensos, agenda una llamada o escribe aquí.', name: 'Nombre', email: 'Correo electrónico', message: 'Mensaje', send: 'Enviar' },
       chatbot: { title: 'Chat GEXZONE', placeholder: 'Escribe tu mensaje...', send: 'Enviar', greeting: 'Hola. Soy el asistente de GEXZONE. Puedo responder preguntas frecuentes sobre formación y Trading Room. Para temas detallados, te recomendamos usar el formulario de contacto o agendar una llamada.' },
       testimonials: { title: 'Testimonios' },
       comingSoon: { badge: 'PRÓXIMAMENTE', title: 'Herramientas y bots en desarrollo', text: 'Estamos preparando soluciones que se integrarán con tu operativa. Muy pronto.' },
       convocatorias: { intro: '6 convocatorias anuales, con 2 meses de duración cada una y 3 sesiones semanales de 1 hora.' },
-      recursos: { placeholder: 'Próximamente más recursos gratuitos: enlaces, guías y herramientas.' }
+      recursos: { placeholder: 'Próximamente más recursos gratuitos: enlaces, guías y herramientas.' },
+      vol: { badge: 'Estrategias', title: 'Trading de Spreads VIX basado en estructura temporal', sub: 'Ajusta tu posicionamiento según la curva de futuros VIX: contango, backwardation y estructura plana.', chartTitle: 'Estructura Temporal VIX', chartSub: 'Contango vs Backwardation', ratioTitle: 'Ratio VIX / VIX3M' }
     },
     ar: {
       nav: { formacion: 'التدريب', tradingRoom: 'غرفة التداول', recursos: 'الموارد', volatilidad: 'التقلب', software: 'البرمجيات / البوتات', contacto: 'اتصل' },
       footer: { terms: 'الشروط والأحكام', cookies: 'سياسة ملفات تعريف الارتباط', advisor: 'إشعار قانوني / مستشار مالي', copyright: '© GEXZONE. جميع الحقوق محفوظة.' },
+      aria: { themeToggle: 'التبديل إلى الوضع الفاتح', themeToggleDark: 'التبديل إلى الوضع الداكن', lang: 'اللغة' },
       contact: { title: 'اتصل بنا', intro: 'هل تريد معرفة ما إذا كان هذا التدريب مناسبًا لك؟ حدد موعدًا لمكالمة مع فريقنا لتقييم ملفك وأهدافك التشغيلية أو أرسل لنا رسالة مباشرة.', bookCallTitle: 'حجز مكالمة', bookCallDesc: 'اختر اليوم والوقت المناسبين. مكالمة فيديو مع أحد أعضاء الفريق للإجابة على أسئلتك أو تقييم ملفك.', bookCallBtn: 'اختيار التاريخ والوقت', bookCallHint: 'مثل Calendly — استبدل الرابط برابط Calendly أو Cal.com أو ما شابه.', cta: 'قيّم ملفك مع خبير مؤسسي', ctaDesc: 'جلسة مع فريقنا لتقييم أهدافك وما إذا كان التدريب مناسبًا لك.', ctaBtn: 'قيّم ملفي', orMessage: 'أو أرسل لنا رسالة', chatHint: 'للأسئلة السريعة استخدم الدردشة في الزاوية؛ للمواضيع الأطول، احجز مكالمة أو اكتب هنا.', name: 'الاسم', email: 'البريد الإلكتروني', message: 'الرسالة', send: 'إرسال' },
       chatbot: { title: 'دردشة GEXZONE', placeholder: 'اكتب رسالتك...', send: 'إرسال', greeting: 'مرحباً. أنا مساعد GEXZONE. يمكنني الإجابة على الأسئلة الشائعة حول التدريب وغرفة التداول. للمواضيع المفصلة نوصي باستخدام نموذج الاتصال أو تحديد مكالمة.' },
       testimonials: { title: 'الشهادات' },
       comingSoon: { badge: 'قريباً', title: 'أدوات وبوتات قيد التطوير', text: 'نحن نعد حلولاً ستتكامل مع أسلوب عملك. قريباً.' },
       convocatorias: { intro: '6 دورات سنوية، مدة كل منها شهران و3 جلسات أسبوعية ساعة واحدة.' },
-      recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' }
+      recursos: { placeholder: 'قريباً المزيد من الموارد المجانية: روابط وأدلة وأدوات.' },
+      vol: { badge: 'استراتيجيات', title: 'تداول سبريدات VIX بناءً على البنية الزمنية', sub: 'اضبط مرونتك حسب منحنى عقود VIX الآجلة: كونتانغو، backwardation والبنية المسطحة.', chartTitle: 'البنية الزمنية VIX', chartSub: 'كونتانغو مقابل Backwardation', ratioTitle: 'نسبة VIX / VIX3M' }
     }
   };
 
@@ -4484,16 +4492,27 @@ body.rtl .two-col-list li::before { left: auto; right: 0; }
       const v = get(t, el.getAttribute('data-i18n-placeholder'));
       if (v != null) el.placeholder = v;
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      const v = get(t, el.getAttribute('data-i18n-aria'));
+      if (v != null) el.setAttribute('aria-label', v);
+    });
   }
 
   function initLang() {
     setLang(getLang());
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        setLang(getLang() === 'es' ? 'ar' : 'es');
+    document.querySelectorAll('[data-url_code="ar"], [data-url_code="es"]').forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-url_code') === getLang());
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var code = el.getAttribute('data-url_code');
+        if (code === 'ar' || code === 'es') {
+          setLang(code);
+          document.querySelectorAll('[data-url_code="ar"], [data-url_code="es"]').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === code);
+          });
+        }
       });
-    }
+    });
   }
 
   // ---- Mobile nav ----

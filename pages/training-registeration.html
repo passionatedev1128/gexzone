@@ -168,6 +168,10 @@
   
 
   <main>
+    <div class="header-lang-toggle" style="position:fixed;top:1rem;right:1rem;z-index:1001;display:inline-flex;border:1px solid var(--border-subtle);border-radius:8px;background:var(--bg-card);overflow:hidden;">
+      <a class="dropdown-item js_change_lang" href="#" data-url_code="es" style="min-width:2.5rem;height:2rem;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:.75rem;font-weight:600;text-decoration:none;">ES</a>
+      <a class="dropdown-item js_change_lang" href="#" data-url_code="ar" style="min-width:2.5rem;height:2rem;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:.75rem;font-weight:600;text-decoration:none;">AR</a>
+    </div>
     <section class="section">
       <div class="container">
         <div class="inscripcion-hero">
@@ -280,9 +284,18 @@
   }
   function initLang() {
     setLang(getLang());
-    document.querySelectorAll('.js_change_lang').forEach(function (el) {
+    document.querySelectorAll('[data-url_code="ar"], [data-url_code="es"]').forEach(function (el) {
       el.classList.toggle('active', el.getAttribute('data-url_code') === getLang());
-      el.addEventListener('click', function (e) { e.preventDefault(); setLang(el.getAttribute('data-url_code')); document.querySelectorAll('.js_change_lang').forEach(function (item) { item.classList.toggle('active', item.getAttribute('data-url_code') === getLang()); }); });
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var code = el.getAttribute('data-url_code');
+        if (code === 'ar' || code === 'es') {
+          setLang(code);
+          document.querySelectorAll('[data-url_code="ar"], [data-url_code="es"]').forEach(function (item) {
+            item.classList.toggle('active', item.getAttribute('data-url_code') === code);
+          });
+        }
+      });
     });
   }
 
